@@ -23,3 +23,6 @@ alias dockerrm='docker rm $(docker ps -a -q)'
 alias dockerprune='docker container prune -f && docker image prune -f && docker system prune -f'
 alias composeup='docker-compose -f compose-local.yml up --build'
 alias composedown='docker-compose -f compose-local.yml down'
+
+# tmux
+alias tmuxsource='tmux source-file ~/.tmux.conf'
