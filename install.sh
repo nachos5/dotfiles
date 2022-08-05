@@ -5,13 +5,13 @@ ABS_SCRIPT_PATH="$(realpath "${SCRIPT_PATH}")"
 ABS_DIRECTORY="$(dirname "${ABS_SCRIPT_PATH}")"
 DOTFILES=$ABS_DIRECTORY
 
-ln -sf "${DOTFILES}/.config/i3" ~/.config/i3
-ln -sf "${DOTFILES}/.config/i3status" ~/.config/i3status
-ln -sf "${DOTFILES}/.config/nvim" ~/.config/nvim
+rm -rf ~/.config/i3 && ln -sf "${DOTFILES}/.config/i3" ~/.config/i3
+rm -rf ~/.config/i3status && ln -sf "${DOTFILES}/.config/i3status" ~/.config/i3status
+rm -rf ~/.config/nvim && ln -sf "${DOTFILES}/.config/nvim" ~/.config/nvim
 mkdir -p ~/.config/lazygit && ln -sf "${DOTFILES}/.config/lazygit/config.yml" ~/.config/lazygit/config.yml
 mkdir -p ~/.config/stylua && ln -sf "${DOTFILES}/.config/stylua/.stylua.toml" ~/.config/stylua/.stylua.toml
 mkdir -p ~/i3status-rust && ln -sf "${DOTFILES}/i3status-rust/config.toml" ~/i3status-rust/config.toml
-ln -sf "${DOTFILES}/utils" ~/utils
+rm -rf ~/utils && ln -sf "${DOTFILES}/utils" ~/utils
 ln -sf "${DOTFILES}/.bash_aliases" ~/.bash_aliases
 ln -sf "${DOTFILES}/.inputrc" ~/.inputrc
 ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
