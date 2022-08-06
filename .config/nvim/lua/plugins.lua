@@ -35,6 +35,11 @@ return require("packer").startup({
           -- if you want to ignore markdown file.
           -- you can specify filetypes.
           disable = { "markdown" },
+          patterns = {
+            [[%s/\s\+$//e]], -- remove unwanted spaces
+            [[%s/\($\n\s*\)\+\%$//]], -- trim last line
+            [[%s/\%^\n\+//]], -- trim first line
+          },
         })
       end,
     })
@@ -117,10 +122,25 @@ return require("packer").startup({
     })
     use("nvim-telescope/telescope-file-browser.nvim")
 
-    -- debug
+    -- tests/debug
     use("mfussenegger/nvim-dap")
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
+    use({
+      "nvim-neotest/neotest",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim",
+        "vim-test/vim-test",
+        "nvim-neotest/neotest-python",
+        "nvim-neotest/neotest-plenary",
+        "nvim-neotest/neotest-vim-test",
+      },
+      config = function()
+        require("plugins/neotest")
+      end,
+    })
 
     -- theme
     use("morhetz/gruvbox")

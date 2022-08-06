@@ -13,9 +13,10 @@ vim.api.nvim_set_keymap("n", "<leader><C-f>", "<cmd>lua _floating_toggle()<CR>",
 vim.api.nvim_set_keymap("t", "<leader><C-f>", "<cmd>lua _floating_toggle()<CR>", { noremap = true, silent = true })
 
 -- <C-g> for a lazygit floating terminal
-local lg_cmd = "lazygit $(pwd)"
+local lg_pre_cmd = "(source ./env/bin/activate || true) && "
+local lg_cmd = lg_pre_cmd .. "lazygit $(pwd)"
 if vim.v.servername ~= nil then
-  lg_cmd = string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml $(pwd)", vim.v.servername)
+  lg_cmd = lg_pre_cmd .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml $(pwd)", vim.v.servername)
 end
 
 local lazygit = Terminal:new({ cmd = lg_cmd, direction = "float", hidden = true })

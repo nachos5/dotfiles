@@ -43,8 +43,8 @@ let NERDSpaceDelims=1
 " python
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 function! FormatPython()
-  call CocAction('format')
   call CocAction('runCommand', 'python.sortImports')
+  call CocAction('format')
 endfunction
 " This triggers all formatting before coc linter is triggered
 aug python

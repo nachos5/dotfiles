@@ -47,6 +47,7 @@ nnoremap("<leader>co", ":CocCommand workspace.showOutput<CR>")
 
 vim.cmd([[
 autocmd FileType python,javascript,typescript,typescriptreact nnoremap <buffer> <localleader>f :call CocAction("format")<CR>
+autocmd FileType python nnoremap <buffer> <localleader>s :call CocAction("runCommand", "python.sortImports")<CR>
 ]])
 
 -- You can add extension names to the g:coc_global_extensions variable, and coc
