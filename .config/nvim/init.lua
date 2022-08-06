@@ -16,7 +16,10 @@ require("nvim-treesitter.configs").setup({
   ensure_installed = { "org" }, -- Or run :TSUpdate org
 })
 
-require("orgmode").setup()
+require("orgmode").setup({
+  org_agenda_files = { "~/Dropbox/org/*", "~/my-orgs/**/*" },
+  org_default_notes_file = "~/Dropbox/org/refile.org",
+})
 
 require("mappings")
 
@@ -39,11 +42,14 @@ let NERDSpaceDelims=1
 
 " python
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+function! FormatPython()
+  call CocAction('format')
+  call CocAction('runCommand', 'python.sortImports')
+endfunction
 " This triggers all formatting before coc linter is triggered
 aug python
-    au!
-    autocmd BufWritePre *.py call CocAction('runCommand', 'pyright.organizeimports')
-    autocmd BufWritePre *.py call CocAction('format')
+  au!
+  autocmd BufWritePre *.py call FormatPython()
 aug END
 
 "

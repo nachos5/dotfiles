@@ -50,4 +50,6 @@ require("formatter").setup({
   },
 })
 
-nnoremap("<leader>f", ":Format<CR>")
+vim.cmd([[
+autocmd FileType lua nnoremap <buffer> <localleader>f :Format<CR>
+]])

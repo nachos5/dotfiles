@@ -14,5 +14,6 @@
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "pyright.disableDiagnostics": true,
+  "pyright.organizeimports.provider": "isort",
   "eslint.autoFixOnSave": true
 }
