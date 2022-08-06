@@ -97,9 +97,6 @@ bindsym $mod+Shift+space floating toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -133,26 +130,26 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+  # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -184,9 +181,6 @@ bar {
 # ------------------------------------------
 exec --no-startup-id nm-applet
 
-# bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
-# bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
-
 # FKeys
 # Pulse Audio controls - pacmd list-sinks | grep name
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume jack_out +5% # increase sound volume
@@ -200,13 +194,21 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Alsa audio controls.
 bindsym $mod+XF86AudioRaiseVolume exec amixer sset Master 5%+
 bindsym $mod+XF86AudioLowerVolume exec amixer sset Master 5%-
-# bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
-# bindsym $mod+semicolon exec ~/.config/i3/scripts/alsa down Headphone
-# bindsym $mod+comma exec ~/.config/i3/scripts/alsa up Headphone
-# bindsym $mod+m move workspace to output left
 
-# Suspend
-bindsym $mod+Shift+period exec systemctl suspend
+# System
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+  bindsym l exec --no-startup-id i3lock-fancy lock, mode "default"
+  bindsym e exec --no-startup-id i3-msg exit, mode "default"
+  bindsym s exec --no-startup-id systemctl suspend, mode "default"
+  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+  bindsym r exec --no-startup-id systemctl reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+ctrl+q mode "$mode_system"
 
 # ------------------------------------------
 # run code on start
@@ -227,5 +229,4 @@ exec pacmd set-default-sink jack_out
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 # open programs
-exec --no-startup-id i3-msg 'workspace 2; exec firefox'
-exec --no-startup-id i3-msg 'workspace 1; exec gnome-terminal -x tmux'
+exec --no-startup-id i3-msg 'workspace 1; exec ~/utils/scripts/tmux-main.sh; workspace 2; exec firefox; workspace 3; exec firefox; workspace 1;'
