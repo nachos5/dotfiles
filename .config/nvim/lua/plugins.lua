@@ -159,23 +159,26 @@ return require("packer").startup({
       end,
     })
 
+    -- snippets
     use({
       "L3MON4D3/LuaSnip",
       config = function()
         require("plugins/luasnip")
       end,
     })
+
+    -- lsp
     use({
       "hrsh7th/nvim-cmp",
       disable = false,
       requires = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-path",
         "quangnguyen30192/cmp-nvim-tags",
         "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
         "ray-x/cmp-treesitter",
-        "hrsh7th/cmp-path",
       },
       config = function()
         require("plugins/cmp")
