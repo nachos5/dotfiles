@@ -6,10 +6,10 @@ function! FormatPython()
   call CocAction('format')
 endfunction
 " This triggers all formatting before coc linter is triggered
-aug python
-  au!
-  autocmd BufWritePre *.py call FormatPython()
-aug END
+" aug python
+"  au!
+"  autocmd BufWritePre *.py call FormatPython()
+" aug END
 
 " typescript react
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact

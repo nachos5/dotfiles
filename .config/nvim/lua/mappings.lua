@@ -6,6 +6,7 @@ local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
 inoremap("jk", "<Esc>")
+vnoremap("<leader>jk", "<Esc>")
 nnoremap("<leader>sv", ":source $MYVIMRC<CR>")
 
 -- move line
@@ -38,16 +39,16 @@ nnoremap("<leader>tc", ":tabclose<CR>")
 nnoremap("<leader>tn", ":tabnew<CR>")
 nnoremap("<leader>to", ":tabonly<cr>")
 nnoremap("<leader>tm", ":tabmove<Space>")
-nnoremap("<leader>1", "1gt")
-nnoremap("<leader>2", "2gt")
-nnoremap("<leader>3", "3gt")
-nnoremap("<leader>4", "4gt")
-nnoremap("<leader>5", "5gt")
-nnoremap("<leader>6", "6gt")
-nnoremap("<leader>7", "7gt")
-nnoremap("<leader>8", "8gt")
-nnoremap("<leader>9", "9gt")
-nnoremap("<leader>0", "10gt")
+nnoremap("<leader>t1", "1gt")
+nnoremap("<leader>t2", "2gt")
+nnoremap("<leader>t3", "3gt")
+nnoremap("<leader>t4", "4gt")
+nnoremap("<leader>t5", "5gt")
+nnoremap("<leader>t6", "6gt")
+nnoremap("<leader>t7", "7gt")
+nnoremap("<leader>t8", "8gt")
+nnoremap("<leader>t9", "9gt")
+nnoremap("<leader>t0", "10gt")
 
 -- view messages
 nnoremap("<leader>m", ":messages<CR>")
