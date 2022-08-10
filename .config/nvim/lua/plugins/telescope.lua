@@ -1,8 +1,12 @@
 local Remap = require("keymap")
 local nnoremap = Remap.nnoremap
 
+local telescope = require("telescope")
 local actions = require("telescope.actions")
-require("telescope").setup({
+
+telescope.load_extension("harpoon")
+
+telescope.setup({
   defaults = {
     path_display = { "smart" },
     file_ignore_patterns = {
@@ -36,3 +40,4 @@ nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 nnoremap("<leader>fr", "<cmd>Telescope resume<cr>")
 
 nnoremap("<leader>fc", "<cmd>Telescope commands<cr>")
+nnoremap("<leader>fk", "<cmd>Telescope keymaps<cr>")

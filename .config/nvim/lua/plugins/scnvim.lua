@@ -66,7 +66,7 @@ scnvim.setup({
       args = { "-F", "$1" },
     },
     logger = {
-      path = '/tmp/scnvim-logs.txt',
+      path = "/tmp/scnvim-logs.txt",
     },
   },
 })

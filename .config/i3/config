@@ -154,6 +154,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+Ctrl+i exec setxkbmap -layout is
+bindsym $mod+Ctrl+u exec setxkbmap -layout us
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -229,4 +232,4 @@ exec pacmd set-default-sink jack_out
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 # open programs
-exec --no-startup-id i3-msg 'workspace 1; exec ~/utils/scripts/tmux-main.sh; workspace 2; exec firefox; workspace 3; exec firefox; workspace 1;'
+exec --no-startup-id i3-msg 'workspace 1; exec ~/utils/scripts/tmux-main.sh; workspace 2; exec firefox; workspace 3; exec firefox; workspace 4; exec ~/utils/scripts/tmux-secondary.sh; workspace 1;'

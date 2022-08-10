@@ -25,8 +25,66 @@ return require("packer").startup({
       require("packer").sync()
     end
 
+    -- core
     use("wbthomason/packer.nvim")
+    use("nvim-lua/plenary.nvim")
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+    })
+    use({
+      "kyazdani42/nvim-tree.lua",
+      requires = {
+        "kyazdani42/nvim-web-devicons", -- optional, for file icons
+      },
+      tag = "nightly", -- optional, updated every week. (see issue #1193)
+      config = function()
+        require("plugins/nvim-tree")
+      end,
+    })
+    use({
+      "nvim-lualine/lualine.nvim",
+      requires = {
+        "kyazdani42/nvim-web-devicons",
+        opt = true,
+        config = function()
+          require("lualine").setup()
+        end,
+      },
+    })
 
+    -- various / utils / uncategorized
+    use("nvim-orgmode/orgmode")
+    use({
+      "windwp/nvim-autopairs",
+      after = {
+        "nvim-cmp",
+      },
+      config = function()
+        require("plugins/autopairs")
+      end,
+    })
+    -- use({
+    --   "abecodes/tabout.nvim",
+    --   after = {
+    --     "nvim-cmp",
+    --   },
+    --   config = function()
+    --     require("plugins/tabout")
+    --   end,
+    -- })
+    use({
+      "kylechui/nvim-surround",
+      config = function()
+        require("plugins/surround")
+      end,
+    })
+    use({
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup()
+      end,
+    })
     -- Trim whitespace from ends of lines automatically
     use({
       "cappyzawa/trim.nvim",
@@ -43,54 +101,6 @@ return require("packer").startup({
         })
       end,
     })
-
-    use({
-      "kyazdani42/nvim-tree.lua",
-      requires = {
-        "kyazdani42/nvim-web-devicons", -- optional, for file icons
-      },
-      tag = "nightly", -- optional, updated every week. (see issue #1193)
-      config = function()
-        require("plugins/nvim-tree")
-      end,
-    })
-
-    use({
-      "neoclide/coc.nvim",
-      branch = "release",
-      run = "yarn install",
-      config = function()
-        require("plugins/coc")
-      end,
-    })
-
-    use("nvim-lua/plenary.nvim")
-
-    use("nvim-treesitter/nvim-treesitter", {
-      run = ":TSUpdate",
-    })
-
-    use("nvim-orgmode/orgmode")
-
-    use("nvim-lualine/lualine.nvim", {
-      requires = {
-        "kyazdani42/nvim-web-devicons",
-        opt = true,
-        config = function()
-          require("lualine").setup()
-        end,
-      },
-    })
-
-    use({
-      "windwp/nvim-autopairs",
-      config = function()
-        require("nvim-autopairs").setup({})
-      end,
-    })
-
-    use("christoomey/vim-tmux-navigator")
-
     use({
       "iamcco/markdown-preview.nvim",
       run = function()
@@ -101,6 +111,7 @@ return require("packer").startup({
       end,
     })
 
+    -- terminal + navigation
     use({
       "akinsho/toggleterm.nvim",
       tag = "v2.*",
@@ -108,8 +119,13 @@ return require("packer").startup({
         require("plugins/toggleterm")
       end,
     })
-
-    -- use('mg979/vim-visual-multi', {branch = 'master'})
+    use("christoomey/vim-tmux-navigator")
+    use({
+      "ThePrimeagen/harpoon",
+      config = function()
+        require("plugins/harpoon")
+      end,
+    })
 
     -- telescope
     use({
@@ -143,7 +159,15 @@ return require("packer").startup({
     })
 
     -- theme
-    use("morhetz/gruvbox")
+    -- use("morhetz/gruvbox")
+    use({
+      "gruvbox-community/gruvbox",
+      config = function()
+        vim.g.gruvbox_contrast_dark = "hard"
+        vim.g.gruvbox_invert_selection = "0"
+        vim.opt.background = "dark"
+      end,
+    })
 
     -- git
     use({
@@ -169,27 +193,72 @@ return require("packer").startup({
 
     -- lsp
     use({
-      "hrsh7th/nvim-cmp",
-      disable = false,
+      "williamboman/mason.nvim",
       requires = {
-        "hrsh7th/cmp-nvim-lsp",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+      },
+      config = function()
+        require("plugins/mason")
+      end,
+    })
+    use({
+      "hrsh7th/nvim-cmp",
+      requires = {
         "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
         "hrsh7th/cmp-path",
+        "hrsh7th/cmp-calc",
         "quangnguyen30192/cmp-nvim-tags",
         "saadparwaiz1/cmp_luasnip",
         "ray-x/cmp-treesitter",
+        "David-Kunz/cmp-npm",
+        -- vscode-like pictograms for neovim lsp completion items
+        "onsails/lspkind-nvim",
       },
       config = function()
         require("plugins/cmp")
       end,
     })
+    use({
+      "j-hui/fidget.nvim",
+      config = function()
+        require("plugins/fidget")
+      end,
+    })
+    use({
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("plugins/trouble")
+      end,
+    })
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        require("plugins/null-ls")
+      end,
+    })
+    -- lsp addons
+    use({ "jose-elias-alvarez/typescript.nvim" })
+
+    -- use({
+    --   "neoclide/coc.nvim",
+    --   branch = "release",
+    --   run = "yarn install",
+    --   config = function()
+    --     require("plugins/coc")
+    --   end,
+    -- })
 
     -- typescript react
-    use("pangloss/vim-javascript")
-    use("leafgarland/typescript-vim")
-    use("peitalin/vim-jsx-typescript")
-    use("jparise/vim-graphql")
+    -- use("pangloss/vim-javascript")
+    -- use("leafgarland/typescript-vim")
+    -- use("peitalin/vim-jsx-typescript")
+    -- use("jparise/vim-graphql")
 
     -- supercollider
 
@@ -251,15 +320,14 @@ return require("packer").startup({
     use("junegunn/fzf.vim")
 
     -- formatting
-    use({
-      "mhartington/formatter.nvim",
-      config = function()
-        require("plugins/formatter")
-      end,
-    })
+    -- use({
+    --   "mhartington/formatter.nvim",
+    --   config = function()
+    --     require("plugins/formatter")
+    --   end,
+    -- })
 
     -- comments
-    -- use("scrooloose/nerdcommenter")
     use({
       "numToStr/Comment.nvim",
       config = function()
