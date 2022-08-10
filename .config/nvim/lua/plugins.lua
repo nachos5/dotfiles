@@ -68,7 +68,6 @@ return require("packer").startup({
     --   "abecodes/tabout.nvim",
     --   after = {
     --     "nvim-cmp",
-    --     "coc.nvim",
     --   },
     --   config = function()
     --     require("plugins/tabout")
@@ -160,7 +159,15 @@ return require("packer").startup({
     })
 
     -- theme
-    use("morhetz/gruvbox")
+    -- use("morhetz/gruvbox")
+    use({
+      "gruvbox-community/gruvbox",
+      config = function()
+        vim.g.gruvbox_contrast_dark = "hard"
+        vim.g.gruvbox_invert_selection = "0"
+        vim.opt.background = "dark"
+      end,
+    })
 
     -- git
     use({
@@ -204,9 +211,13 @@ return require("packer").startup({
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lsp-signature-help",
         "hrsh7th/cmp-path",
+        "hrsh7th/cmp-calc",
         "quangnguyen30192/cmp-nvim-tags",
         "saadparwaiz1/cmp_luasnip",
         "ray-x/cmp-treesitter",
+        "David-Kunz/cmp-npm",
+        -- vscode-like pictograms for neovim lsp completion items
+        "onsails/lspkind-nvim",
       },
       config = function()
         require("plugins/cmp")
@@ -231,6 +242,9 @@ return require("packer").startup({
         require("plugins/null-ls")
       end,
     })
+    -- lsp addons
+    use({ "jose-elias-alvarez/typescript.nvim" })
+
     -- use({
     --   "neoclide/coc.nvim",
     --   branch = "release",
@@ -241,10 +255,10 @@ return require("packer").startup({
     -- })
 
     -- typescript react
-    use("pangloss/vim-javascript")
-    use("leafgarland/typescript-vim")
-    use("peitalin/vim-jsx-typescript")
-    use("jparise/vim-graphql")
+    -- use("pangloss/vim-javascript")
+    -- use("leafgarland/typescript-vim")
+    -- use("peitalin/vim-jsx-typescript")
+    -- use("jparise/vim-graphql")
 
     -- supercollider
 

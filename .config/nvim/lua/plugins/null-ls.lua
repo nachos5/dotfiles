@@ -9,11 +9,12 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-  debug = false,
-  -- debug = true,
+  -- debug = false,
+  debug = true,
   -- update_in_insert = true,
   on_attach = require("lsp").on_attach,
   sources = {
+    -- python
     formatting.black.with({
       prefer_local = "env/bin",
       extra_args = { "--fast" },
@@ -27,12 +28,21 @@ null_ls.setup({
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
 
+    -- js/ts etc...
     formatting.prettier.with({
-      prefer_local = "prettier.config.js",
+      prefer_local = "node_modules/.bin",
     }),
 
+    -- lua
     formatting.stylua.with({
       extra_args = { "--config-path", vim.fn.expand("~/.config/stylua/.stylua.toml") },
     }),
+
+    -- rust
+    formatting.rustfmt,
+
+    -- php
+    -- formatting.phpcsfixer,
+    diagnostics.php,
   },
 })

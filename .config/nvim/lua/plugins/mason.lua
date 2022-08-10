@@ -7,10 +7,13 @@ mason_lspconfig.setup({
     "cssmodules_ls",
     "dockerls",
     "eslint",
+    "graphql",
     "html",
     "jsonls",
+    "phpactor",
     "pyright",
     "rust_analyzer",
+    "sumneko_lua",
     "tailwindcss",
     "tsserver",
     "yamlls",
@@ -26,6 +29,10 @@ end
 
 mason_lspconfig.setup_handlers({
   function(server_name)
+    -- tsserver setup done with typescript plugin below
+    if server_name == "tsserver" then
+      return
+    end
     require("lspconfig")[server_name].setup({
       on_attach = require("lsp").on_attach,
     })
@@ -34,7 +41,6 @@ mason_lspconfig.setup_handlers({
   ["pyright"] = function()
     lspconfig.pyright.setup({
       on_attach = require("lsp").on_attach,
-
       settings = {
         python = {
           analysis = {
@@ -45,4 +51,79 @@ mason_lspconfig.setup_handlers({
       },
     })
   end,
+
+  -- ["tsserver"] = function()
+  --   lspconfig.tsserver.setup({
+  --     on_attach = function(client, bufnr)
+  --       -- formatting is done with null-ls (prettier)
+  --       client.server_capabilities.documentFormattingProvider = false
+  --       client.server_capabilities.documentRangeFormattingProvider = false
+  --       client.resolved_capabilities.document_formatting = false
+  --       require("lsp").on_attach(client, bufnr)
+  --     end,
+  --   })
+  -- end,
 })
+
+-- typescript setup
+local typescript_ok, typescript = pcall(require, "typescript")
+-- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
+if typescript_ok then
+  local ts_capabilities = vim.lsp.protocol.make_client_capabilities()
+  local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if cmp_nvim_lsp_ok then
+    ts_capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    ts_capabilities.textDocument.completion.completionItem.snippetSupport = true
+    ts_capabilities.textDocument.completion.completionItem.preselectSupport = true
+    ts_capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+    ts_capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+    ts_capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+    ts_capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+    ts_capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+    ts_capabilities.textDocument.completion.completionItem.resolveSupport = {
+      properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+      },
+    }
+    ts_capabilities.textDocument.codeAction = {
+      dynamicRegistration = false,
+      codeActionLiteralSupport = {
+        codeActionKind = {
+          valueSet = {
+            "",
+            "quickfix",
+            "refactor",
+            "refactor.extract",
+            "refactor.inline",
+            "refactor.rewrite",
+            "source",
+            "source.organizeImports",
+          },
+        },
+      },
+    }
+  end
+
+  local ts_on_attach = function(client, bufnr)
+    -- formatting is done with null-ls (prettier)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    client.resolved_capabilities.document_formatting = false
+    local function buf_set_option(...)
+      vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  end
+
+  typescript.setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    -- LSP Config options
+    server = {
+      capabilities = ts_capabilities,
+      on_attach = ts_on_attach,
+    },
+  })
+end
