@@ -32,6 +32,10 @@ function export.on_attach(client, bufnr)
       end,
     })
   end
+
+  require("lsp_signature").on_attach({
+    hint_enable = false,
+  }, bufnr)
 end
 
 return export

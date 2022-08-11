@@ -13,7 +13,7 @@ mason_lspconfig.setup({
     "phpactor",
     "pyright",
     "rust_analyzer",
-    "sumneko_lua",
+    -- "sumneko_lua",
     "tailwindcss",
     "tsserver",
     "yamlls",
@@ -29,8 +29,7 @@ end
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    -- tsserver setup done with typescript plugin below
-    if server_name == "tsserver" then
+    if server_name == "tsserver" or server_name == "rust_analyzer" then
       return
     end
     require("lspconfig")[server_name].setup({
@@ -107,7 +106,7 @@ if typescript_ok then
   end
 
   local ts_on_attach = function(client, bufnr)
-    -- formatting is done with null-ls (prettier)
+    -- formatting is done with null-ls
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
     client.resolved_capabilities.document_formatting = false
@@ -115,6 +114,7 @@ if typescript_ok then
       vim.api.nvim_buf_set_option(bufnr, ...)
     end
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    require("lsp").on_attach(client, bufnr)
   end
 
   typescript.setup({
@@ -127,3 +127,21 @@ if typescript_ok then
     },
   })
 end
+
+-- rust setup
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(client, bufnr)
+      -- formatting is done with null-ls
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+      client.resolved_capabilities.document_formatting = false
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      require("lsp").on_attach(client, bufnr)
+    end,
+  },
+})

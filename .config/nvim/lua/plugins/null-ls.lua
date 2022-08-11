@@ -9,8 +9,8 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-  -- debug = false,
-  debug = true,
+  debug = false,
+  -- debug = true,
   -- update_in_insert = true,
   on_attach = require("lsp").on_attach,
   sources = {

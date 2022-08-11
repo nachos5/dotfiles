@@ -3,6 +3,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ducks="sudo du -hsx * | sort -rh | head -20"
+alias echopath="echo $PATH | tr : '\n'"
 portarg () {
     sudo lsof -i:"$@"; sudo lsof -tnP -i:"$@" | xargs -n 1 ps -p
 }

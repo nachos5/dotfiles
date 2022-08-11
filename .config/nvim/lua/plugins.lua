@@ -159,15 +159,8 @@ return require("packer").startup({
     })
 
     -- theme
-    -- use("morhetz/gruvbox")
-    use({
-      "gruvbox-community/gruvbox",
-      config = function()
-        vim.g.gruvbox_contrast_dark = "hard"
-        vim.g.gruvbox_invert_selection = "0"
-        vim.opt.background = "dark"
-      end,
-    })
+    use("gruvbox-community/gruvbox")
+    use("folke/tokyonight.nvim")
 
     -- git
     use({
@@ -197,6 +190,7 @@ return require("packer").startup({
       requires = {
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
+        "ray-x/lsp_signature.nvim",
       },
       config = function()
         require("plugins/mason")
@@ -243,7 +237,8 @@ return require("packer").startup({
       end,
     })
     -- lsp addons
-    use({ "jose-elias-alvarez/typescript.nvim" })
+    use("jose-elias-alvarez/typescript.nvim")
+    use("simrat39/rust-tools.nvim")
 
     -- use({
     --   "neoclide/coc.nvim",

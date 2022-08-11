@@ -62,6 +62,7 @@ cmp.setup({
     { name = "path", priority = 4 },
     { name = "calc", priority = 3 },
     { name = "treesitter" },
+    { name = "nvim_lsp_signature_help" },
   },
   formatting = {
     format = function(entry, vim_item)

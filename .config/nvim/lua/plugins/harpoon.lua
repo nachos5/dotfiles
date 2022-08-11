@@ -5,7 +5,7 @@ local silent = { silent = true }
 
 require("harpoon").setup()
 
-nnoremap("<leader>a", function()
+nnoremap("<leader>aa", function()
   require("harpoon.mark").add_file()
 end, silent)
 nnoremap("<leader>hh", function()
