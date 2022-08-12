@@ -41,5 +41,8 @@ vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.relativenumber = true
 
+-- default is 1000 (1 sec)
+vim.opt.timeoutlen = 1500
+
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
