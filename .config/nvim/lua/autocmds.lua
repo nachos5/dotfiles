@@ -1,10 +1,16 @@
 vim.cmd([[
+" highlight yanked text
+augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank({ higroup="Visual", timeout=200})
+augroup END
+
 " python
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
-function! FormatPython()
-  call CocAction('runCommand', 'python.sortImports')
-  call CocAction('format')
-endfunction
+" function! FormatPython()
+"   call CocAction('runCommand', 'python.sortImports')
+"   call CocAction('format')
+" endfunction
 " This triggers all formatting before coc linter is triggered
 " aug python
 "  au!
