@@ -27,3 +27,6 @@ alias composedown='docker-compose -f compose-local.yml down'
 
 # tmux
 alias tmuxsource='tmux source-file ~/.tmux.conf'
+
+# nvim
+alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp'

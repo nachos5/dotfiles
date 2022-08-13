@@ -37,7 +37,6 @@ for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -232,4 +231,4 @@ exec pacmd set-default-sink jack_out
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 # open programs
-exec --no-startup-id i3-msg 'workspace 1; exec ~/utils/scripts/tmux-main.sh; workspace 2; exec firefox; workspace 3; exec firefox; workspace 4; exec ~/utils/scripts/tmux-secondary.sh; workspace 1;'
+exec --no-startup-id ~/.config/i3/start.sh

@@ -15,6 +15,8 @@ rm -rf ~/utils && ln -sf "${DOTFILES}/utils" ~/utils
 ln -sf "${DOTFILES}/.bash_aliases" ~/.bash_aliases
 ln -sf "${DOTFILES}/.inputrc" ~/.inputrc
 ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
+ln -sf "${DOTFILES}/.xprofile" ~/.xprofile
+ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
 
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
   echo "if [ -f ~/.bashrc ]; then" >> ~/.bash_profile
