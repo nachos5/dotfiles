@@ -17,6 +17,7 @@ ln -sf "${DOTFILES}/.inputrc" ~/.inputrc
 ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
 ln -sf "${DOTFILES}/.xprofile" ~/.xprofile
 ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
+ln -sf "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
 
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
   echo "if [ -f ~/.bashrc ]; then" >> ~/.bash_profile
