@@ -5,7 +5,11 @@ local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+  git = {
+    ignore = false,
+  },
+})
 
 nnoremap("<C-n>", ":NvimTreeToggle<CR>")
 nnoremap("<leader>r", ":NvimTreeRefresh<CR>")

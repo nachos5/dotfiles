@@ -30,3 +30,6 @@ alias tmuxsource='tmux source-file ~/.tmux.conf'
 
 # nvim
 alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp'
+alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'
+alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
+alias lsp_log='tail -n 200 -f ~/.cache/nvim/lsp.log'

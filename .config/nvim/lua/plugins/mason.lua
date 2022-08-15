@@ -33,7 +33,11 @@ mason_lspconfig.setup_handlers({
       return
     end
     require("lspconfig")[server_name].setup({
-      on_attach = require("lsp").on_attach,
+      on_attach = function(client, bufnr)
+        -- use null-ls for all formatting
+        client.resolved_capabilities.document_formatting = false
+        require("lsp").on_attach(client, bufnr)
+      end,
     })
   end,
 

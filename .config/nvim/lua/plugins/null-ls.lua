@@ -31,6 +31,25 @@ null_ls.setup({
     -- js/ts etc...
     formatting.prettier.with({
       prefer_local = "node_modules/.bin",
+      timeout = 10000,
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "svelte",
+        "css",
+        "scss",
+        "less",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "markdown",
+        "graphql",
+        "handlebars",
+      },
     }),
 
     -- lua

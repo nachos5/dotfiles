@@ -33,11 +33,12 @@ telescope.setup({
   },
 })
 
-nnoremap("<leader>ff", "<cmd>Telescope find_files shorten_path=true<cr>")
-nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
-nnoremap("<leader>fb", "<cmd>Telescope buffers sort_mru=true<cr>")
-nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
-nnoremap("<leader>fr", "<cmd>Telescope resume<cr>")
+nnoremap("<leader>ff", "<cmd>Telescope find_files shorten_path=true<CR>")
+nnoremap("<leader>gff", "<cmd>Telescope find_files shorten_path=true no_ignore=true<CR>")
+nnoremap("<leader>fg", "<cmd>Telescope live_grep<CR>")
+nnoremap("<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>")
+nnoremap("<leader>fh", "<cmd>Telescope help_tags<CR>")
+nnoremap("<leader>fr", "<cmd>Telescope resume<CR>")
 
-nnoremap("<leader>fc", "<cmd>Telescope commands<cr>")
-nnoremap("<leader>fk", "<cmd>Telescope keymaps<cr>")
+nnoremap("<leader>fc", "<cmd>Telescope commands<CR>")
+nnoremap("<leader>fk", "<cmd>Telescope keymaps<CR>")
