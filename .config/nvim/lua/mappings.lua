@@ -8,6 +8,8 @@ local nmap = Remap.nmap
 inoremap("jk", "<Esc>")
 vnoremap("<leader>jk", "<Esc>")
 nnoremap("<leader>sv", ":source $MYVIMRC<CR>")
+-- search for visually selected text
+vnoremap("//", "y/<C-R>=escape(@\",'/')<CR><CR>")
 
 -- move line
 nnoremap("<C-A-j>", ":m .+1<CR>==")
