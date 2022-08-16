@@ -33,7 +33,7 @@ nnoremap("<C-l>", "<C-w>l")
 
 -- escape terminal
 vim.cmd([[
-tnoremap <leader><Esc> <C-\><C-n>
+tnoremap <leader>jk <C-\><C-n>
 ]])
 
 -- vim tabs

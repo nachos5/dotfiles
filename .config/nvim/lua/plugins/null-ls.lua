@@ -61,7 +61,12 @@ null_ls.setup({
     formatting.rustfmt,
 
     -- php
-    -- formatting.phpcsfixer,
+    -- https://github.com/prettier/plugin-php
+    formatting.prettier.with({
+      filetypes = {
+        "php",
+      },
+    }),
     diagnostics.php,
   },
 })

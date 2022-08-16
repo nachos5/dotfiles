@@ -27,9 +27,16 @@ alias composedown='docker-compose -f compose-local.yml down'
 
 # tmux
 alias tmuxsource='tmux source-file ~/.tmux.conf'
+alias tk='tmux kill-session'
 
 # nvim
 alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp'
 alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'
 alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
 alias lsp_log='tail -n 200 -f ~/.cache/nvim/lsp.log'
+
+# yarn
+alias yi='yarn install'
+alias yb='yarn build'
+alias yd='yarn dev'
+alias ys='yarn start'

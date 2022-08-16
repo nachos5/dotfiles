@@ -12,12 +12,6 @@ alert = 10.0
 format = "root: $available.eng(2)"
 
 [[block]]
-block = "memory"
-display_type = "memory"
-format_mem = "$mem_total_used_percents.eng(2)"
-format_swap = "$swap_used_percents.eng(2)"
-
-[[block]]
 block = "cpu"
 
 [[block]]

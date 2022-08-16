@@ -1,5 +1,6 @@
 local Remap = require("keymap")
 local nnoremap = Remap.nnoremap
+local vnoremap = Remap.vnoremap
 
 local telescope = require("telescope")
 local actions = require("telescope.actions")
@@ -42,3 +43,7 @@ nnoremap("<leader>fr", "<cmd>Telescope resume<CR>")
 
 nnoremap("<leader>fc", "<cmd>Telescope commands<CR>")
 nnoremap("<leader>fk", "<cmd>Telescope keymaps<CR>")
+
+-- pipe selection into live_grep
+local default_opts = { noremap = true, silent = true }
+vnoremap("<leader>fg", '"zy:Telescope live_grep default_text=<C-r>z<CR>', default_opts)
