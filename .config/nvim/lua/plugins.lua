@@ -31,6 +31,9 @@ return require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
+      config = function()
+        require("plugins/nvim-treesitter")
+      end,
     })
     use({
       "kyazdani42/nvim-tree.lua",
@@ -64,15 +67,15 @@ return require("packer").startup({
         require("plugins/autopairs")
       end,
     })
-    -- use({
-    --   "abecodes/tabout.nvim",
-    --   after = {
-    --     "nvim-cmp",
-    --   },
-    --   config = function()
-    --     require("plugins/tabout")
-    --   end,
-    -- })
+    use({
+      "abecodes/tabout.nvim",
+      after = {
+        "windwp/nvim-autopairs",
+      },
+      config = function()
+        require("plugins/tabout")
+      end,
+    })
     use({
       "kylechui/nvim-surround",
       config = function()

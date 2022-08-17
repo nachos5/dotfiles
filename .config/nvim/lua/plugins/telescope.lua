@@ -34,16 +34,17 @@ telescope.setup({
   },
 })
 
-nnoremap("<leader>ff", "<cmd>Telescope find_files shorten_path=true<CR>")
-nnoremap("<leader>gff", "<cmd>Telescope find_files shorten_path=true no_ignore=true<CR>")
-nnoremap("<leader>fg", "<cmd>Telescope live_grep<CR>")
-nnoremap("<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>")
-nnoremap("<leader>fh", "<cmd>Telescope help_tags<CR>")
-nnoremap("<leader>fr", "<cmd>Telescope resume<CR>")
+local default_opts = { noremap = true, silent = true }
 
-nnoremap("<leader>fc", "<cmd>Telescope commands<CR>")
-nnoremap("<leader>fk", "<cmd>Telescope keymaps<CR>")
+nnoremap("<leader>ff", "<cmd>Telescope find_files shorten_path=true<CR>", default_opts)
+nnoremap("<leader>gff", "<cmd>Telescope find_files shorten_path=true no_ignore=true<CR>", default_opts)
+nnoremap("<leader>fg", "<cmd>Telescope live_grep<CR>", default_opts)
+nnoremap("<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>", default_opts)
+nnoremap("<leader>fh", "<cmd>Telescope help_tags<CR>", default_opts)
+nnoremap("<leader>fr", "<cmd>Telescope resume<CR>", default_opts)
+
+nnoremap("<leader>fc", "<cmd>Telescope commands<CR>", default_opts)
+nnoremap("<leader>fk", "<cmd>Telescope keymaps<CR>", default_opts)
 
 -- pipe selection into live_grep
-local default_opts = { noremap = true, silent = true }
 vnoremap("<leader>fg", '"zy:Telescope live_grep default_text=<C-r>z<CR>', default_opts)
