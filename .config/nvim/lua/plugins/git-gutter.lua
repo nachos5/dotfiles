@@ -5,5 +5,5 @@ local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
-nmap("]h","<Plug>(GitGutterNextHunk)")
-nmap("[h","<Plug>(GitGutterPrevHunk)")
+nmap("ðh", "<Plug>(GitGutterNextHunk)")
+nmap("'h", "<Plug>(GitGutterPrevHunk)")

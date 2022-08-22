@@ -8,6 +8,15 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 vim.keymap.set("n", "ðd", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "'d", vim.diagnostic.goto_next, opts)
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = true,
+  virtual_text = {
+    spacing = 5,
+    severity_limit = "Warning",
+  },
+  update_in_insert = false,
+})
+
 function export.on_attach(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)

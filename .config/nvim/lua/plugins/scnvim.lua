@@ -1,6 +1,10 @@
 local scnvim = require("scnvim")
 local map = scnvim.map
 local map_expr = scnvim.map_expr
+
+-- K - help
+-- g] - go to definition
+
 scnvim.setup({
   keymaps = {
     ["<leader>li"] = map("editor.send_line", { "i", "n" }),
@@ -11,7 +15,6 @@ scnvim.setup({
     ["<CR>"] = map("postwin.toggle"),
     ["<M-CR>"] = map("postwin.toggle", "i"),
     ["<leader>cl"] = map("postwin.clear", { "n", "i" }),
-    ["<leader>si"] = map("signature.show", { "n", "i" }),
     ["<leader>q"] = map("sclang.hard_stop", { "n", "x", "i" }),
     ["<leader>st"] = map("sclang.start"),
     ["<leader>sk"] = map("sclang.recompile"),
@@ -24,6 +27,7 @@ scnvim.setup({
     end, { "n", "x", "i" }),
     ["<leader>+"] = map_expr("s.volume = s.volume.volume + 5"),
     ["<leader>-"] = map_expr("s.volume = s.volume.volume - 5"),
+    ["<space>k"] = map("signature.show", { "n", "i" }),
     -- FzfSC
     ["<F1>"] = scnvim.map(function()
       vim.cmd("FzfSC")

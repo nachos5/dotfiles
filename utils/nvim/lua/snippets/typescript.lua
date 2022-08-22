@@ -4,9 +4,9 @@ local s = ls.snippet
 local my_ts_snippets = {
   -- logging
   s("log", {
-    t('console.info("'),
+    t("console.info("),
     i(1),
-    t('")'),
+    t(")"),
     i(0),
   }),
 

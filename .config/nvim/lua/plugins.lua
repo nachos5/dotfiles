@@ -67,10 +67,11 @@ return require("packer").startup({
         require("plugins/autopairs")
       end,
     })
+    use("windwp/nvim-ts-autotag")
     use({
       "abecodes/tabout.nvim",
       after = {
-        "windwp/nvim-autopairs",
+        "nvim-autopairs",
       },
       config = function()
         require("plugins/tabout")
@@ -178,6 +179,7 @@ return require("packer").startup({
         require("plugins/git-gutter")
       end,
     })
+    use("rhysd/conflict-marker.vim")
 
     -- snippets
     use({
@@ -235,6 +237,7 @@ return require("packer").startup({
     })
     use({
       "jose-elias-alvarez/null-ls.nvim",
+      commit = "457ddb9",
       config = function()
         require("plugins/null-ls")
       end,
@@ -242,6 +245,7 @@ return require("packer").startup({
     -- lsp addons
     use("jose-elias-alvarez/typescript.nvim")
     use("simrat39/rust-tools.nvim")
+    use("lvimuser/lsp-inlayhints.nvim")
 
     -- use({
     --   "neoclide/coc.nvim",
@@ -251,12 +255,6 @@ return require("packer").startup({
     --     require("plugins/coc")
     --   end,
     -- })
-
-    -- typescript react
-    -- use("pangloss/vim-javascript")
-    -- use("leafgarland/typescript-vim")
-    -- use("peitalin/vim-jsx-typescript")
-    -- use("jparise/vim-graphql")
 
     -- supercollider
 
@@ -329,9 +327,11 @@ return require("packer").startup({
     use({
       "numToStr/Comment.nvim",
       config = function()
-        require("Comment").setup()
+        -- require("Comment").setup()
+        require("plugins/comment")
       end,
     })
+    use("JoosepAlviste/nvim-ts-context-commentstring")
   end,
   config = {
     profile = {

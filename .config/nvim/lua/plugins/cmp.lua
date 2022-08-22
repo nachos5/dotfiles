@@ -23,7 +23,7 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    [">"] = cmp.mapping(function(fallback)
+    ["<C-n>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expandable() then
@@ -39,7 +39,7 @@ cmp.setup({
       "i",
       "s",
     }),
-    ["<"] = cmp.mapping(function(fallback)
+    ["<C-p>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -53,10 +53,10 @@ cmp.setup({
     }),
   },
   sources = {
+    { name = "luasnip", priority = 10 },
     { name = "nvim_lsp", priority = 9 },
     { name = "npm", priority = 9 },
     { name = "cmp_tabnine", priority = 8, max_num_results = 3 },
-    { name = "luasnip", priority = 7 },
     { name = "buffer", priority = 7, keyword_length = 5, option = buffer_option },
     { name = "nvim_lua", priority = 5 },
     { name = "path", priority = 4 },

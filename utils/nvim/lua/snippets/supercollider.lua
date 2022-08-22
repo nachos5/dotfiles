@@ -266,7 +266,7 @@ KometSynthFuncDef(
     t("SynthDef("),
     t("\\"),
     i(1, "name"),
-    t(",{|"),
+    t(", { |"),
     i(2, "out=0, amp=0.5"),
     t({ "|", "" }),
     t("\t"),
