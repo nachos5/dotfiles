@@ -8,6 +8,14 @@ local my_php_snippets = {
     t("));"),
     i(0),
   }),
+  s("errlog", {
+    t({ "error_log('===================');", "" }),
+    t("error_log(json_encode("),
+    i(1),
+    t({ "));", "" }),
+    t({ "error_log('===================');", "" }),
+    i(0),
+  }),
 }
 
 return my_php_snippets

@@ -7,36 +7,35 @@ local map_expr = scnvim.map_expr
 
 scnvim.setup({
   keymaps = {
-    ["<leader>li"] = map("editor.send_line", { "i", "n" }),
+    ["<leader>li"] = map("editor.send_line", { "n" }),
     ["<C-e>"] = {
-      map("editor.send_block", { "i", "n" }),
+      map("editor.send_block", { "n" }),
       map("editor.send_selection", "x"),
     },
     ["<CR>"] = map("postwin.toggle"),
-    ["<M-CR>"] = map("postwin.toggle", "i"),
-    ["<leader>cl"] = map("postwin.clear", { "n", "i" }),
-    ["<leader>q"] = map("sclang.hard_stop", { "n", "x", "i" }),
+    ["<leader>cl"] = map("postwin.clear", { "n" }),
+    ["<leader>q"] = map("sclang.hard_stop", { "n" }),
     ["<leader>st"] = map("sclang.start"),
     ["<leader>sk"] = map("sclang.recompile"),
-    ["<leader>sp"] = map_expr("Server.local.plotTree", { "n", "x" }),
-    ["<leader>sm"] = map_expr("Server.local.meter", { "n", "x" }),
+    ["<leader>sp"] = map_expr("Server.local.plotTree", { "n" }),
+    ["<leader>sm"] = map_expr("Server.local.meter", { "n" }),
     ["<leader>sb"] = map_expr("s.boot"),
     ["<leader>sq"] = map_expr("s.quit"),
     ["<leader>rt"] = map(function()
       vim.cmd("SCNvimGenerateAssets")
-    end, { "n", "x", "i" }),
+    end, { "n" }),
     ["<leader>+"] = map_expr("s.volume = s.volume.volume + 5"),
     ["<leader>-"] = map_expr("s.volume = s.volume.volume - 5"),
-    ["<space>k"] = map("signature.show", { "n", "i" }),
+    ["<space>k"] = map("signature.show", { "n" }),
     -- FzfSC
     ["<F1>"] = scnvim.map(function()
       vim.cmd("FzfSC")
-    end, { "n", "x", "i" }),
+    end, { "n" }),
     -- h4x
     ["<F2>"] = scnvim.map(function()
       vim.cmd("SCExternalHelpSearch")
       -- vim.cmd("!brave file:///home/mads/.local/share/SuperCollider/Help/Help.html")
-    end, { "n", "x", "i" }),
+    end, { "n" }),
   },
   editor = {
     highlight = {

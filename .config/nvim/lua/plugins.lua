@@ -114,6 +114,7 @@ return require("packer").startup({
         require("plugins/markdown-preview")
       end,
     })
+    use("moll/vim-bbye")
 
     -- terminal + navigation
     use({
@@ -164,7 +165,12 @@ return require("packer").startup({
 
     -- theme
     use("gruvbox-community/gruvbox")
-    use("folke/tokyonight.nvim")
+    use({
+      "folke/tokyonight.nvim",
+      config = function()
+        require("plugins/tokyonight")
+      end,
+    })
 
     -- git
     use({
@@ -283,27 +289,27 @@ return require("packer").startup({
         { "madskjeldgaard/fzf-sc", requires = {
           "vijaymarupudi/nvim-fzf",
         } },
-        {
-          "madskjeldgaard/sc-scratchpad.nvim",
-          requires = { "davidgranstrom/scnvim" },
-          after = { "scnvim" },
-          config = function()
-            -- Scratchpad
-            require("sc-scratchpad").setup({
-              keymaps = {
-                toggle = "<space>", -- Open/close buffer
-                send = "<C-e>", -- Send and close
-              },
-              border = "double", -- "double", "none", "rounded", "shadow", "single" or "solid"
-              position = "50%",
-              width = "50%",
-              height = "50%",
-              firstline = "// Scratchpad",
-              open_insertmode = true, -- Open scratchpad buffer in insertmode
-              close_on_execution = false, -- Should the window automatically close on exec?
-            })
-          end,
-        },
+        -- {
+        --   "madskjeldgaard/sc-scratchpad.nvim",
+        --   requires = { "davidgranstrom/scnvim" },
+        --   after = { "scnvim" },
+        --   config = function()
+        --     -- Scratchpad
+        --     require("sc-scratchpad").setup({
+        --       keymaps = {
+        --         toggle = "<space>", -- Open/close buffer
+        --         send = "<C-e>", -- Send and close
+        --       },
+        --       border = "double", -- "double", "none", "rounded", "shadow", "single" or "solid"
+        --       position = "50%",
+        --       width = "50%",
+        --       height = "50%",
+        --       firstline = "// Scratchpad",
+        --       open_insertmode = true, -- Open scratchpad buffer in insertmode
+        --       close_on_execution = false, -- Should the window automatically close on exec?
+        --     })
+        --   end,
+        -- },
       },
       config = function()
         require("plugins/scnvim")
