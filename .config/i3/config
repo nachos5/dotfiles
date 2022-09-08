@@ -224,12 +224,6 @@ exec xinput set-prop "SYNA8005:00 06CB:CD8C Touchpad" "libinput Tapping Enabled"
 exec xrandr -q
 exec xrandr --output eDP-1 --mode 1920x1080
 
-# jack
-exec /usr/bin/jackd -dalsa -dhw:0 -r44100 -p1008 -n2 -S &>/dev/null &
-exec pactl load-module module-jack-sink
-exec pactl load-module module-jack-source channels=2 connect=0
-exec pacmd set-default-sink jack_out
-
 # polkit
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
