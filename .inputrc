@@ -7,3 +7,4 @@ $if mode=vi
 $endif
 
 Control-f: "tmux-sessionizer\n"
+Control-x: "xcd\n"

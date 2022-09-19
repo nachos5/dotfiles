@@ -60,3 +60,20 @@ nnoremap("<leader>c", ":bp<CR>")
 nnoremap("<leader>v", ":bn<CR>")
 nnoremap("<leader>d", ":bd<CR>")
 nnoremap("<leader>bd", "<cmd>Bdelete<CR>")
+
+-- resize current window
+function resize_current_window(amount, is_width)
+  if not is_width then
+    current_height = vim.api.nvim_win_get_height(0)
+    set_height = math.max(0, current_height + amount)
+    vim.api.nvim_win_set_height(0, set_height)
+  else
+    current_width = vim.api.nvim_win_get_width(0)
+    set_width = math.max(0, current_width + amount)
+    vim.api.nvim_win_set_width(0, set_width)
+  end
+end
+nnoremap("<C-Up>", ":lua resize_current_window(10, false)<CR>", { silent = true })
+nnoremap("<C-Down>", ":lua resize_current_window(-10, false)<CR>", { silent = true })
+nnoremap("<C-Left>", ":lua resize_current_window(-10, true)<CR>", { silent = true })
+nnoremap("<C-Right>", ":lua resize_current_window(10, true)<CR>", { silent = true })

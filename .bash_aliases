@@ -2,6 +2,7 @@
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias c="clear"
 alias ducks="sudo du -hsx * | sort -rh | head -20"
 alias echopath="echo $PATH | tr : '\n'"
 portarg () {
@@ -31,7 +32,11 @@ alias ta='tmux a'
 alias tk='tmux kill-session'
 alias tks='tmux kill-server'
 
+# xplr
+alias xcd='cd "$(xplr --print-pwd-as-result)"'
+
 # nvim
+alias n="nvim"
 alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp'
 alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'
 alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
