@@ -47,13 +47,22 @@ return require("packer").startup({
     })
     use({
       "nvim-lualine/lualine.nvim",
+      config = function()
+        require("plugins/lualine")
+      end,
       requires = {
         "kyazdani42/nvim-web-devicons",
         opt = true,
-        config = function()
-          require("lualine").setup()
-        end,
       },
+    })
+
+    -- theme
+    use("gruvbox-community/gruvbox")
+    use({
+      "folke/tokyonight.nvim",
+      config = function()
+        require("plugins/tokyonight")
+      end,
     })
 
     -- various / utils / uncategorized
@@ -120,6 +129,9 @@ return require("packer").startup({
     use({
       "akinsho/toggleterm.nvim",
       tag = "v2.*",
+      after = {
+        "tokyonight.nvim",
+      },
       config = function()
         require("plugins/toggleterm")
       end,
@@ -160,15 +172,6 @@ return require("packer").startup({
       },
       config = function()
         require("plugins/neotest")
-      end,
-    })
-
-    -- theme
-    use("gruvbox-community/gruvbox")
-    use({
-      "folke/tokyonight.nvim",
-      config = function()
-        require("plugins/tokyonight")
       end,
     })
 
@@ -243,7 +246,7 @@ return require("packer").startup({
     })
     use({
       "jose-elias-alvarez/null-ls.nvim",
-      commit = "457ddb9",
+      -- commit = "457ddb9",
       config = function()
         require("plugins/null-ls")
       end,

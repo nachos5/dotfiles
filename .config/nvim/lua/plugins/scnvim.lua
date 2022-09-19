@@ -24,6 +24,9 @@ scnvim.setup({
     ["<leader>rt"] = map(function()
       vim.cmd("SCNvimGenerateAssets")
     end, { "n" }),
+    ["<leader>sl"] = map(function()
+      vim.cmd("SCNvimStatusLine")
+    end, { "n" }),
     ["<leader>+"] = map_expr("s.volume = s.volume.volume + 5"),
     ["<leader>-"] = map_expr("s.volume = s.volume.volume - 5"),
     ["<space>k"] = map("signature.show", { "n" }),
@@ -64,7 +67,7 @@ scnvim.setup({
     tmux = {
       path = vim.fn.tempname(),
       horizontal = true,
-      size = "35%",
+      size = "15%",
       cmd = "tail",
       args = { "-F", "$1" },
     },

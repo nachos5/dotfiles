@@ -14,7 +14,7 @@ mason_lspconfig.setup({
     "pyright",
     "rust_analyzer",
     -- "sumneko_lua",
-    "tailwindcss",
+    -- "tailwindcss",
     "tsserver",
     "yamlls",
   },
