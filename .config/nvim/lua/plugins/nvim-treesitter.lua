@@ -14,7 +14,14 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+-- <Leader\>oa - agenda
+-- <Leader>oc - capture
 require("orgmode").setup({
   org_agenda_files = { "~/Dropbox/org/*", "~/my-orgs/**/*" },
   org_default_notes_file = "~/Dropbox/org/refile.org",
+  mappings = {
+    agenda = {
+      org_agenda_goto = { ".", "T" },
+    },
+  },
 })

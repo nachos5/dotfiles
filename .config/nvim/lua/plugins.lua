@@ -66,7 +66,6 @@ return require("packer").startup({
     })
 
     -- various / utils / uncategorized
-    use("nvim-orgmode/orgmode")
     use({
       "windwp/nvim-autopairs",
       after = {
@@ -331,6 +330,25 @@ return require("packer").startup({
     --     require("plugins/formatter")
     --   end,
     -- })
+
+    -- notes
+    use("nvim-orgmode/orgmode")
+    use({
+      "phaazon/mind.nvim",
+      branch = "v2.2",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("plugins/mind")
+      end,
+    })
+
+    -- colors
+    use({
+      "uga-rosa/ccc.nvim",
+      config = function()
+        require("ccc").setup({})
+      end,
+    })
 
     -- comments
     use({

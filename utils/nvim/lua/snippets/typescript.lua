@@ -29,6 +29,32 @@ local my_ts_snippets = {
     t('";'),
     i(0),
   }),
+
+  -- react component
+  s("rc", {
+    -- imports
+    t({ 'import classNames from "classnames";', "", "" }),
+    -- interface
+    t("interface "),
+    rep(1),
+    t({ "Props {", "\tclassName: string;", "" }),
+    t("\t"),
+    i(0),
+    t({ "", "}", "", "" }),
+    -- component
+    t("const "),
+    i(1),
+    t(" = ({ className }: "),
+    rep(1),
+    t({ "Props) => {", "\t", "\treturn (", "\t\t<div className={classNames(className)}>", "" }),
+    t("\t\t\t"),
+    rep(1),
+    t({ "", "\t\t</div>", "\t)", "}", "" }),
+    -- expor"\t),"t
+    t({ "", "export { " }),
+    rep(1),
+    t(" };"),
+  }),
 }
 
 ls.add_snippets("typescriptreact", my_ts_snippets)

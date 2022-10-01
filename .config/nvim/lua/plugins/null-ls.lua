@@ -9,14 +9,14 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-  debug = false,
-  -- debug = true,
+  debug = vim.env.NULL_LS_DEBUG ~= nil,
   -- update_in_insert = true,
   on_attach = require("lsp").on_attach,
   sources = {
     -- python
     formatting.black.with({
       prefer_local = "env/bin",
+      timeout = 10000,
       extra_args = { "--fast" },
     }),
     formatting.isort.with({

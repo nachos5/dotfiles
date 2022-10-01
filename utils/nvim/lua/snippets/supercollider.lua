@@ -274,7 +274,7 @@ KometSynthFuncDef(
     i(3, "sig = SinOsc.ar;"),
     t({ "", "" }),
     t("\t"),
-    i(4, "Out.ar(out, sig)"),
+    i(4, "Out.ar(out, sig);"),
     t({ "", "})" }),
     i(5, ".add"),
   }),

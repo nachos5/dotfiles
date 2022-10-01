@@ -3,6 +3,7 @@ local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
+local tnoremap = Remap.tnoremap
 local nmap = Remap.nmap
 
 inoremap("jk", "<Esc>")
@@ -73,7 +74,13 @@ function resize_current_window(amount, is_width)
     vim.api.nvim_win_set_width(0, set_width)
   end
 end
-nnoremap("<C-Up>", ":lua resize_current_window(10, false)<CR>", { silent = true })
-nnoremap("<C-Down>", ":lua resize_current_window(-10, false)<CR>", { silent = true })
-nnoremap("<C-Left>", ":lua resize_current_window(-10, true)<CR>", { silent = true })
-nnoremap("<C-Right>", ":lua resize_current_window(10, true)<CR>", { silent = true })
+-- resize in normal mode
+nnoremap("<C-Up>", ":lua resize_current_window(2, false)<CR>", { silent = true })
+nnoremap("<C-Down>", ":lua resize_current_window(-2, false)<CR>", { silent = true })
+nnoremap("<C-Left>", ":lua resize_current_window(-5, true)<CR>", { silent = true })
+nnoremap("<C-Right>", ":lua resize_current_window(5, true)<CR>", { silent = true })
+-- resize in terminal mode
+vim.cmd([[
+tnoremap <C-Up> <C-\><C-n> :lua resize_current_window(2, false)<CR> i
+tnoremap <C-Down> <C-\><C-n> :lua resize_current_window(-2, false)<CR> i
+]])

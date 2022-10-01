@@ -63,6 +63,7 @@ cmp.setup({
     { name = "calc", priority = 3 },
     { name = "treesitter" },
     { name = "nvim_lsp_signature_help" },
+    { name = "orgmode" },
   },
   formatting = {
     format = function(entry, vim_item)
