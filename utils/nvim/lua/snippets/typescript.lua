@@ -37,7 +37,7 @@ local my_ts_snippets = {
     -- interface
     t("interface "),
     rep(1),
-    t({ "Props {", "\tclassName: string;", "" }),
+    t({ "Props {", "\tclassName?: string;", "" }),
     t("\t"),
     i(0),
     t({ "", "}", "", "" }),
@@ -50,10 +50,42 @@ local my_ts_snippets = {
     t("\t\t\t"),
     rep(1),
     t({ "", "\t\t</div>", "\t)", "}", "" }),
-    -- expor"\t),"t
+    -- export
     t({ "", "export { " }),
     rep(1),
     t(" };"),
+  }),
+
+  -- useEffect
+  s("useeffect", {
+    t({ "useEffect(() => {", "" }),
+    i(0),
+    t({ "", "}, []);" }),
+  }),
+
+  -- useState
+  s("usestate", {
+    t("const ["),
+    i(1),
+    t(", "),
+    d(2, function(args)
+      local s = args[1][1]
+      -- print(require("utils").dump(args))
+      if s ~= nil then
+        s = args[1][1]:sub(1, 1):upper()
+        if args[1][1]:len() > 1 then
+          s = s .. args[1][1]:sub(2)
+        end
+        s = "set" .. s
+      end
+
+      return sn(nil, {
+        t(s),
+      })
+    end, { 1 }),
+    t("] = useState("),
+    i(0),
+    t(");"),
   }),
 }
 

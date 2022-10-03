@@ -7,7 +7,9 @@ local tnoremap = Remap.tnoremap
 local nmap = Remap.nmap
 
 inoremap("jk", "<Esc>")
+inoremap("JK", "<Esc>")
 vnoremap("<leader>jk", "<Esc>")
+vnoremap("<leader>JK", "<Esc>")
 nnoremap("<leader>sv", ":source $MYVIMRC<CR>")
 -- search for visually selected text
 vnoremap("//", "y/<C-R>=escape(@\",'/')<CR><CR>")
