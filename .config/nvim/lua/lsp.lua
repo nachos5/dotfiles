@@ -28,7 +28,10 @@ function export.on_attach(client, bufnr)
   vim.keymap.set("n", "<space>t", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+  -- 0.7
+  -- vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+  -- 0.8
+  vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
 
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -36,8 +39,11 @@ function export.on_attach(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
-        -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-        vim.lsp.buf.formatting_sync(nil, 2000)
+        -- 0.7
+        -- vim.lsp.buf.formatting_sync(nil, 2000)
+
+        -- 0.8
+        vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
       end,
     })
   end

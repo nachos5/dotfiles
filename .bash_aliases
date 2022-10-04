@@ -9,6 +9,10 @@ portarg () {
     sudo lsof -i:"$@"; sudo lsof -tnP -i:"$@" | xargs -n 1 ps -p
 }
 
+# apt
+alias aptup='sudo apt update && sudo apt upgrade'
+alias aptlist="apt list --installed"
+
 # system
 alias systemgraphics='inxi -G'
 

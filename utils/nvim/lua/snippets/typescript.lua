@@ -58,7 +58,7 @@ local my_ts_snippets = {
 
   -- useEffect
   s("useeffect", {
-    t({ "useEffect(() => {", "" }),
+    t({ "useEffect(() => {", "\t" }),
     i(0),
     t({ "", "}, []);" }),
   }),
@@ -86,6 +86,10 @@ local my_ts_snippets = {
     t("] = useState("),
     i(0),
     t(");"),
+  }),
+
+  s("useref", {
+    t("const ref = useRef(null)"),
   }),
 }
 
