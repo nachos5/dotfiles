@@ -114,12 +114,9 @@ return require("packer").startup({
       end,
     })
     use({
-      "iamcco/markdown-preview.nvim",
-      run = function()
-        vim.fn["mkdp#util#install"]()
-      end,
+      "ellisonleao/glow.nvim",
       config = function()
-        require("plugins/markdown-preview")
+        require("plugins/glow")
       end,
     })
     use("moll/vim-bbye")

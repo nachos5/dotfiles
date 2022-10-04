@@ -56,7 +56,7 @@ tnoremap <leader>jk <C-\><C-n>
 -- nnoremap("<leader>t0", "10gt")
 
 -- view messages
-nnoremap("<leader>m", ":messages<CR>")
+nnoremap("<leader>me", ":messages<CR>")
 
 -- buffers
 nnoremap("<leader>c", ":bp<CR>")
