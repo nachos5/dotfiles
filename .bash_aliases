@@ -59,3 +59,6 @@ alias ys='yarn start'
 
 # xrandr
 alias xrandr_hdmi1='xrandr --auto --output HDMI-1 --mode 1920x1080'
+
+# fzf
+alias fzfkeys="cat ~/github/fzf/shell/key-bindings.bash"
