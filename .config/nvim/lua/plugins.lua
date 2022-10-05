@@ -185,6 +185,12 @@ return require("packer").startup({
       end,
     })
     use("rhysd/conflict-marker.vim")
+    use({
+      "almo7aya/openingh.nvim",
+      config = function()
+        require("plugins/openingh")
+      end,
+    })
 
     -- snippets
     use({
