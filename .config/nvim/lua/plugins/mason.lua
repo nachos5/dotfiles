@@ -75,7 +75,8 @@ if typescript_ok then
   local ts_capabilities = vim.lsp.protocol.make_client_capabilities()
   local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if cmp_nvim_lsp_ok then
-    ts_capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- ts_capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    ts_capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
     ts_capabilities.textDocument.completion.completionItem.snippetSupport = true
     ts_capabilities.textDocument.completion.completionItem.preselectSupport = true
     ts_capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
@@ -118,6 +119,7 @@ if typescript_ok then
       vim.api.nvim_buf_set_option(bufnr, ...)
     end
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.keymap.set("n", "<Leader>es", ":EslintFix<CR>", { buffer = bufnr, silent = true })
     require("lsp").on_attach(client, bufnr)
   end
 

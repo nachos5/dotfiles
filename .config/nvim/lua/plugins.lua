@@ -120,6 +120,24 @@ return require("packer").startup({
       end,
     })
     use("moll/vim-bbye")
+    use({
+      "smjonas/live-command.nvim",
+      -- live-command supports semantic versioning via tags
+      -- tag = "1.*",
+      config = function()
+        require("live-command").setup({
+          commands = {
+            Norm = { cmd = "norm" },
+          },
+        })
+      end,
+    })
+    use({
+      "karb94/neoscroll.nvim",
+      config = function()
+        require("plugins/neoscroll")
+      end,
+    })
 
     -- terminal + navigation
     use({
@@ -357,7 +375,6 @@ return require("packer").startup({
     use({
       "numToStr/Comment.nvim",
       config = function()
-        -- require("Comment").setup()
         require("plugins/comment")
       end,
     })

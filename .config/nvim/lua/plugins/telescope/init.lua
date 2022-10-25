@@ -43,6 +43,7 @@ nnoremap("<leader>fg", "<cmd>lua require('plugins/telescope/multi_rg')()<CR>", d
 nnoremap("<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>", default_opts)
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<CR>", default_opts)
 nnoremap("<leader>fr", "<cmd>Telescope resume<CR>", default_opts)
+nnoremap("<leader>fs", "<cmd>Telescope registers<CR>", default_opts)
 
 nnoremap("<leader>fc", "<cmd>Telescope commands<CR>", default_opts)
 nnoremap("<leader>fk", "<cmd>Telescope keymaps<CR>", default_opts)

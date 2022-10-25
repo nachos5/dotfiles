@@ -60,7 +60,10 @@ local my_ts_snippets = {
   s("useeffect", {
     t({ "useEffect(() => {", "\t" }),
     i(0),
-    t({ "", "}, []);" }),
+    t({ "", "" }),
+    t("}, ["),
+    i(1),
+    t("]);"),
   }),
 
   -- useState

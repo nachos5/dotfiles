@@ -15,6 +15,7 @@ alias aptlist="apt list --installed"
 
 # system
 alias systemgraphics='inxi -G'
+alias increase_file_limit="ulimit -n 4096"
 
 # docker
 alias dockerstop='docker stop $(docker ps -a -q)'
@@ -45,7 +46,7 @@ alias xcd='cd "$(xplr --print-pwd-as-result)"'
 
 # nvim
 alias n="envpy_no_error && nvim"
-alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp'
+alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp && rm -rf ~/.local/state/nvim/swap/*.swp'
 alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
 alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'
 alias lsp_log='tail -n 200 -f ~/.cache/nvim/lsp.log'
@@ -58,7 +59,12 @@ alias yd='yarn dev'
 alias ys='yarn start'
 
 # xrandr
-alias xrandr_hdmi1='xrandr --auto --output HDMI-1 --mode 1920x1080'
+alias xrandr_hdmi1='xrandr --output HDMI-1 --mode 1920x1080'
+alias xrandr_hdmi1_multi='xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --mode 1920x1080 --above eDP-1'
+alias xrandr_hdmi1_off='xrandr --output HDMI-1 --off'
 
 # fzf
 alias fzfkeys="cat ~/github/fzf/shell/key-bindings.bash"
+
+# flameshot
+alias flame="flameshot gui --clipboard --pin --path ~/Pictures"

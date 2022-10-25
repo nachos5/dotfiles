@@ -86,3 +86,10 @@ vim.cmd([[
 tnoremap <C-Up> <C-\><C-n> :lua resize_current_window(2, false)<CR> i
 tnoremap <C-Down> <C-\><C-n> :lua resize_current_window(-2, false)<CR> i
 ]])
+
+-- quickfix list
+nnoremap("<leader>qo", ":copen<CR>")
+nnoremap("<leader>qc", ":cclose<CR>")
+-- location list
+nnoremap("<leader>lo", ":lopen<CR>")
+nnoremap("<leader>lc", ":lclose<CR>")
