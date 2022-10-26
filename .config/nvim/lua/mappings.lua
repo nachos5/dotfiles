@@ -61,8 +61,8 @@ nnoremap("<leader>me", ":messages<CR>")
 -- buffers
 nnoremap("<leader>c", ":bp<CR>")
 nnoremap("<leader>v", ":bn<CR>")
-nnoremap("<leader>d", ":bd<CR>")
-nnoremap("<leader>bd", "<cmd>Bdelete<CR>")
+nnoremap("<leader>d", ":Bdelete<CR>")
+nnoremap("<leader>bd", ":%bd<CR>")
 
 -- resize current window
 function resize_current_window(amount, is_width)
