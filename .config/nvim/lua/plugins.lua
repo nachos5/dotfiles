@@ -138,16 +138,26 @@ return require("packer").startup({
         require("plugins/neoscroll")
       end,
     })
+    -- use({
+    --   "folke/noice.nvim",
+    --   event = "VimEnter",
+    --   config = function()
+    --     require("noice").setup()
+    --   end,
+    --   requires = {
+    --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --     "MunifTanjim/nui.nvim",
+    --   },
+    -- })
     use({
-      "folke/noice.nvim",
-      event = "VimEnter",
-      config = function()
-        require("noice").setup()
-      end,
+      "ThePrimeagen/refactoring.nvim",
       requires = {
-        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-        "MunifTanjim/nui.nvim",
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-treesitter/nvim-treesitter" },
       },
+      config = function()
+        require("plugins/refactoring")
+      end,
     })
 
     -- terminal + navigation
