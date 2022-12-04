@@ -46,4 +46,4 @@ require("neotest").setup({
   },
 })
 
-nnoremap("<leader>ts", ":lua require('neotest').summary.open({ enter = true })<CR>")
+nnoremap("<leader>ts", ":lua require('neotest').summary.open({ enter = true })<CR>", { silent = true })

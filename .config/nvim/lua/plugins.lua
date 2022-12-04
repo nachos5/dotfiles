@@ -306,6 +306,24 @@ return require("packer").startup({
     --   end,
     -- })
 
+    -- copilot
+    use({
+      "zbirenbaum/copilot.lua",
+      event = "VimEnter",
+      config = function()
+        vim.defer_fn(function()
+          require("plugins/copilot")
+        end, 100)
+      end,
+    })
+    -- use({
+    --   "zbirenbaum/copilot-cmp",
+    --   after = { "copilot.lua" },
+    --   config = function()
+    --     require("copilot_cmp").setup()
+    --   end,
+    -- })
+
     -- supercollider
 
     -- https://codeberg.org/madskjeldgaard/dotfiles/src/branch/main/nvim/lua/plugins.lua
@@ -400,6 +418,19 @@ return require("packer").startup({
       end,
     })
     use("JoosepAlviste/nvim-ts-context-commentstring")
+
+    -- random useless stuff / for fun
+    use({
+      "tamton-aquib/duck.nvim",
+      config = function()
+        vim.keymap.set("n", "<leader>dd", function()
+          require("duck").hatch()
+        end, {})
+        vim.keymap.set("n", "<leader>dk", function()
+          require("duck").cook()
+        end, {})
+      end,
+    })
   end,
   config = {
     profile = {

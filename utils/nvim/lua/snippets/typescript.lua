@@ -9,6 +9,17 @@ local my_ts_snippets = {
     t(")"),
     i(0),
   }),
+  -- logging with string label
+  s("logl", {
+    t("console.info("),
+    t('"'),
+    rep(1),
+    t('"'),
+    t(", "),
+    i(1),
+    t(")"),
+    i(0),
+  }),
 
   -- default import
   s("impd", {

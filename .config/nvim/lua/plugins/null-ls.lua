@@ -3,6 +3,12 @@ if not null_ls_status_ok then
   return
 end
 
+local function has_file(file)
+  return function(utils)
+    return utils.root_has_file(file)
+  end
+end
+
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
@@ -22,10 +28,16 @@ null_ls.setup({
     formatting.isort.with({
       prefer_local = "env/bin",
     }),
+    diagnostics.flake8.with({
+      prefer_local = "env/bin",
+      timeout = 10000,
+      condition = has_file(".flake8"),
+    }),
     diagnostics.pylint.with({
       prefer_local = "env/bin",
       timeout = 10000,
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+      condition = has_file(".pylintrc"),
     }),
 
     -- js/ts etc...

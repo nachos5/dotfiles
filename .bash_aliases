@@ -57,6 +57,7 @@ alias yi='yarn install'
 alias yb='yarn build'
 alias yd='yarn dev'
 alias ys='yarn start'
+alias yg='yarn generate'
 
 # xrandr
 alias xrandr_hdmi1='xrandr --output HDMI-1 --mode 1920x1080'
@@ -68,3 +69,8 @@ alias fzfkeys="cat ~/github/fzf/shell/key-bindings.bash"
 
 # flameshot
 alias flame="flameshot gui --clipboard --pin --path ~/Pictures"
+
+function paste() {
+  local file=${1:-/dev/stdin}
+  curl --data-binary @${file} https://paste.rs
+}

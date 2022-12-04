@@ -53,6 +53,7 @@ cmp.setup({
     }),
   },
   sources = {
+    -- { name = "copilot", priority = 10 },
     { name = "luasnip", priority = 10 },
     { name = "nvim_lsp", priority = 9 },
     { name = "npm", priority = 9 },

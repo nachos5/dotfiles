@@ -48,7 +48,7 @@ mason_lspconfig.setup_handlers({
         python = {
           analysis = {
             -- Disable strict type checking
-            typeCheckingMode = "off",
+            -- typeCheckingMode = "off",
           },
         },
       },
