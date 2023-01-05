@@ -159,6 +159,12 @@ return require("packer").startup({
         require("plugins/refactoring")
       end,
     })
+    use({
+      "anuvyklack/help-vsplit.nvim",
+      config = function()
+        require("help-vsplit").setup()
+      end,
+    })
 
     -- terminal + navigation
     use({
@@ -290,6 +296,23 @@ return require("packer").startup({
       -- commit = "457ddb9",
       config = function()
         require("plugins/null-ls")
+      end,
+    })
+    use({
+      "mattn/emmet-vim",
+      event = "InsertEnter",
+      ft = {
+        "html",
+        "css",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+      },
+      config = function()
+        print("hérna")
+        require("plugins/emmet")
       end,
     })
     -- lsp addons
