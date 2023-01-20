@@ -1,4 +1,4 @@
-version = "0.19.3"
+version = "0.20.1"
 
 local home = os.getenv("HOME")
 package.path = home .. "/.config/xplr/plugins/?/init.lua;" .. home .. "/.config/xplr/plugins/?.lua;" .. package.path

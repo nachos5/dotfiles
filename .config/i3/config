@@ -153,6 +153,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Moving workspaces between screens
+bindsym $mod+p move workspace to output right
+
 bindsym $mod+Ctrl+i exec setxkbmap -layout is
 bindsym $mod+Ctrl+u exec setxkbmap -layout us
 
@@ -199,6 +202,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 # Alsa audio controls.
 bindsym $mod+XF86AudioRaiseVolume exec amixer sset Master 5%+
 bindsym $mod+XF86AudioLowerVolume exec amixer sset Master 5%-
+bindsym $mod+XF86AudioMute exec amixer sset Master 0%
 
 # System
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -215,17 +219,19 @@ mode "$mode_system" {
 }
 bindsym $mod+ctrl+q mode "$mode_system"
 
+# various other bindings
+bindsym $mod+ctrl+r exec "~/.config/i3/refresh-display.sh"
+
 # ------------------------------------------
 # run code on start
 # ------------------------------------------
 
-exec xinput set-prop "SYNA8005:00 06CB:CD8C Touchpad" "libinput Tapping Enabled" 1
-
-exec xrandr -q
-exec xrandr --output eDP-1 --mode 1920x1080
-
 # polkit
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+# initial config and stuff
+exec --no-startup-id ~/.config/i3/touchpad.sh
+exec --no-startup-id ~/.config/i3/resolution.sh
 
 # open programs
 exec --no-startup-id ~/.config/i3/start.sh

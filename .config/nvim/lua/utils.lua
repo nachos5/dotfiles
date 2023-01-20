@@ -15,4 +15,14 @@ function M.dump(o)
   end
 end
 
+function M.file_contains(file, pattern)
+  local f = io.open(file, "r")
+  if f == nil then
+    return false
+  end
+  local content = f:read("*all")
+  f:close()
+  return content:match(pattern) ~= nil
+end
+
 return M

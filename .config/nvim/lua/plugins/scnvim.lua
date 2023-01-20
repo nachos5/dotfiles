@@ -1,4 +1,5 @@
 local scnvim = require("scnvim")
+local scnvim_path = require("scnvim.path")
 local map = scnvim.map
 local map_expr = scnvim.map_expr
 
@@ -82,4 +83,8 @@ scnvim.load_extension("tmux")
 scnvim.load_extension("piano")
 scnvim.load_extension("fzf-sc")
 
-require("luasnip").add_snippets("supercollider", require("scnvim/utils").get_snippets())
+local snippets_path = scnvim_path.get_asset("snippets")
+local snippets_path_exists = vim.fn.filereadable(snippets_path) == 1
+if snippets_path_exists then
+  require("luasnip").add_snippets("supercollider", require("scnvim/utils").get_snippets())
+end

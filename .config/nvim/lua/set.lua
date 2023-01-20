@@ -37,6 +37,7 @@ vim.opt.number = true
 
 vim.opt.title = true
 
+-- try to install xclip if not working
 vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.relativenumber = true

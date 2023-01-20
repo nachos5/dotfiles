@@ -10,7 +10,6 @@ mason_lspconfig.setup({
     "graphql",
     "html",
     "jsonls",
-    "phpactor",
     "pyright",
     "rust_analyzer",
     -- "sumneko_lua",

@@ -140,12 +140,10 @@ return require("packer").startup({
     })
     -- use({
     --   "folke/noice.nvim",
-    --   event = "VimEnter",
     --   config = function()
-    --     require("noice").setup()
+    --     require("plugins/noice")
     --   end,
     --   requires = {
-    --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     --     "MunifTanjim/nui.nvim",
     --   },
     -- })
@@ -311,7 +309,6 @@ return require("packer").startup({
         "vue",
       },
       config = function()
-        print("hérna")
         require("plugins/emmet")
       end,
     })

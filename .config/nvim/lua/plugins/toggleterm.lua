@@ -5,13 +5,19 @@ require("toggleterm").setup({
 })
 local Terminal = require("toggleterm.terminal").Terminal
 
-local floating = Terminal:new({ direction = "float", hidden = true })
+local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
+local pre_cmd = "source ./" .. venv_path .. "/bin/activate || true"
+local lg_pre_cmd = "(" .. pre_cmd .. ") && "
 
-local lg_pre_cmd = "(source ./env/bin/activate || true) && "
-local lg_cmd = lg_pre_cmd .. "lazygit $(pwd)"
+local floating = Terminal:new({
+  direction = "float",
+  hidden = true,
+})
+
+local lg_cmd = lg_pre_cmd .. "lazygit -p $(pwd)"
 if vim.v.servername ~= nil then
   lg_cmd = lg_pre_cmd
-    .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml $(pwd)", vim.v.servername)
+    .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml -p $(pwd)", vim.v.servername)
 end
 local lazygit = Terminal:new({
   cmd = lg_cmd,
