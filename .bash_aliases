@@ -65,7 +65,7 @@ alias xrandr_hdmi1_multi='xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1
 alias xrandr_hdmi1_off='xrandr --output HDMI-1 --off'
 
 # fzf
-alias fzfkeys="cat ~/github/fzf/shell/key-bindings.bash"
+alias fzfkeys="cat ~/github/sources/fzf/shell/key-bindings.bash"
 
 # flameshot
 alias flame="flameshot gui --clipboard --pin --path ~/Pictures"
