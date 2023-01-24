@@ -29,10 +29,24 @@ local lazygit = Terminal:new({
   },
 })
 
--- <C-f> for a floating terminal
+local ld_cmd = "lazydocker"
+local lazydocker = Terminal:new({
+  cmd = ld_cmd,
+  direction = "float",
+  hidden = true,
+  float_opts = {
+    height = 90,
+    width = 180,
+  },
+})
+
+-- <leader><C-f> for a floating terminal
 function _floating_toggle()
   if lazygit:is_open() then
     lazygit:close()
+  end
+  if lazydocker:is_open() then
+    lazydocker:close()
   end
   floating:toggle()
 end
@@ -44,10 +58,26 @@ function _lazygit_toggle()
   if floating:is_open() then
     floating:close()
   end
+  if lazydocker:is_open() then
+    lazydocker:close()
+  end
   lazygit:toggle()
 end
 vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+-- <leader><C-d> for a lazydocker floating terminal
+function _lazydocker_toggle()
+  if floating:is_open() then
+    floating:close()
+  end
+  if lazygit:is_open() then
+    lazygit:close()
+  end
+  lazydocker:toggle()
+end
+vim.api.nvim_set_keymap("n", "<leader><C-d>", "<cmd>lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<leader><C-d>", "<cmd>lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
 
 -- for editing back from LazyGit (lazygit.toml)
 function _edit(fn, line_number)
