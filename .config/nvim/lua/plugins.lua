@@ -24,6 +24,9 @@ require("lazy").setup({
     config = function()
       require("plugins/nvim-treesitter")
     end,
+    dependencies = {
+      "mrjones2014/nvim-ts-rainbow",
+    },
   },
   {
     "kyazdani42/nvim-tree.lua",
@@ -42,7 +45,6 @@ require("lazy").setup({
     end,
     dependencies = {
       "kyazdani42/nvim-web-devicons",
-      lazy = true,
     },
   },
 
@@ -213,6 +215,7 @@ require("lazy").setup({
       require("plugins/openingh")
     end,
   },
+  "sindrets/diffview.nvim",
 
   -- snippets
   {
