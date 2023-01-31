@@ -5,7 +5,6 @@ require("tokyonight").setup({
   sidebars = {
     "qf",
     "vista_kind",
-    "packer",
     "terminal",
     "toggleterm",
   },
