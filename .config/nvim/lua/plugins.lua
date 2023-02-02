@@ -147,6 +147,13 @@ require("lazy").setup({
       require("help-vsplit").setup()
     end,
   },
+  {
+    "echasnovski/mini.nvim",
+    version = "*",
+    config = function()
+      require("plugins/mini")
+    end,
+  },
 
   -- terminal + navigation
   {
