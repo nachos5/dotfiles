@@ -29,9 +29,9 @@ require("lazy").setup({
     },
   },
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     dependencies = {
-      "kyazdani42/nvim-web-devicons", -- optional, for file icons
+      "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
     version = "nightly", -- optional, updated every week. (see issue #1193)
     config = function()
@@ -44,7 +44,7 @@ require("lazy").setup({
       require("plugins/lualine")
     end,
     dependencies = {
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
     },
   },
 
@@ -273,17 +273,24 @@ require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("plugins/trouble")
     end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    -- commit = "457ddb9",
     config = function()
       require("plugins/null-ls")
     end,
+  },
+  {
+    "glepnir/lspsaga.nvim",
+    event = "BufRead",
+    config = function()
+      require("plugins/lspsaga")
+    end,
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
   },
   {
     "mattn/emmet-vim",

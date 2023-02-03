@@ -39,22 +39,6 @@ vim.cmd([[
 tnoremap <leader>jk <C-\><C-n>
 ]])
 
--- vim tabs
--- nnoremap("<leader>tc", ":tabclose<CR>")
--- nnoremap("<leader>tn", ":tabnew<CR>")
--- nnoremap("<leader>to", ":tabonly<cr>")
--- nnoremap("<leader>tm", ":tabmove<Space>")
--- nnoremap("<leader>t1", "1gt")
--- nnoremap("<leader>t2", "2gt")
--- nnoremap("<leader>t3", "3gt")
--- nnoremap("<leader>t4", "4gt")
--- nnoremap("<leader>t5", "5gt")
--- nnoremap("<leader>t6", "6gt")
--- nnoremap("<leader>t7", "7gt")
--- nnoremap("<leader>t8", "8gt")
--- nnoremap("<leader>t9", "9gt")
--- nnoremap("<leader>t0", "10gt")
-
 -- view messages
 nnoremap("<leader>me", ":messages<CR>", { silent = true })
 
@@ -91,6 +75,10 @@ tnoremap <C-Down> <C-\><C-n> :lua resize_current_window(-2, false)<CR> i
 -- quickfix list
 nnoremap("<leader>qo", ":copen<CR>", { silent = true })
 nnoremap("<leader>qc", ":cclose<CR>", { silent = true })
+nnoremap("<leader>qn", ":cnext<CR>", { silent = true })
+nnoremap("<leader>qp", ":cprev<CR>", { silent = true })
 -- location list
 nnoremap("<leader>lo", ":lopen<CR>", { silent = true })
 nnoremap("<leader>lc", ":lclose<CR>", { silent = true })
+nnoremap("<leader>ln", ":lnext<CR>", { silent = true })
+nnoremap("<leader>lp", ":lprev<CR>", { silent = true })
