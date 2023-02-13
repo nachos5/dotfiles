@@ -6,25 +6,25 @@ require("telescope").load_extension("refactoring")
 vim.api.nvim_set_keymap(
   "v",
   "<leader>re",
-  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 vim.api.nvim_set_keymap(
   "v",
   "<leader>rf",
-  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 vim.api.nvim_set_keymap(
   "v",
-  "<leader>rv",
-  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+  "<leader>rb",
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 vim.api.nvim_set_keymap(
   "v",
   "<leader>ri",
-  [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 
@@ -32,13 +32,13 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rb",
-  [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]],
+  [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rbf",
-  [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]],
+  [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 
@@ -46,7 +46,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ri",
-  [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+  [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR> ]],
   { noremap = true, silent = true, expr = false }
 )
 

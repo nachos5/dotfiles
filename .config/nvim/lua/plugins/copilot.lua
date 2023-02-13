@@ -1,5 +1,4 @@
-local Remap = require("keymap")
-local nnoremap = Remap.nnoremap
+local nnoremap = require("keymap").nnoremap
 
 require("copilot").setup()
 

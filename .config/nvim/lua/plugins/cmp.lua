@@ -53,7 +53,7 @@ cmp.setup({
     }),
   },
   sources = {
-    -- { name = "copilot", priority = 10 },
+    { name = "copilot", priority = 10 },
     { name = "luasnip", priority = 10 },
     { name = "nvim_lsp", priority = 9 },
     { name = "npm", priority = 9 },
@@ -64,7 +64,6 @@ cmp.setup({
     { name = "calc", priority = 3 },
     { name = "treesitter" },
     { name = "nvim_lsp_signature_help" },
-    { name = "orgmode" },
   },
   formatting = {
     format = function(entry, vim_item)

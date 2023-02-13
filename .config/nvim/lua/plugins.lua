@@ -175,17 +175,24 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     version = "0.1.0",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
     config = function()
       require("plugins/telescope")
     end,
   },
-  "nvim-telescope/telescope-file-browser.nvim",
 
   -- tests/debug
-  "mfussenegger/nvim-dap",
-  "rcarriga/nvim-dap-ui",
-  "theHamsta/nvim-dap-virtual-text",
+  {
+    "mfussenegger/nvim-dap",
+    lazy = true,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    lazy = true,
+  },
   {
     "nvim-neotest/neotest",
     dependencies = {
@@ -317,18 +324,19 @@ require("lazy").setup({
   {
     "zbirenbaum/copilot.lua",
     event = "VimEnter",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    event = "InsertEnter",
     config = function()
-      vim.defer_fn(function()
-        require("plugins/copilot")
-      end, 100)
+      require("plugins/copilot")
     end,
   },
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   config = function()
-  --     require("copilot_cmp").setup()
-  --   end,
-  -- },
 
   -- supercollider
 
@@ -336,6 +344,9 @@ require("lazy").setup({
   {
     "davidgranstrom/scnvim",
     dependencies = {
+      "MunifTanjim/nui.nvim",
+      "junegunn/fzf",
+      "junegunn/fzf.vim",
       "davidgranstrom/osc.nvim",
       "davidgranstrom/scnvim-logger",
       "davidgranstrom/scnvim-tmux",
@@ -381,21 +392,7 @@ require("lazy").setup({
     end,
   },
 
-  -- supercollider requirements
-  "MunifTanjim/nui.nvim",
-  "junegunn/fzf",
-  "junegunn/fzf.vim",
-
-  -- formatting
-  -- {
-  --   "mhartington/formatter.nvim",
-  --   config = function()
-  --     require("plugins/formatter")
-  --   end,
-  -- },
-
   -- notes
-  "nvim-orgmode/orgmode",
   {
     "phaazon/mind.nvim",
     branch = "v2.2",
