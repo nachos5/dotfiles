@@ -69,7 +69,11 @@ alias fzfkeys="cat ~/github/sources/fzf/shell/key-bindings.bash"
 # flameshot
 alias flame="flameshot gui --clipboard --pin --path ~/Pictures"
 
+# paste rs
 function paste() {
   local file=${1:-/dev/stdin}
   curl --data-binary @${file} https://paste.rs
 }
+
+# terraform
+alias tf="terraform"

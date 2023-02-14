@@ -1,7 +1,6 @@
 -- https://github.com/charmbracelet/glow
 
-local Remap = require("keymap")
-local nmap = Remap.nmap
+local nnoremap = require("keymap").nnoremap
 
 require("glow").setup({
   style = "dark",
@@ -10,4 +9,4 @@ require("glow").setup({
 
 local default_opts = { silent = true }
 
-nmap("<leader>gl", "<cmd>Glow<CR>", default_opts)
+nnoremap("<leader>gl", "<cmd>Glow<CR>", default_opts)

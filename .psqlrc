@@ -1,0 +1,6 @@
+\x auto
+
+\set histfile ~/.psql_history
+\set HISTSIZE 10000
+\set HISTFILEENV PGHISTFILE
+\set HISTCONTROL ignoredups

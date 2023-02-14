@@ -15,6 +15,7 @@ mkdir -p ~/.config/xplr && ln -sf "${DOTFILES}/.config/xplr/init.lua" ~/.config/
 rm -rf ~/utils && ln -sf "${DOTFILES}/utils" ~/utils
 ln -sf "${DOTFILES}/.bash_aliases" ~/.bash_aliases
 ln -sf "${DOTFILES}/.inputrc" ~/.inputrc
+ln -sf "${DOTFILES}/.psqlrc" ~/.psqlrc
 ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
 ln -sf "${DOTFILES}/.xprofile" ~/.xprofile
 ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua

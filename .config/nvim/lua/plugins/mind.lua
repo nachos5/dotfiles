@@ -1,7 +1,11 @@
-local Remap = require("keymap")
-local nnoremap = Remap.nnoremap
+local nnoremap = require("keymap").nnoremap
 
-require("mind").setup()
+require("mind").setup({
+  persistence = {
+    state_path = "~/mind/mind.json",
+    data_dir = "~/mind/data",
+  },
+})
 
 local default_opts = { noremap = true, silent = true }
 
