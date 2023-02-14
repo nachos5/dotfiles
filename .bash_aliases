@@ -26,8 +26,9 @@ alias composedown='docker-compose -f compose-local.yml down'
 
 # python/django
 alias python='python3'
-alias envpy='source ./env/bin/activate'
-alias envpy_no_error='source ./env/bin/activate 2>/dev/null || true'
+export VENV_PATH=env
+alias envpy='source ./${VENV_PATH}/bin/activate'
+alias envpy_no_error='source ./${VENV_PATH}/bin/activate 2>/dev/null || true'
 djangodocker () {
  docker-compose -f compose-local.yml run --rm django "$@"
 }
@@ -60,9 +61,7 @@ alias ys='yarn start'
 alias yg='yarn generate'
 
 # xrandr
-alias xrandr_hdmi1='xrandr --output HDMI-1 --mode 1920x1080'
-alias xrandr_hdmi1_multi='xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --mode 1920x1080 --above eDP-1'
-alias xrandr_hdmi1_off='xrandr --output HDMI-1 --off'
+alias xrandr_reset='xrandr -s 0'
 
 # fzf
 alias fzfkeys="cat ~/github/sources/fzf/shell/key-bindings.bash"

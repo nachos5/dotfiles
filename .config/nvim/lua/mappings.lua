@@ -21,18 +21,22 @@ inoremap("<C-A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
 inoremap("<C-A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
 vnoremap("<C-A-j>", ":m '>+1<CR>gv=gv", { silent = true })
 vnoremap("<C-A-k>", ":m '<-2<CR>gv=gv", { silent = true })
-
--- move split panes to left/bottom/top/right - todo?
--- nnoremap("<C-A-h>", "<C-W>H")
--- nnoremap("<C-A-j>", "<C-W>J")
--- nnoremap("<C-A-k>", "<C-W>K")
--- nnoremap("<C-A-l>", "<C-W>L")
+nnoremap("<C-A-down>", ":m .+1<CR>==", { silent = true })
+nnoremap("<C-A-up>", ":m .-2<CR>==", { silent = true })
+inoremap("<C-A-down>", "<Esc>:m .+1<CR>==gi", { silent = true })
+inoremap("<C-A-up>", "<Esc>:m .-2<CR>==gi", { silent = true })
+vnoremap("<C-A-down>", ":m '>+1<CR>gv=gv", { silent = true })
+vnoremap("<C-A-up>", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- move between panes to left/bottom/top/right")
 nnoremap("<C-h>", "<C-w>h", { silent = true })
 nnoremap("<C-j>", "<C-w>j", { silent = true })
 nnoremap("<C-k>", "<C-w>k", { silent = true })
 nnoremap("<C-l>", "<C-w>l", { silent = true })
+nnoremap("<C-left>", "<C-w>h", { silent = true })
+nnoremap("<C-down>", "<C-w>j", { silent = true })
+nnoremap("<C-up>", "<C-w>k", { silent = true })
+nnoremap("<C-right>", "<C-w>l", { silent = true })
 
 -- escape terminal
 vim.cmd([[
@@ -43,8 +47,8 @@ tnoremap <leader>jk <C-\><C-n>
 nnoremap("<leader>me", ":messages<CR>", { silent = true })
 
 -- buffers
-nnoremap("<leader>c", ":bp<CR>", { silent = true })
-nnoremap("<leader>v", ":bn<CR>", { silent = true })
+nnoremap("<leader>bp", ":bp<CR>", { silent = true })
+nnoremap("<leader>bn", ":bn<CR>", { silent = true })
 nnoremap("<leader>d", ":Bdelete<CR>", { silent = true })
 nnoremap("<leader>bd", ":%bd<CR>", { silent = true })
 nnoremap("<leader>br", ":edit!<CR>", { silent = true })
@@ -62,14 +66,14 @@ function resize_current_window(amount, is_width)
   end
 end
 -- resize in normal mode
-nnoremap("<C-Up>", ":lua resize_current_window(2, false)<CR>", { silent = true })
-nnoremap("<C-Down>", ":lua resize_current_window(-2, false)<CR>", { silent = true })
-nnoremap("<C-Left>", ":lua resize_current_window(-5, true)<CR>", { silent = true })
-nnoremap("<C-Right>", ":lua resize_current_window(5, true)<CR>", { silent = true })
+nnoremap("<S-Up>", ":lua resize_current_window(2, false)<CR>", { silent = true })
+nnoremap("<S-Down>", ":lua resize_current_window(-2, false)<CR>", { silent = true })
+nnoremap("<S-Left>", ":lua resize_current_window(-5, true)<CR>", { silent = true })
+nnoremap("<S-Right>", ":lua resize_current_window(5, true)<CR>", { silent = true })
 -- resize in terminal mode
 vim.cmd([[
-tnoremap <C-Up> <C-\><C-n> :lua resize_current_window(2, false)<CR> i
-tnoremap <C-Down> <C-\><C-n> :lua resize_current_window(-2, false)<CR> i
+tnoremap <S-Up> <C-\><C-n> :lua resize_current_window(2, false)<CR> i
+tnoremap <S-Down> <C-\><C-n> :lua resize_current_window(-2, false)<CR> i
 ]])
 
 -- quickfix list

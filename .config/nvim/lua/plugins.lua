@@ -210,19 +210,23 @@ require("lazy").setup({
     end,
   },
   {
-    "airblade/vim-gitgutter",
+    "lewis6991/gitsigns.nvim",
     config = function()
-      require("plugins/git-gutter")
+      require("plugins/gitsigns")
     end,
   },
-  "rhysd/conflict-marker.vim",
   {
     "almo7aya/openingh.nvim",
     config = function()
       require("plugins/openingh")
     end,
   },
-  "sindrets/diffview.nvim",
+  {
+    "sindrets/diffview.nvim",
+    config = function()
+      require("plugins/diffview")
+    end,
+  },
 
   -- snippets
   {
@@ -329,6 +333,17 @@ require("lazy").setup({
   --     require("copilot_cmp").setup()
   --   end,
   -- },
+  {
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("plugins/chatgpt")
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
 
   -- supercollider
 
