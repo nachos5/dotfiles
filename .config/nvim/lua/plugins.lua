@@ -341,12 +341,6 @@ require("lazy").setup({
       require("plugins/copilot")
     end,
   },
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   config = function()
-  --     require("copilot_cmp").setup()
-  --   end,
-  -- },
   {
     "jackMort/ChatGPT.nvim",
     config = function()
