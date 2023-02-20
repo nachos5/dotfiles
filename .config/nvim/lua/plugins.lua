@@ -71,12 +71,12 @@ require("lazy").setup({
       require("plugins/tabout")
     end,
   },
-  {
-    "kylechui/nvim-surround",
-    config = function()
-      require("plugins/surround")
-    end,
-  },
+  -- {
+  --   "kylechui/nvim-surround",
+  --   config = function()
+  --     require("plugins/surround")
+  --   end,
+  -- },
   {
     "folke/which-key.nvim",
     config = function()
@@ -105,7 +105,6 @@ require("lazy").setup({
       require("plugins/glow")
     end,
   },
-  "moll/vim-bbye",
   {
     "smjonas/live-command.nvim",
     config = function()
@@ -433,17 +432,4 @@ require("lazy").setup({
     end,
   },
   "JoosepAlviste/nvim-ts-context-commentstring",
-
-  -- random useless stuff / for fun
-  {
-    "tamton-aquib/duck.nvim",
-    config = function()
-      vim.keymap.set("n", "<leader>dd", function()
-        require("duck").hatch()
-      end, {})
-      vim.keymap.set("n", "<leader>dk", function()
-        require("duck").cook()
-      end, {})
-    end,
-  },
 }, config)

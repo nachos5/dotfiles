@@ -4,9 +4,7 @@ require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
     disable = { "help" },
-    additional_vim_regex_highlighting = { "org" }, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
   },
-  ensure_installed = { "org" }, -- Or run :TSUpdate org
   autotag = {
     enable = true,
   },
@@ -19,3 +17,12 @@ require("nvim-treesitter.configs").setup({
     -- termcolors = {} -- table of colour name strings
   },
 })
+
+require('vim.treesitter.query').set_query('python', 'injections', [[
+(call
+  function: (identifier) @_function (#eq? @_function "SQL")
+
+  (argument_list
+
+  (string) @sql))
+]])

@@ -40,6 +40,7 @@ nnoremap("<C-right>", "<C-w>l", { silent = true })
 -- escape terminal
 vim.cmd([[
 tnoremap <leader>jk <C-\><C-n>
+tnoremap <C-Esc> <C-\><C-n>
 ]])
 
 -- view messages
@@ -48,8 +49,16 @@ nnoremap("<leader>me", ":messages<CR>", { silent = true })
 -- buffers
 nnoremap("<leader>bp", ":bp<CR>", { silent = true })
 nnoremap("<leader>bn", ":bn<CR>", { silent = true })
-nnoremap("<leader>d", ":Bdelete<CR>", { silent = true })
-nnoremap("<leader>bd", ":%bd<CR>", { silent = true })
+function remove_current_buffer()
+  MiniBufremove.delete(0, false)
+end
+nnoremap("<leader>d", ":lua remove_current_buffer()<CR>", { silent = true })
+function remove_all_buffers()
+  for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+    MiniBufremove.delete(buffer, false)
+  end
+end
+nnoremap("<leader>bd", ":lua remove_all_buffers()<CR>", { silent = true })
 nnoremap("<leader>br", ":edit!<CR>", { silent = true })
 
 -- resize current window

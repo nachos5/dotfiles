@@ -5,6 +5,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- keymaps commented out are moved to lspsaga
 
 local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
 -- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 -- vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opts)

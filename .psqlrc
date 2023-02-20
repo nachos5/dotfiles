@@ -1,6 +1,27 @@
+\set QUIET on
+
+\timing
+
 \x auto
 
-\set histfile ~/.psql_history
+-- Verbose error reports.
+\set VERBOSITY verbose
+-- Use a separate history file per-database.
+\set HISTFILE ~/.psql_history- :DBNAME
 \set HISTSIZE 10000
 \set HISTFILEENV PGHISTFILE
+-- If a command is run more than once in a row, only store it once in the history.
 \set HISTCONTROL ignoredups
+-- Autocomplete keywords (like SELECT) in upper-case, even if you started typing them in lower case.
+\set COMP_KEYWORD_CASE upper
+\set ON_ERROR_ROLLBACK interactive
+\set clear '\\! clear;'
+
+\setenv PAGER 'less --chop-long-lines'
+
+\pset pager always
+\pset border 2
+\pset null '[null]'
+\pset title ' '
+
+\set QUIET off
