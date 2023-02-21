@@ -7,6 +7,7 @@ nnoremap("<leader>gs", ":vertical bo Git<CR>")
 nnoremap("<leader>gc", ":Git commit<CR>")
 nnoremap("<leader>gp", ":Git push<CR>")
 nnoremap("<leader>gl", ":vsp | GcLog<CR>")
+-- TODO GBrowse
 
 nnoremap("<leader>geh", ":Gedit<CR>")
 nnoremap("<leader>ge1", ":Gedit HEAD~1:%<CR>")

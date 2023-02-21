@@ -211,6 +211,9 @@ require("lazy").setup({
   -- git
   {
     "tpope/vim-fugitive",
+    dependencies = {
+      "tpope/vim-rhubarb",
+    },
     config = function()
       require("plugins/vim-fugitive")
     end,
@@ -221,16 +224,27 @@ require("lazy").setup({
       require("plugins/gitsigns")
     end,
   },
-  {
-    "almo7aya/openingh.nvim",
-    config = function()
-      require("plugins/openingh")
-    end,
-  },
+  -- {
+  --   "almo7aya/openingh.nvim",
+  --   config = function()
+  --     require("plugins/openingh")
+  --   end,
+  -- },
   {
     "sindrets/diffview.nvim",
     config = function()
       require("plugins/diffview")
+    end,
+  },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("plugins/octo")
     end,
   },
 
