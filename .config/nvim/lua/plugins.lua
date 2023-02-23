@@ -224,12 +224,6 @@ require("lazy").setup({
       require("plugins/gitsigns")
     end,
   },
-  -- {
-  --   "almo7aya/openingh.nvim",
-  --   config = function()
-  --     require("plugins/openingh")
-  --   end,
-  -- },
   {
     "sindrets/diffview.nvim",
     config = function()

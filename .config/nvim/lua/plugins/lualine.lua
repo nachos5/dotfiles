@@ -10,6 +10,7 @@ end
 
 require("lualine").setup({
   sections = {
+    lualine_b = { "branch", "diff", "diagnostics", "FugitiveHead" },
     lualine_c = { "filename", scstatus },
   },
   extensions = { "nvim-tree", "toggleterm" },

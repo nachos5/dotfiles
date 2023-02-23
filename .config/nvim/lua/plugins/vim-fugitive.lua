@@ -1,7 +1,6 @@
 local nnoremap = require("keymap").nnoremap
 
-nnoremap("<leader>gd", ":Gdiffsplit<CR>")
-nnoremap("<leader>gm", ":vertical bo Gdiffsplit master<CR>")
+nnoremap("<leader>gd", ":Gvdiffsplit<CR>")
 nnoremap("<leader>gb", ":Git blame<CR>")
 nnoremap("<leader>gs", ":vertical bo Git<CR>")
 nnoremap("<leader>gc", ":Git commit<CR>")
