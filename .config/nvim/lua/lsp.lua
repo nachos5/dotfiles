@@ -40,8 +40,10 @@ function export.on_attach(client, bufnr)
   vim.keymap.set("n", "<space>k", vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set("n", "<space>t", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-  -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
+  -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set("n", "<space>f", function()
+    vim.lsp.buf.format({ bufnr = 0, timeout_ms = 10000, async = true })
+  end, bufopts)
 
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

@@ -245,6 +245,8 @@ require("lazy").setup({
   -- snippets
   {
     "L3MON4D3/LuaSnip",
+    version = "<CurrentMajor>.*",
+    build = "make install_jsregexp",
     config = function()
       require("plugins/luasnip")
     end,

@@ -57,8 +57,8 @@ vnoremap("<leader>fg", '"zy:Telescope live_grep default_text=<C-r>z<CR>', defaul
 
 -- git stuff
 nnoremap("<leader>ftc", "<cmd>Telescope git_commits<CR>", default_opts)
-nnoremap("<leader>ftb", "<cmd>Telescope git_bcommits<CR>", default_opts)
+nnoremap("<leader>ftv", "<cmd>Telescope git_bcommits<CR>", default_opts)
 nnoremap("<leader>fts", "<cmd>Telescope git_status<CR>", default_opts)
--- TODO BRANCHES
+nnoremap("<leader>ftb", "<cmd>Telescope git_branches<CR>", default_opts)
 
 nnoremap("<leader>fp", "<cmd>Telescope pickers<CR>", default_opts)

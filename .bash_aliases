@@ -26,7 +26,9 @@ alias composedown='docker-compose -f compose-local.yml down'
 
 # python/django
 alias python='python3'
-export VENV_PATH=env
+if [ -z "${VENV_PATH}" ]; then
+  export VENV_PATH=env
+fi
 alias envpy='source ./${VENV_PATH}/bin/activate'
 alias envpy_no_error='source ./${VENV_PATH}/bin/activate 2>/dev/null || true'
 djangodocker () {

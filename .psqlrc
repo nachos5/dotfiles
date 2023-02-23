@@ -17,11 +17,6 @@
 \set ON_ERROR_ROLLBACK interactive
 \set clear '\\! clear;'
 
-\setenv PAGER 'less --chop-long-lines'
-
-\pset pager always
-\pset border 2
 \pset null '[null]'
-\pset title ' '
 
 \set QUIET off

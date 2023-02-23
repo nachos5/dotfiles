@@ -13,7 +13,7 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
-session_env_command="if [ -f ${selected}/.env_session ]; then session ${selected}/.env_session; fi; bash"
+session_env_command="if [ -f ${selected}/.env_session ]; then source ${selected}/.env_session; fi; bash"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected "${session_env_command}"
