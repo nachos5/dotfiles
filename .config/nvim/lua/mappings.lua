@@ -40,7 +40,7 @@ nnoremap("<C-right>", "<C-w>l", { silent = true })
 -- escape terminal
 vim.cmd([[
 tnoremap <leader>jk <C-\><C-n>
-tnoremap <C-Esc> <C-\><C-n>
+tnoremap <leader><Esc> <C-\><C-n>
 ]])
 
 -- view messages
