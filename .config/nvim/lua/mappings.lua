@@ -13,7 +13,7 @@ nnoremap("<leader>sv", ":source $MYVIMRC<CR>", { silent = true })
 -- search for visually selected text
 vnoremap("//", "y/<C-R>=escape(@\",'/')<CR><CR>", { silent = true })
 
--- move line
+-- move lines
 nnoremap("<C-A-j>", ":m .+1<CR>==", { silent = true })
 nnoremap("<C-A-k>", ":m .-2<CR>==", { silent = true })
 inoremap("<C-A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
@@ -36,6 +36,12 @@ nnoremap("<C-left>", "<C-w>h", { silent = true })
 nnoremap("<C-down>", "<C-w>j", { silent = true })
 nnoremap("<C-up>", "<C-w>k", { silent = true })
 nnoremap("<C-right>", "<C-w>l", { silent = true })
+
+-- move split panes to left/bottom/top/right
+nnoremap("<C-W><S-Left>", "<C-W>H")
+nnoremap("<C-W><S-Down>", "<C-W>J")
+nnoremap("<C-W><S-Up>", "<C-W>K")
+nnoremap("<C-W><S-Right>", "<C-W>L")
 
 -- escape terminal
 vim.cmd([[

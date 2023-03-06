@@ -2,7 +2,7 @@ local nnoremap = require("keymap").nnoremap
 
 local shared_opts = { silent = true }
 
-nnoremap("<leader>gs", ":vertical bo Git<CR>", shared_opts)
+nnoremap("<leader>gs", ":Git<CR>", shared_opts)
 nnoremap("<leader>gl", ":Gclog<cr>", shared_opts)
 nnoremap("<leader>gx", ":Gclog %<cr>", shared_opts)
 nnoremap("<leader>gc", ":Git commit<cr>", shared_opts)
