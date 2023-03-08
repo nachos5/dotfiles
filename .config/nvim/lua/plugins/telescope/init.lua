@@ -62,3 +62,7 @@ nnoremap("<leader>fts", "<cmd>Telescope git_status<CR>", default_opts)
 nnoremap("<leader>ftb", "<cmd>Telescope git_branches<CR>", default_opts)
 
 nnoremap("<leader>fp", "<cmd>Telescope pickers<CR>", default_opts)
+
+-- lsp stuff
+nnoremap("<leader>ci", "<cmd>Telescope lsp_incoming_calls<CR>")
+nnoremap("<leader>co", "<cmd>Telescope lsp_outgoing_calls<CR>")

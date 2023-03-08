@@ -25,4 +25,12 @@ function M.file_contains(file, pattern)
   return content:match(pattern) ~= nil
 end
 
+function M.split_string_by_delimiter(input, delimiter)
+  local result = {}
+  for match in (input .. delimiter):gmatch("(.-)" .. delimiter) do
+    table.insert(result, match)
+  end
+  return result
+end
+
 return M

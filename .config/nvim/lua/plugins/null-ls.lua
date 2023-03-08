@@ -32,10 +32,20 @@ local diagnostics = null_ls.builtins.diagnostics
 -- relative path
 local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
 
-local isort_pairs = { ["isort.cfg"] = ".*", ["pyproject.toml"] = "tool.isort" }
+local isort_pairs = {
+  ["isort.cfg"] = ".*",
+  ["pyproject.toml"] = "tool.isort",
+}
 local flake_pairs = { [".flake8"] = ".*" }
-local pylint_pairs = { [".pylintrc"] = ".*", ["pyproject.toml"] = "tool.pylint" }
-local mypy_pairs = { ["mypy.ini"] = ".*", ["pyproject.toml"] = "tool.mypy" }
+local pylint_pairs = {
+  [".pylintrc"] = ".*",
+  [".pylint.toml"] = ".*",
+  ["pyproject.toml"] = "tool.pylint",
+}
+local mypy_pairs = {
+  ["mypy.ini"] = ".*",
+  ["pyproject.toml"] = "tool.mypy",
+}
 
 null_ls.setup({
   debug = vim.env.NULL_LS_DEBUG ~= nil,

@@ -21,10 +21,10 @@ alias increase_file_limit="ulimit -n 4096"
 alias dockerstop='docker stop $(docker ps -a -q)'
 alias dockerrm='docker rm $(docker ps -a -q)'
 alias dockerprune='docker container prune -f && docker image prune -f && docker system prune -f'
-alias composeup='docker-compose -f compose-local.yml up --build'
-alias composedown='docker-compose -f compose-local.yml down'
+alias composeup='docker compose -f compose-local.yml up --build'
+alias composedown='docker compose -f compose-local.yml down'
 
-# python/django
+# python
 alias python='python3'
 if [ -z "${VENV_PATH}" ]; then
   export VENV_PATH=env
@@ -32,7 +32,7 @@ fi
 alias envpy='source ./${VENV_PATH}/bin/activate'
 alias envpy_no_error='source ./${VENV_PATH}/bin/activate 2>/dev/null || true'
 djangodocker () {
- docker-compose -f compose-local.yml run --rm django "$@"
+ docker compose -f compose-local.yml run --rm django "$@"
 }
 alias dshell="djangodocker python manage.py shell_plus"
 alias dmigrations="djangodocker python manage.py makemigrations"

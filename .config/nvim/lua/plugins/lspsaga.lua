@@ -51,5 +51,5 @@ keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 keymap("n", "K", "<cmd>Lspsaga hover_doc ++quiet<CR>")
 
 -- Call hierarchy
-keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+-- keymap("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+-- keymap("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
