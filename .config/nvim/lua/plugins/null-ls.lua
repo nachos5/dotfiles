@@ -110,6 +110,9 @@ null_ls.setup({
     -- rust
     formatting.rustfmt,
 
+    -- shell
+    formatting.shfmt,
+
     -- php
     -- https://github.com/prettier/plugin-php
     formatting.prettier.with({

@@ -30,4 +30,7 @@ hi tsxEqual guifg=#F99575
 
 " yellow
 hi tsxAttrib guifg=#F8BD7F cterm=italic
+
+hi OctoEditable guibg=#222222 cterm=italic
+
 ]])

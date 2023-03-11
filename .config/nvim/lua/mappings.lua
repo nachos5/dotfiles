@@ -100,3 +100,8 @@ nnoremap("<leader>lo", ":lopen<CR>", { silent = true })
 nnoremap("<leader>lc", ":lclose<CR>", { silent = true })
 nnoremap("<leader>ln", ":lnext<CR>", { silent = true })
 nnoremap("<leader>lp", ":lprev<CR>", { silent = true })
+
+-- patterns --
+-- remove leading and trailing whitespace
+nnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })
+vnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })

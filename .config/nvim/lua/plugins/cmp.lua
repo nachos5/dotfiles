@@ -1,4 +1,4 @@
--- https://codeberg.org/madskjeldgaard/dotfiles/src/branch/main/nvim/lua/plugins/cmp.lua
+vim.o.completeopt = "menuone,noselect,preview"
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
@@ -11,6 +11,7 @@ end
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.

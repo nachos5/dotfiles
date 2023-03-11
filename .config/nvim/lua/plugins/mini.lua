@@ -1,7 +1,10 @@
 -- ga=
 require("mini.align").setup()
+
 require("mini.ai").setup()
+
 require("mini.bufremove").setup()
+
 require("mini.surround").setup({
   mappings = {
     add = "ys", -- Add surrounding in Normal and Visual modes
@@ -16,3 +19,6 @@ require("mini.surround").setup({
     suffix_next = "n", -- Suffix to search with "next" method
   },
 })
+
+-- gS
+require("mini.splitjoin").setup()

@@ -148,7 +148,7 @@ require("lazy").setup({
   },
   {
     "echasnovski/mini.nvim",
-    version = "*",
+    version = false,
     config = function()
       require("plugins/mini")
     end,

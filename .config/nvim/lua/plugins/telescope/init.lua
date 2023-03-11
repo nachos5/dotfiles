@@ -48,6 +48,7 @@ nnoremap("<leader>fht", "<cmd>Telescope help_tags<CR>", default_opts)
 nnoremap("<leader>fhc", "<cmd>Telescope command_history<CR>", default_opts)
 nnoremap("<leader>fhs", "<cmd>Telescope search_history<CR>", default_opts)
 nnoremap("<leader>fhq", "<cmd>Telescope quickfixhistory<CR>", default_opts)
+nnoremap("<leader>fhi", "<cmd>Telescope highlights<CR>", default_opts)
 
 nnoremap("<leader>fc", "<cmd>Telescope commands<CR>", default_opts)
 nnoremap("<leader>fk", "<cmd>Telescope keymaps<CR>", default_opts)
