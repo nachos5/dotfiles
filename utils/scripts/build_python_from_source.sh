@@ -6,12 +6,17 @@
 
 version=$1
 
-cd /tmp/
-wget https://www.python.org/ftp/python/$version/Python-$version.tgz
-tar xzf Python-$version.tgz
-cd Python-$version
+if [[ -z "$version" ]]; then
+	echo "Please specify a version to build."
+	exit 1
+fi
 
-sudo ./configure --prefix=/opt/python/$version/ --enable-optimizations --with-lto --with-computed-gotos --with-system-ffi
+cd /tmp/ || exit
+wget "https://www.python.org/ftp/python/$version/Python-$version.tgz"
+tar xzf "Python-$version.tgz"
+cd "Python-$version" || exit
+
+sudo ./configure --prefix="/opt/python/$version/" --enable-optimizations --with-lto --with-computed-gotos --with-system-ffi
 sudo make -j "$(nproc)"
 sudo make altinstall
-sudo rm /tmp/Python-$version.tgz
+sudo rm "/tmp/Python-$version.tgz"

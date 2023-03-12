@@ -2,6 +2,6 @@
 
 # https://github.com/junegunn/fzf#using-git
 
-cd ~/github/sources/fzf
+cd ~/github/sources/fzf || exit
 git pull
 ./install

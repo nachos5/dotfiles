@@ -2,10 +2,10 @@
 
 # https://github.com/tmux/tmux#from-version-control
 
-cd ~/github/sources/tmux
+cd ~/github/sources/tmux || exit
 git pull
 sh autogen.sh
 ./configure && make
 
-cd ~/bin
+cd ~/bin || exit
 ln -sf ~/github/sources/tmux/tmux .
