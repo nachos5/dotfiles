@@ -1,0 +1,80 @@
+" vim: filetype=vim
+
+" inspiration files:
+" https://gist.github.com/BurntSushi/393546a65db38d57cedcfd72c6d89bf3
+" https://github.com/noctuid/dotfiles/blob/master/browsing/.config/tridactyl/tridactylrc
+
+" This wipes all existing settings. This means that if a setting in this file
+" is removed, then it will return to default. In other words, this file serves
+" as an enforced single point of truth for Tridactyl's configuration.
+sanitize tridactyllocal tridactylsync
+
+" Just use a blank page for new tab. It would be nicer to use the standard
+" Firefox homepage, but Tridactyl doesn't support this yet.
+set newtab about:blank
+
+" Use vim in tmux for editor.
+" set editorcmd terminal -e tmux -u new vim
+set editorcmd $TERMINAL -e $EDITOR
+
+" Ctrl-F should use the browser's native 'find' functionality.
+unbind <C-f>
+
+" But also support Tridactyl search too.
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+set hintchars arstdhneiowfpluy
+
+" Don't run Tridactyl on some web sites because it doesn't work well, or
+" because the web site has its own keybindings.
+autocmd DocStart mail.google.com mode ignore
+
+" Commands
+alias xa qall
+
+" ** Colemak Swaps
+unbind j
+unbind k
+" bind n scrollline 7
+" bind e scrollline -7
+set smoothscroll true
+" visual mode
+bind --mode=visual <ArrowLeft> js document.getSelection().modify("extend","backward","character")
+bind --mode=visual <ArrowRight> js document.getSelection().modify("extend","forward","character")
+bind --mode=visual n js document.getSelection().modify("extend","forward","line")
+bind --mode=visual e js document.getSelection().modify("extend","backward","line")
+bind --mode=visual j js document.getSelection().modify("extend","forward","word")
+
+" ** Tabs and Windows
+bind o fillcmdline tabopen
+bind O fillcmdline open
+bind s fillcmdline tabopen search
+bind S fillcmdline open search
+bind k fillcmdline bmarks -t
+bind K fillcmdline bmarks
+
+bind tn tabmove -1
+bind te tabmove +1
+
+bind N tabprev
+bind E tabnext
+
+bind tp winopen -private
+
+" ** Hinting
+" instead of first input, pick input
+bind gi hint -c input,textarea
+
+" ** Quickmarks
+unbind '
+bind 'd tabopen about:addons
+bind 'D tabopen about:downloads
+bind 'g tabopen https://www.github.com/
+bind 'h tabopen about:history
+bind 'n tabopen https://www.reddit.com/r/neovim
+bind 'p tabopen https://www.google.com/search?q=premier%20league
+bind 'r tabopen https://reddit.com/
+bind 'y tabopen https://youtube.com/
