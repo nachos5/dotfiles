@@ -26,6 +26,7 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 
+" colemak friendly
 set hintchars arstdhneiowfpluy
 
 " Don't run Tridactyl on some web sites because it doesn't work well, or
@@ -56,11 +57,14 @@ bind S fillcmdline open search
 bind k fillcmdline bmarks -t
 bind K fillcmdline bmarks
 
+unbind t
 bind tn tabmove -1
 bind te tabmove +1
 
-bind N tabprev
-bind E tabnext
+" bind N tabprev
+" bind E tabnext
+
+bind td tabduplicate
 
 bind tp winopen -private
 
@@ -70,11 +74,12 @@ bind gi hint -c input,textarea
 
 " ** Quickmarks
 unbind '
+bind 'c tabopen https://chat.openai.com/chat
 bind 'd tabopen about:addons
 bind 'D tabopen about:downloads
-bind 'g tabopen https://www.github.com/
+bind 'G tabopen https://www.github.com/
 bind 'h tabopen about:history
-bind 'n tabopen https://www.reddit.com/r/neovim
-bind 'p tabopen https://www.google.com/search?q=premier%20league
-bind 'r tabopen https://reddit.com/
+bind 'R tabopen https://reddit.com/
 bind 'y tabopen https://youtube.com/
+
+source ~/.local_tridactylrc

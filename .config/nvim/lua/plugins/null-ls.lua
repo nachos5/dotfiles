@@ -7,6 +7,8 @@ if not null_ls_status_ok then
   return
 end
 
+local project_config_ok, project_config = pcall(dofile, vim.fn.getcwd() .. "/.project.lua")
+
 local function has_file(file)
   return function(_utils)
     return _utils.root_has_file(file)
@@ -46,6 +48,62 @@ local mypy_pairs = {
   ["mypy.ini"] = ".*",
   ["pyproject.toml"] = "tool.mypy",
 }
+local ruff_pairs = {
+  ["ruff.toml"] = ".*",
+  ["pyproject.toml"] = "ruff.mypy",
+}
+
+local black_config = {
+  prefer_local = venv_path .. "/bin",
+  timeout = 10000,
+  extra_args = { "--fast" },
+}
+local mypy_config = {
+  prefer_local = venv_path .. "/bin",
+  method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  condition = check_for(mypy_pairs),
+}
+local pylint_config = {
+  prefer_local = venv_path .. "/bin",
+  method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  condition = check_for(pylint_pairs),
+}
+local flake_config = {
+  prefer_local = venv_path .. "/bin",
+  method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  condition = check_for(flake_pairs),
+}
+local ruff_config = {
+  prefer_local = venv_path .. "/bin",
+  method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  condition = check_for(ruff_pairs),
+}
+local ruff_formatting_config = {
+  prefer_local = venv_path .. "/bin",
+  condition = check_for(ruff_pairs),
+}
+
+-- check for project config
+if project_config_ok then
+  if type(rawget(project_config, "null_ls_black_config")) == "table" then
+    black_config = project_config.null_ls_black_config
+  end
+  if type(rawget(project_config, "null_ls_mypy_config")) == "table" then
+    mypy_config = project_config.null_ls_mypy_config
+  end
+  if type(rawget(project_config, "null_ls_pylint_config")) == "table" then
+    pylint_config = project_config.null_ls_pylint_config
+  end
+  if type(rawget(project_config, "null_ls_flake_config")) == "table" then
+    flake_config = project_config.null_ls_flake_config
+  end
+  if type(rawget(project_config, "null_ls_ruff_config")) == "table" then
+    ruff_config = project_config.null_ls_ruff_config
+  end
+  if type(rawget(project_config, "null_ls_ruff_formatting_config")) == "table" then
+    ruff_formatting_config = project_config.null_ls_ruff_formatting_config
+  end
+end
 
 null_ls.setup({
   debug = vim.env.NULL_LS_DEBUG ~= nil,
@@ -53,30 +111,16 @@ null_ls.setup({
   on_attach = require("lsp").on_attach,
   sources = {
     -- python
-    formatting.black.with({
-      prefer_local = venv_path .. "/bin",
-      timeout = 10000,
-      extra_args = { "--fast" },
-    }),
+    formatting.black.with(black_config),
     formatting.isort.with({
       prefer_local = venv_path .. "/bin",
       condition = check_for(isort_pairs),
     }),
-    diagnostics.flake8.with({
-      prefer_local = venv_path .. "/bin",
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      condition = check_for(flake_pairs),
-    }),
-    diagnostics.pylint.with({
-      prefer_local = venv_path .. "/bin",
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      condition = check_for(pylint_pairs),
-    }),
-    diagnostics.mypy.with({
-      prefer_local = venv_path .. "/bin",
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      condition = check_for(mypy_pairs),
-    }),
+    formatting.ruff.with(ruff_formatting_config),
+    diagnostics.flake8.with(flake_config),
+    diagnostics.pylint.with(pylint_config),
+    diagnostics.mypy.with(mypy_config),
+    diagnostics.ruff.with(ruff_config),
 
     -- js/ts etc...
     formatting.prettier.with({

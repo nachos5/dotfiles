@@ -51,6 +51,9 @@ mason_lspconfig.setup_handlers({
           },
         },
       },
+      handlers = vim.env.DISABLE_PYRIGHT_DIAGNOSTICS and {
+        ["textDocument/publishDiagnostics"] = function() end,
+      } or nil,
     })
   end,
 
