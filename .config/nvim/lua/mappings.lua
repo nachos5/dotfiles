@@ -51,6 +51,8 @@ tnoremap <leader><Esc> <C-\><C-n>
 
 -- view messages
 nnoremap("<leader>me", ":messages<CR>", { silent = true })
+-- redirect messages to register q
+nnoremap("<space>me", ":redir @q | messages | redir END<CR>", { silent = true })
 
 -- buffers
 nnoremap("<leader>bp", ":bp<CR>", { silent = true })

@@ -157,7 +157,7 @@ require("lazy").setup({
   -- terminal + navigation
   {
     "akinsho/toggleterm.nvim",
-    version = "v2.*",
+    version = "*",
     config = function()
       require("plugins/toggleterm")
     end,
@@ -173,7 +173,7 @@ require("lazy").setup({
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.0",
+    version = "0.1.1",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
@@ -245,7 +245,7 @@ require("lazy").setup({
   -- snippets
   {
     "L3MON4D3/LuaSnip",
-    version = "<CurrentMajor>.*",
+    version = "1.*",
     build = "make install_jsregexp",
     config = function()
       require("plugins/luasnip")
@@ -442,4 +442,10 @@ require("lazy").setup({
     end,
   },
   "JoosepAlviste/nvim-ts-context-commentstring",
+
+  -- python
+  {
+    "Vimjas/vim-python-pep8-indent",
+    ft = "python",
+  },
 }, config)

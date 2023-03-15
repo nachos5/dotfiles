@@ -12,7 +12,6 @@ endif
 " colorscheme gruvbox
 colorscheme tokyonight
 
-set termguicolors " this variable must be enabled for colors to be applied properly
 " nerdcommenter
 let NERDSpaceDelims=1
 
