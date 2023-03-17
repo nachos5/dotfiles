@@ -6,5 +6,7 @@ require("octo").setup()
 
 local default_opts = { noremap = true, silent = true }
 
-nnoremap("<leader>op", ":Octo pr list<CR>", default_opts)
+nnoremap("<leader>opl", ":Octo pr list<CR>", default_opts)
+nnoremap("<leader>opc", ":Octo pr changes<CR>", default_opts)
+nnoremap("<leader>opd", ":Octo pr diff<CR>", default_opts)
 nnoremap("<leader>oa", ":Octo actions<CR>", default_opts)

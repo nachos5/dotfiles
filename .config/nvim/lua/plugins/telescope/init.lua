@@ -5,8 +5,6 @@ local vnoremap = Remap.vnoremap
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
-telescope.load_extension("harpoon")
-
 telescope.setup({
   defaults = {
     path_display = { "smart" },
@@ -33,6 +31,9 @@ telescope.setup({
     },
   },
 })
+
+telescope.load_extension("harpoon")
+telescope.load_extension("ui-select")
 
 local default_opts = { noremap = true, silent = true }
 

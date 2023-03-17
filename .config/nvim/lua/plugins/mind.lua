@@ -13,4 +13,40 @@ nnoremap("<leader>mm", "<cmd>MindOpenMain<CR>", default_opts)
 nnoremap("<leader>mp", "<cmd>MindOpenSmartProject<CR>", default_opts)
 nnoremap("<leader>mc", "<cmd>MindClose<CR>", default_opts)
 
--- mind-config-keymaps help tag to see default keymaps
+function mind_create_smart_node()
+  require("mind").wrap_smart_project_tree_fn(function(args)
+    require("mind.commands").create_node_index(
+      args.get_tree(),
+      require("mind.node").MoveDir.INSIDE_END,
+      args.save_tree,
+      args.opts
+    )
+  end)
+end
+nnoremap("<leader>mn", mind_create_smart_node, default_opts)
+
+function mind_create_main_node()
+  require("mind").wrap_main_tree_fn(function(args)
+    require("mind.commands").create_node_index(
+      args.get_tree(),
+      require("mind.node").MoveDir.INSIDE_END,
+      args.save_tree,
+      args.opts
+    )
+  end)
+end
+nnoremap("<leader>mN", mind_create_main_node, default_opts)
+
+function mind_search_smart_tree()
+  require("mind").wrap_smart_project_tree_fn(function(args)
+    require("mind.commands").open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
+  end)
+end
+nnoremap("<leader>ms", mind_search_smart_tree, default_opts)
+
+function mind_search_main_tree()
+  require("mind").wrap_main_tree_fn(function(args)
+    require("mind.commands").open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
+  end)
+end
+nnoremap("<leader>mS", mind_search_main_tree, default_opts)
