@@ -88,9 +88,7 @@ require("lazy").setup({
     "cappyzawa/trim.nvim",
     config = function()
       require("trim").setup({
-        -- if you want to ignore markdown file.
-        -- you can specify filetypes.
-        disable = { "markdown" },
+        ft_blocklist = { "markdown" },
         patterns = {
           [[%s/\s\+$//e]], -- remove unwanted spaces
           [[%s/\($\n\s*\)\+\%$//]], -- trim last line
