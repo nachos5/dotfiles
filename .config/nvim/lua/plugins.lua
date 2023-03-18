@@ -300,6 +300,9 @@ require("lazy").setup({
     end,
   },
   {
+    "folke/neodev.nvim",
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       require("plugins/null-ls")

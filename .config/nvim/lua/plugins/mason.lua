@@ -26,6 +26,8 @@ if not lspconfig_status_ok then
   return
 end
 
+require("neodev").setup({})
+
 mason_lspconfig.setup_handlers({
   function(server_name)
     if server_name == "tsserver" or server_name == "rust_analyzer" then
