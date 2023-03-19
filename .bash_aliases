@@ -30,8 +30,21 @@ alias composeup='docker compose -f compose-local.yml up --build'
 alias composedown='docker compose -f compose-local.yml down'
 
 # python
-alias python='python3.11'
-alias pip='pip3.11'
+function python() {
+	if [[ -z "${VIRTUAL_ENV}" ]]; then
+		python3.11 "$@"
+	else
+		"${VIRTUAL_ENV}/bin/python" "$@"
+	fi
+}
+
+function pip() {
+	if [[ -z "${VIRTUAL_ENV}" ]]; then
+		pip3.11 "$@"
+	else
+		"${VIRTUAL_ENV}/bin/pip" "$@"
+	fi
+}
 if [ -z "${VENV_PATH}" ]; then
 	export VENV_PATH=env
 fi

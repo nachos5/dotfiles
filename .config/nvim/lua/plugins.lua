@@ -13,6 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local config = {
   lockfile = "~/github/dotfiles/lazy-lock.json",
+  dev = {
+    path = "~/github",
+    patterns = {},
+    fallback = false,
+  },
 }
 
 require("lazy").setup({
