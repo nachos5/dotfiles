@@ -7,6 +7,9 @@ local map_expr = scnvim.map_expr
 -- g] - go to definition
 
 scnvim.setup({
+  sclang = {
+    cmd = vim.env.HOME .. "/utils/scripts/sclang",
+  },
   keymaps = {
     ["<leader>li"] = map("editor.send_line", { "n" }),
     ["<C-e>"] = {
@@ -15,7 +18,7 @@ scnvim.setup({
     },
     ["<CR>"] = map("postwin.toggle"),
     ["<leader>cl"] = map("postwin.clear", { "n" }),
-    ["<leader>q"] = map("sclang.hard_stop", { "n" }),
+    ["<leader>."] = map("sclang.hard_stop", { "n" }),
     ["<leader>st"] = map("sclang.start"),
     ["<leader>sk"] = map("sclang.recompile"),
     ["<leader>sp"] = map_expr("Server.local.plotTree", { "n" }),
@@ -78,8 +81,8 @@ scnvim.setup({
   },
 })
 
--- scnvim.load_extension('logger')
-scnvim.load_extension("tmux")
+-- scnvim.load_extension("logger")
+-- scnvim.load_extension("tmux")
 scnvim.load_extension("piano")
 scnvim.load_extension("fzf-sc")
 

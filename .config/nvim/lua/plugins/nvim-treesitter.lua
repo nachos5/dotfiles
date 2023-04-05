@@ -18,7 +18,7 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
-require('vim.treesitter.query').set_query('python', 'injections', [[
+require('vim.treesitter.query').set('python', 'injections', [[
 (call
   function: (identifier) @_function (#eq? @_function "SQL")
 
