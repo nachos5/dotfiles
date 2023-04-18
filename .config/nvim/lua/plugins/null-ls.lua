@@ -62,11 +62,13 @@ local mypy_config = {
   prefer_local = venv_path .. "/bin",
   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   condition = check_for(mypy_pairs),
+  timeout = 15000,
 }
 local pylint_config = {
   prefer_local = venv_path .. "/bin",
   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   condition = check_for(pylint_pairs),
+  timeout = 15000,
 }
 local flake_config = {
   prefer_local = venv_path .. "/bin",
@@ -118,7 +120,7 @@ null_ls.setup({
     }),
     formatting.ruff.with(ruff_formatting_config),
     diagnostics.flake8.with(flake_config),
-    diagnostics.pylint.with(pylint_config),
+    -- diagnostics.pylint.with(pylint_config),
     diagnostics.mypy.with(mypy_config),
     diagnostics.ruff.with(ruff_config),
 

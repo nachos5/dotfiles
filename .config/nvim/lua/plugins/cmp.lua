@@ -1,5 +1,3 @@
-vim.o.completeopt = "menuone,noselect,preview"
-
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
@@ -8,14 +6,14 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+vim.o.completeopt = "menuone,noselect,preview"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
-      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -23,7 +21,7 @@ cmp.setup({
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<C-n>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -99,8 +97,7 @@ cmp.setup({
     entries = "native",
   },
   experimental = {
-    -- native_menu = true,
-    ghost_text = true,
+    -- ghost_text = true,
   },
 })
 

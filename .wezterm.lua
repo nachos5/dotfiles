@@ -21,4 +21,7 @@ return {
     top = 10,
     bottom = 10,
   },
+
+  -- updates
+  check_for_updates = false,
 }

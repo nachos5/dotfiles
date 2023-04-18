@@ -56,6 +56,9 @@ djangodocker() {
 alias dshell='djangodocker python manage.py shell_plus'
 alias dmigrations='djangodocker python manage.py makemigrations'
 alias dmigrate='djangodocker python manage.py migrate'
+alias py_cache_clear='sudo find . -type d -name "__pycache__" -exec rm -rf {} +'
+alias mypy_cache_clear='sudo find . -type d -name ".mypy_cache" -exec rm -rf {} +'
+alias pytest_cache_clear='sudo find . -type d -name ".pytest_cache" -exec rm -rf {} +'
 
 # tmux
 alias tmuxsource='tmux source-file ~/.tmux.conf'
@@ -91,7 +94,7 @@ alias fzfkeys='cat ~/github/sources/fzf/shell/key-bindings.bash'
 alias flame='flameshot gui --clipboard --pin --path ~/Pictures'
 
 # paste rs
-function paste() {
+function pasters() {
 	local file=${1:-/dev/stdin}
 	curl --data-binary @"${file}" https://paste.rs
 }
