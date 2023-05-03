@@ -58,6 +58,7 @@ alias dmigrations='djangodocker python manage.py makemigrations'
 alias dmigrate='djangodocker python manage.py migrate'
 alias py_cache_clear='sudo find . -type d -name "__pycache__" -exec rm -rf {} +'
 alias mypy_cache_clear='sudo find . -type d -name ".mypy_cache" -exec rm -rf {} +'
+alias ruff_cache_clear='sudo find . -type d -name ".ruff_cache" -exec rm -rf {} +'
 alias pytest_cache_clear='sudo find . -type d -name ".pytest_cache" -exec rm -rf {} +'
 
 # tmux
