@@ -4,6 +4,7 @@ local vnoremap = Remap.vnoremap
 
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local custom_actions = require("plugins/telescope/custom_actions")
 
 telescope.setup({
   defaults = {
@@ -26,6 +27,8 @@ telescope.setup({
       mappings = {
         i = {
           ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+          ["<c-e>"] = custom_actions.yank_all_entries,
+          ["<c-l>"] = custom_actions.yank_preview_lines,
         },
       },
     },

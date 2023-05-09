@@ -64,6 +64,7 @@ alias pytest_cache_clear='sudo find . -type d -name ".pytest_cache" -exec rm -rf
 # tmux
 alias tmuxsource='tmux source-file ~/.tmux.conf'
 alias ta='tmux a'
+alias tl='tmux list-session'
 alias tk='tmux kill-session'
 alias tks='tmux kill-server'
 
@@ -72,6 +73,7 @@ alias xcd='cd "$(xplr --print-pwd-as-result)"'
 
 # nvim
 alias n='envpy_no_error && nvim'
+alias list_nvim_swaps='ls -al ~/.local/state/nvim/swap/*.swp'
 alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp && rm -rf ~/.local/state/nvim/swap/*.swp'
 alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
 alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'

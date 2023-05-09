@@ -1,3 +1,6 @@
+local Remap = require("keymap")
+local nnoremap = Remap.nnoremap
+
 local export = {}
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -60,5 +63,18 @@ function export.on_attach(client, bufnr)
     hint_enable = false,
   }, bufnr)
 end
+
+function stop_lsp_for_buffer()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local active_clients = vim.lsp.get_active_clients()
+
+  for _, client in ipairs(active_clients) do
+    if vim.tbl_contains(client.config.filetypes, vim.bo.filetype) then
+      vim.lsp.buf_detach_client(current_buf, client.id)
+    end
+  end
+end
+
+nnoremap("<leader>ls", ":lua stop_lsp_for_buffer()<CR>", { silent = true })
 
 return export
