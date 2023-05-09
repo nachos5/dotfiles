@@ -13,6 +13,12 @@ telescope.setup({
       ".git/",
       "node_modules",
     },
+    mappings = {
+      i = {
+        ["<C-e>"] = custom_actions.yank_all_entries,
+        ["<C-l>"] = custom_actions.yank_preview_lines,
+      },
+    },
   },
   pickers = {
     find_files = {
@@ -26,9 +32,7 @@ telescope.setup({
     buffers = {
       mappings = {
         i = {
-          ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
-          ["<c-e>"] = custom_actions.yank_all_entries,
-          ["<c-l>"] = custom_actions.yank_preview_lines,
+          ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
         },
       },
     },
