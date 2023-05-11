@@ -32,8 +32,21 @@ local multi_rg = function(opts)
 
       local args = { "rg" }
       if prompt_split[1] then
+        local regex = prompt_split[1]
+        -- if starts with m: we use multiline
+        local regex_split = vim.split(regex, "m:")
+        print("function#function#if regex_split:", vim.inspect(regex_split)) -- __AUTO_GENERATED_PRINT_VAR__
+        local use_multi = false
+        if regex_split[2] then
+          regex = regex_split[2]
+          use_multi = true
+        end
         table.insert(args, "-e")
-        table.insert(args, prompt_split[1])
+        table.insert(args, regex)
+        if use_multi then
+          table.insert(args, "--multiline")
+          table.insert(args, "--multiline-dotall")
+        end
       end
 
       if prompt_split[2] then

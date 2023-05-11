@@ -15,21 +15,24 @@ colorscheme tokyonight
 " nerdcommenter
 let NERDSpaceDelims=1
 
+" TSX
 " dark red
 hi tsxTagName guifg=#E06C75
 hi tsxComponentName guifg=#E06C75
 hi tsxCloseComponentName guifg=#E06C75
-
 " orange
 hi tsxCloseString guifg=#F99575
 hi tsxCloseTag guifg=#F99575
 hi tsxCloseTagName guifg=#F99575
 hi tsxAttributeBraces guifg=#F99575
 hi tsxEqual guifg=#F99575
-
 " yellow
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 
+" Octo
 hi OctoEditable guibg=#222222 cterm=italic
+
+" Mind
+highlight! link MindModifierEmpty String
 
 ]])
