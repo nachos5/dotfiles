@@ -49,6 +49,7 @@ local mypy_pairs = {
   ["pyproject.toml"] = "tool.mypy",
 }
 local ruff_pairs = {
+  [".ruff.toml"] = ".*",
   ["ruff.toml"] = ".*",
   ["pyproject.toml"] = "ruff.mypy",
 }

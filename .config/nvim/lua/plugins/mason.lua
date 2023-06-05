@@ -15,7 +15,7 @@ mason_lspconfig.setup({
     -- "sumneko_lua",
     -- "tailwindcss",
     "tsserver",
-    "yamlls",
+    -- "yamlls",
   },
   automatic_installation = true,
 })
@@ -46,14 +46,19 @@ mason_lspconfig.setup_handlers({
     lspconfig.pyright.setup({
       on_attach = require("lsp").on_attach,
       settings = {
+        pyright = {
+          autoImportCompletion = true,
+        },
         python = {
-          analysis = {
-            -- Disable strict type checking
-            -- typeCheckingMode = "off",
-          },
+          analysis = vim.env.PYRIGHT_OPEN_FILES_ONLY and {
+            autoSearchPaths = true,
+            diagnosticMode = "openFilesOnly",
+            useLibraryCodeForTypes = true,
+            typeCheckingMode = "off",
+          } or {},
         },
       },
-      handlers = vim.env.DISABLE_PYRIGHT_DIAGNOSTICS and {
+      handlers = vim.env.PYRIGHT_DISABLE_DIAGNOSTICS and {
         ["textDocument/publishDiagnostics"] = function() end,
       } or nil,
     })
