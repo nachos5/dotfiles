@@ -1,11 +1,18 @@
 #!/bin/bash
 
-# clean thumbnail cache
-rm -v -f ~/.cache/thumbnails/*/*.png ~/.thumbnails/*/*.png
-rm -v -f ~/.cache/thumbnails/*/*/*.png ~/.thumbnails/*/*/*.png
+# Clean thumbnail cache
+rm -rf ~/.cache/thumbnails/* ~/.thumbnails/*
 
-apt-get update -y
-apt-get upgrade -y
+# Clean Trash
+rm -rf ~/.local/share/Trash/*
+
+# Clean package cache
 apt-get autoclean -y
 apt-get clean -y
+
+# Remove unnecessary packages
 apt-get autoremove -y
+
+# Update and upgrade packages
+apt-get update -y
+apt-get upgrade -y
