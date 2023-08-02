@@ -35,7 +35,6 @@ local multi_rg = function(opts)
         local regex = prompt_split[1]
         -- if starts with m: we use multiline
         local regex_split = vim.split(regex, "m:")
-        print("function#function#if regex_split:", vim.inspect(regex_split)) -- __AUTO_GENERATED_PRINT_VAR__
         local use_multi = false
         if regex_split[2] then
           regex = regex_split[2]

@@ -21,12 +21,9 @@ command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files
 -- Load all snippets
 require("luasnip.loaders.from_lua").load({ paths = "~/utils/nvim/lua/snippets" })
 
-vim.cmd([[
-imap <silent><expr> <c-j> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
-inoremap <silent> <c-k> <cmd>lua require('luasnip').jump(-1)<CR>
-imap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-l>'
-snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(1)<CR>
-snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(-1)<CR>
-]])
-vim.api.nvim_set_keymap("i", "<C-E>", "<Plug>luasnip-next-choice", {})
-vim.api.nvim_set_keymap("s", "<C-E>", "<Plug>luasnip-next-choice", {})
+vim.keymap.set({ "i", "s" }, "<C-down>", function()
+  ls.jump(1)
+end, { silent = false })
+vim.keymap.set({ "i", "s" }, "<C-up>", function()
+  ls.jump(-1)
+end, { silent = false })

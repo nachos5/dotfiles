@@ -1,5 +1,7 @@
 local ls = require("luasnip")
 local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
 
 local my_lua_snippets = {
   --logging
@@ -23,6 +25,6 @@ local my_lua_snippets = {
   }),
 }
 
-ls.add_snippets("lua", my_lua_snippets)
+-- ls.add_snippets("lua", my_lua_snippets)
 
 return my_lua_snippets

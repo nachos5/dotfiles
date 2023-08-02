@@ -1,5 +1,7 @@
 local ls = require("luasnip")
 local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
 
 local my_python_snippets = {
   --logging
@@ -32,11 +34,11 @@ local my_python_snippets = {
   s("impn", {
     t("from "),
     i(1),
-    t(' import '),
+    t(" import "),
     i(0),
   }),
 }
 
-ls.add_snippets("python", my_python_snippets)
+-- ls.add_snippets("python", my_python_snippets)
 
 return my_python_snippets

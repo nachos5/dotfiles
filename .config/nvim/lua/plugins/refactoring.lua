@@ -63,7 +63,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rp",
-  ":lua require('refactoring').debug.printf({below = false})<CR>",
+  ":lua require('refactoring').debug.printf({ below = false })<CR>",
   { noremap = true }
 )
 
@@ -73,7 +73,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rv",
-  ":lua require('refactoring').debug.print_var({ normal = true })<CR>",
+  ":lua require('refactoring').debug.print_var({ below = false })<CR>",
   { noremap = true }
 )
 -- Remap in visual mode will print whatever is in the visual selection

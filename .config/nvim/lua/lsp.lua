@@ -5,14 +5,12 @@ local export = {}
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
--- keymaps commented out are moved to lspsaga
-
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
--- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
--- vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opts)
--- vim.keymap.set("n", "]e", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]e", vim.diagnostic.goto_next, opts)
 
 local diagnostic_config = {
   float = {
@@ -38,12 +36,12 @@ function export.on_attach(client, bufnr)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-  -- vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.rename, bufopts)
+  vim.keymap.set("n", "gR", vim.lsp.buf.references, bufopts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<space>k", vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set("n", "<space>t", vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-  -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<space>f", function()
     vim.lsp.buf.format({ bufnr = 0, timeout_ms = 10000, async = true })
   end, bufopts)
@@ -69,9 +67,7 @@ function stop_lsp_for_buffer()
   local active_clients = vim.lsp.get_active_clients()
 
   for _, client in ipairs(active_clients) do
-    if vim.tbl_contains(client.config.filetypes, vim.bo.filetype) then
-      vim.lsp.buf_detach_client(current_buf, client.id)
-    end
+    vim.lsp.buf_detach_client(current_buf, client.id)
   end
 end
 

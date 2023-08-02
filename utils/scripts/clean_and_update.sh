@@ -6,6 +6,9 @@ rm -rf ~/.cache/thumbnails/* ~/.thumbnails/*
 # Clean Trash
 rm -rf ~/.local/share/Trash/*
 
+# Clean system logs
+journalctl --vacuum-time=3d
+
 # Clean package cache
 apt-get autoclean -y
 apt-get clean -y

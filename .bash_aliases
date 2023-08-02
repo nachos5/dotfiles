@@ -111,3 +111,13 @@ alias csvtojson="python -c 'import csv, json, sys; print(json.dumps([dict(r) for
 # lazy
 alias lzg="lazygit"
 alias lzd="lazydocker"
+
+# dns
+function dns_records() {
+	domain=$1
+	for type in A AAAA CNAME MX NS SOA TXT; do
+		echo "Querying for $type:"
+		dig +short "$domain" $type
+		echo ""
+	done
+}

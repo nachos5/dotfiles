@@ -31,7 +31,7 @@ require("lazy").setup({
       require("plugins/nvim-treesitter")
     end,
     dependencies = {
-      "mrjones2014/nvim-ts-rainbow",
+      "hiphish/rainbow-delimiters.nvim",
     },
   },
   {
@@ -77,12 +77,6 @@ require("lazy").setup({
       require("plugins/tabout")
     end,
   },
-  -- {
-  --   "kylechui/nvim-surround",
-  --   config = function()
-  --     require("plugins/surround")
-  --   end,
-  -- },
   {
     "folke/which-key.nvim",
     config = function()
@@ -104,12 +98,6 @@ require("lazy").setup({
     end,
   },
   {
-    "ellisonleao/glow.nvim",
-    config = function()
-      require("plugins/glow")
-    end,
-  },
-  {
     "smjonas/live-command.nvim",
     config = function()
       require("live-command").setup({
@@ -125,15 +113,6 @@ require("lazy").setup({
       require("plugins/neoscroll")
     end,
   },
-  -- {
-  --   "folke/noice.nvim",
-  --   config = function()
-  --     require("plugins/noice")
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  -- },
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
@@ -250,7 +229,7 @@ require("lazy").setup({
   -- snippets
   {
     "L3MON4D3/LuaSnip",
-    version = "1.*",
+    version = "2.*",
     build = "make install_jsregexp",
     config = function()
       require("plugins/luasnip")
@@ -292,6 +271,8 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
     config = function()
       require("plugins/fidget")
     end,
@@ -311,14 +292,6 @@ require("lazy").setup({
     config = function()
       require("plugins/null-ls")
     end,
-  },
-  {
-    "glepnir/lspsaga.nvim",
-    event = "BufRead",
-    config = function()
-      require("plugins/lspsaga")
-    end,
-    dependencies = { { "nvim-tree/nvim-web-devicons" } },
   },
   {
     "mattn/emmet-vim",
@@ -341,38 +314,15 @@ require("lazy").setup({
   "simrat39/rust-tools.nvim",
   "lvimuser/lsp-inlayhints.nvim",
 
-  -- copilot
   {
-    "zbirenbaum/copilot.lua",
-    event = "VimEnter",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-    },
-    event = "InsertEnter",
+    "github/copilot.vim",
     config = function()
       require("plugins/copilot")
     end,
   },
-  {
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("plugins/chatgpt")
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
 
   -- supercollider
 
-  -- https://codeberg.org/madskjeldgaard/dotfiles/src/branch/main/nvim/lua/plugins.lua
   {
     "davidgranstrom/scnvim",
     dependencies = {
@@ -395,29 +345,7 @@ require("lazy").setup({
           "davidgranstrom/scnvim",
         },
       },
-      { "madskjeldgaard/fzf-sc", dependencies = {
-        "vijaymarupudi/nvim-fzf",
-      } },
-      -- {
-      --   "madskjeldgaard/sc-scratchpad.nvim",
-      --   dependencies = { "davidgranstrom/scnvim" },
-      --   config = function()
-      --     -- Scratchpad
-      --     require("sc-scratchpad").setup({
-      --       keymaps = {
-      --         toggle = "<space>", -- Open/close buffer
-      --         send = "<C-e>", -- Send and close
-      --       },
-      --       border = "double", -- "double", "none", "rounded", "shadow", "single" or "solid"
-      --       position = "50%",
-      --       width = "50%",
-      --       height = "50%",
-      --       firstline = "// Scratchpad",
-      --       open_insertmode = true, -- Open scratchpad buffer in insertmode
-      --       close_on_execution = false, -- Should the window automatically close on exec?
-      --     })
-      --   end,
-      -- },
+      { "madskjeldgaard/fzf-sc", dependencies = { "vijaymarupudi/nvim-fzf" } },
     },
     config = function()
       require("plugins/scnvim")
@@ -431,13 +359,6 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins/mind")
-    end,
-  },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    config = function()
-      require("plugins/neoorg")
     end,
   },
 
