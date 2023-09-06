@@ -22,6 +22,8 @@ for_window [class="^.*"] border pixel 2
                           # class                 border  backgr. text    indicator child_border
 for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
 
+for_window [title="^Android Emulator.+:[0-9]+$"] floating enable
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -156,7 +158,8 @@ bindsym $mod+r mode "resize"
 # Moving workspaces between screens
 bindsym $mod+p move workspace to output right
 
-bindsym $mod+Ctrl+i exec setxkbmap -layout is
+bindsym $mod+Ctrl+i exec setxkbmap -layout is_custom
+bindsym $mod+Ctrl+Shift+i exec setxkbmap -layout is
 bindsym $mod+Ctrl+u exec setxkbmap -layout us
 bindsym $mod+Ctrl+Shift+l exec ~/utils/scripts/toggle_keyboard_layout.sh
 

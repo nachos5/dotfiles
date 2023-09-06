@@ -136,6 +136,13 @@ require("lazy").setup({
       require("plugins/mini")
     end,
   },
+  -- {
+  --  "m4xshen/hardtime.nvim",
+  --  dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --  config = function()
+  --    require("plugins/hardtime")
+  --  end,
+  -- },
 
   -- terminal + navigation
   {
@@ -242,7 +249,7 @@ require("lazy").setup({
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
-      "ray-x/lsp_signature.nvim",
+      -- "ray-x/lsp_signature.nvim",
     },
     config = function()
       require("plugins/mason")
@@ -383,5 +390,17 @@ require("lazy").setup({
   {
     "Vimjas/vim-python-pep8-indent",
     ft = "python",
+  },
+
+  -- database
+  {
+    "tpope/vim-dadbod",
+    dependencies = {
+      "kristijanhusak/vim-dadbod-ui",
+      "kristijanhusak/vim-dadbod-completion",
+    },
+    config = function()
+      require("plugins/vim-dadbod").setup()
+    end,
   },
 }, config)

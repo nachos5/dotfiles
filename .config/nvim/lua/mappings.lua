@@ -60,7 +60,7 @@ nnoremap("<leader>bn", ":bn<CR>", { silent = true })
 function remove_current_buffer()
   MiniBufremove.delete(0, false)
 end
-nnoremap("<leader>d", ":lua remove_current_buffer()<CR>", { silent = true })
+nnoremap("<leader>dd", ":lua remove_current_buffer()<CR>", { silent = true })
 function remove_all_buffers()
   for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
     MiniBufremove.delete(buffer, false)

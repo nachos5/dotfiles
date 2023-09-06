@@ -15,6 +15,10 @@ colorscheme tokyonight
 " nerdcommenter
 let NERDSpaceDelims=1
 
+" notifications
+hi NotificationInfo guifg=#c0caf5
+hi NotificationInfo guifg=#555555 guibg=#02d6d9
+
 " TSX
 " dark red
 hi tsxTagName guifg=#E06C75

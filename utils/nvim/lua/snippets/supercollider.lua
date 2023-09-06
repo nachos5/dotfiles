@@ -27,23 +27,44 @@ local my_sc_snippets = {
     )
   ),
 
+  -- (
+  -- SynthDef(\, {
+  --   var sig;
+  --   sig = SinOsc.ar(\freq.kr(440));
+  --   sig = sig * Env.perc(0.01, 0.5).ar(Done.freeSelf);
+  --   sig = sig * \amp.kr(-10).dbamp;
+  --   sig = sig ! 2;
+  --   Out.ar(\out.kr(0), sig);
+  -- }).add;
+  -- )
+
   -- SynthDef
   s("synthdef", {
-    t("SynthDef("),
-    t("\\"),
-    i(1, "name"),
-    t(", { |"),
-    i(2, "out=0, amp=(-10)"),
-    t({ "|", "" }),
-    t("\t"),
+    t({ "SynthDef(\\, {", "\t" }),
     t({ "var sig;", "\t" }),
-    i(3, "sig = SinOsc.ar;"),
-    t({ "", "" }),
-    t("\t"),
-    i(4, "Out.ar(out, sig);"),
-    t({ "", "})" }),
-    i(5, ".add"),
+    t({ "sig = SinOsc.ar;", "\t" }),
+    t({ "sig = sig * Env.perc(0.01, 0.5).ar(Done.freeSelf);", "\t" }),
+    t({ "sig = sig * \\amp.kr(-10).dbamp;", "\t" }),
+    t({ "sig = sig ! 2;", "\t" }),
+    t({ "Out.ar(\\out.kr(0), sig);", "" }),
+    t("}).add;"),
   }),
+  -- s("synthdef", {
+  --   t("SynthDef("),
+  --   t("\\"),
+  --   i(1, "name"),
+  --   t(", { |"),
+  --   i(2, "out=0, amp=(-10)"),
+  --   t({ "|", "" }),
+  --   t("\t"),
+  --   t({ "var sig;", "\t" }),
+  --   i(3, "sig = SinOsc.ar;"),
+  --   t({ "", "" }),
+  --   t("\t"),
+  --   i(4, "Out.ar(out, sig);"),
+  --   t({ "", "})" }),
+  --  i(5, ".add"),
+  -- }),
 }
 
 -- ls.add_snippets("supercollider", my_sc_snippets)

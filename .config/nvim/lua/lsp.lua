@@ -57,9 +57,9 @@ function export.on_attach(client, bufnr)
     })
   end
 
-  require("lsp_signature").on_attach({
-    hint_enable = false,
-  }, bufnr)
+  -- require("lsp_signature").on_attach({
+  --   hint_enable = false,
+  -- }, bufnr)
 end
 
 function stop_lsp_for_buffer()
