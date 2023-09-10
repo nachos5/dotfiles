@@ -8,3 +8,11 @@ require("fzf").setup({
   mode = "default",
   key = "ctrl-f",
 })
+
+-- https://github.com/sayanarijit/preview-tabbed.xplr
+require("preview-tabbed").setup({
+  mode = "action",
+  key = "P",
+  fifo_path = "/tmp/xplr.fifo",
+  previewer = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
+}) -- Type `:p` to toggle preview mode.

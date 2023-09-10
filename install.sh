@@ -15,6 +15,7 @@ mkdir -p ~/.config/xplr && ln -sf "${DOTFILES}/.config/xplr/init.lua" ~/.config/
 mkdir -p ~/.config/dunst && ln -sf "${DOTFILES}/.config/dunst/dunstrc" ~/.config/dunst/dunstrc
 rm -rf ~/utils && ln -sf "${DOTFILES}/utils" ~/utils
 ln -sf "${DOTFILES}/.bash_aliases" ~/.bash_aliases
+ln -sf "${DOTFILES}/.bash_stuff" ~/.bash_stuff
 ln -sf "${DOTFILES}/.inputrc" ~/.inputrc
 ln -sf "${DOTFILES}/.psqlrc" ~/.psqlrc
 ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
@@ -22,6 +23,7 @@ ln -sf "${DOTFILES}/.xprofile" ~/.xprofile
 ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
 ln -sf "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
 ln -sf "${DOTFILES}/.tridactylrc" ~/.tridactylrc
+ln -sf "${DOTFILES}/.xbindkeysrc" ~/.xbindkeysrc
 sudo ln -sf "${DOTFILES}/xkb/is_custom" /usr/share/X11/xkb/symbols/is_custom
 
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
@@ -33,6 +35,12 @@ fi
 if ! grep -q "if \[ -f ~/.bash_aliases \]; then" ~/.bashrc; then
 	echo "if [ -f ~/.bash_aliases ]; then" >>~/.bashrc
 	echo "  . ~/.bash_aliases" >>~/.bashrc
+	echo "fi" >>~/.bashrc
+fi
+
+if ! grep -q "if \[ -f ~/.bash_stuff \]; then" ~/.bashrc; then
+	echo "if [ -f ~/.bash_stuff ]; then" >>~/.bashrc
+	echo "  . ~/.bash_stuff" >>~/.bashrc
 	echo "fi" >>~/.bashrc
 fi
 

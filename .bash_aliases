@@ -9,6 +9,7 @@ portarg() {
 	sudo lsof -i:"$1"
 	sudo lsof -tnP -i:"$1" | xargs -n 1 ps -p
 }
+alias bash_source='source ~/.bashrc'
 alias alias_source='source ~/.bash_aliases'
 
 # apt
