@@ -1,3 +1,4 @@
+require("project")
 local utils = require("utils")
 
 -- :NullLsInfo
@@ -6,8 +7,6 @@ local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
   return
 end
-
-local project_config_ok, project_config = pcall(dofile, vim.fn.getcwd() .. "/.project.lua")
 
 local function has_file(file)
   return function(_utils)
@@ -87,24 +86,24 @@ local ruff_formatting_config = {
 }
 
 -- check for project config
-if project_config_ok then
-  if type(rawget(project_config, "null_ls_black_config")) == "table" then
-    black_config = project_config.null_ls_black_config
+if PROJECT_CONFIG_OK then
+  if type(rawget(PROJECT_CONFIG, "null_ls_black_config")) == "table" then
+    black_config = PROJECT_CONFIG.null_ls_black_config
   end
-  if type(rawget(project_config, "null_ls_mypy_config")) == "table" then
-    mypy_config = project_config.null_ls_mypy_config
+  if type(rawget(PROJECT_CONFIG, "null_ls_mypy_config")) == "table" then
+    mypy_config = PROJECT_CONFIG.null_ls_mypy_config
   end
-  if type(rawget(project_config, "null_ls_pylint_config")) == "table" then
-    pylint_config = project_config.null_ls_pylint_config
+  if type(rawget(PROJECT_CONFIG, "null_ls_pylint_config")) == "table" then
+    pylint_config = PROJECT_CONFIG.null_ls_pylint_config
   end
-  if type(rawget(project_config, "null_ls_flake_config")) == "table" then
-    flake_config = project_config.null_ls_flake_config
+  if type(rawget(PROJECT_CONFIG, "null_ls_flake_config")) == "table" then
+    flake_config = PROJECT_CONFIG.null_ls_flake_config
   end
-  if type(rawget(project_config, "null_ls_ruff_config")) == "table" then
-    ruff_config = project_config.null_ls_ruff_config
+  if type(rawget(PROJECT_CONFIG, "null_ls_ruff_config")) == "table" then
+    ruff_config = PROJECT_CONFIG.null_ls_ruff_config
   end
-  if type(rawget(project_config, "null_ls_ruff_formatting_config")) == "table" then
-    ruff_formatting_config = project_config.null_ls_ruff_formatting_config
+  if type(rawget(PROJECT_CONFIG, "null_ls_ruff_formatting_config")) == "table" then
+    ruff_formatting_config = PROJECT_CONFIG.null_ls_ruff_formatting_config
   end
 end
 

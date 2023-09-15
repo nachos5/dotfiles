@@ -1,25 +1,30 @@
+local Terminal = require("toggleterm.terminal").Terminal
+local utils = require("utils")
+
 require("toggleterm").setup({
   size = 10,
   open_mapping = [[<leader><C-t>]],
   shade_terminals = false,
 })
-local Terminal = require("toggleterm.terminal").Terminal
 
-local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
-local pre_cmd = "source ./" .. venv_path .. "/bin/activate || true"
-local lg_pre_cmd = "(" .. pre_cmd .. ") && "
+-- #### FLOATING TERMINAL #### --
 
-local floating = Terminal:new({
+FLOATING_TERM = Terminal:new({
   direction = "float",
   hidden = true,
 })
 
+-- #### LAZYGIT TERMINAL #### --
+
+local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
+local env_pre_cmd = "source ./" .. venv_path .. "/bin/activate || true"
+local lg_pre_cmd = "(" .. env_pre_cmd .. ") && "
 local lg_cmd = lg_pre_cmd .. "lazygit -p $(pwd)"
 if vim.v.servername ~= nil then
   lg_cmd = lg_pre_cmd
-    .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml -p $(pwd)", vim.v.servername)
+      .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml -p $(pwd)", vim.v.servername)
 end
-local lazygit = Terminal:new({
+LAZYGIT_TERM = Terminal:new({
   cmd = lg_cmd,
   direction = "float",
   hidden = true,
@@ -29,8 +34,10 @@ local lazygit = Terminal:new({
   },
 })
 
+-- #### LAZYDOCKER TERMINAL #### --
+
 local ld_cmd = "lazydocker"
-local lazydocker = Terminal:new({
+LAZYDOCKER_TERM = Terminal:new({
   cmd = ld_cmd,
   direction = "float",
   hidden = true,
@@ -40,50 +47,90 @@ local lazydocker = Terminal:new({
   },
 })
 
+-- #### XPLR TERMINAL #### --
+XPLR_TERM = Terminal:new({
+  cmd = function()
+    local xplr_cmd = "xplr"
+    local current_buf_filename = utils.get_current_buffer_filename()
+    if current_buf_filename ~= "" then
+      xplr_cmd = xplr_cmd .. " " .. current_buf_filename
+    end
+    return xplr_cmd
+  end,
+  direction = "float",
+  hidden = true,
+  float_opts = {
+    height = 90,
+    width = 180,
+  },
+})
+
+-- #### MAPPINGS #### --
+
 -- <leader><C-f> for a floating terminal
-function _floating_toggle()
-  if lazygit:is_open() then
-    lazygit:close()
+function floating_toggle()
+  if LAZYGIT_TERM:is_open() then
+    LAZYGIT_TERM:close()
   end
-  if lazydocker:is_open() then
-    lazydocker:close()
+  if LAZYDOCKER_TERM:is_open() then
+    LAZYDOCKER_TERM:close()
   end
-  floating:toggle()
+  if XPLR_TERM:is_open() then
+    XPLR_TERM:close()
+  end
+  FLOATING_TERM:toggle()
 end
-vim.api.nvim_set_keymap("n", "<leader><C-f>", "<cmd>lua _floating_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<leader><C-f>", "<cmd>lua _floating_toggle()<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader><C-f>", "<cmd>lua floating_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<leader><C-f>", "<cmd>lua floating_toggle()<CR>", { noremap = true, silent = true })
 
 -- <C-g> for a lazygit floating terminal
-function _lazygit_toggle()
-  if floating:is_open() then
-    floating:close()
+function lazygit_toggle()
+  if FLOATING_TERM:is_open() then
+    FLOATING_TERM:close()
   end
-  if lazydocker:is_open() then
-    lazydocker:close()
+  if LAZYDOCKER_TERM:is_open() then
+    LAZYDOCKER_TERM:close()
   end
-  lazygit:toggle()
+  if XPLR_TERM:is_open() then
+    XPLR_TERM:close()
+  end
+  LAZYGIT_TERM:toggle()
 end
-vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-g>", "<cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- <leader><C-d> for a lazydocker floating terminal
-function _lazydocker_toggle()
-  if floating:is_open() then
-    floating:close()
+function lazydocker_toggle()
+  if FLOATING_TERM:is_open() then
+    FLOATING_TERM:close()
   end
-  if lazygit:is_open() then
-    lazygit:close()
+  if LAZYGIT_TERM:is_open() then
+    LAZYGIT_TERM:close()
   end
-  lazydocker:toggle()
+  if XPLR_TERM:is_open() then
+    XPLR_TERM:close()
+  end
+  LAZYDOCKER_TERM:toggle()
 end
-vim.api.nvim_set_keymap("n", "<leader><C-d>", "<cmd>lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<leader><C-d>", "<cmd>lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
 
--- for editing back from LazyGit (lazygit.toml)
-function _edit(fn, line_number)
-  local edit_cmd = string.format(":e %s", fn)
-  if line_number ~= nil then
-    edit_cmd = string.format(":e +%d %s", line_number, fn)
+vim.api.nvim_set_keymap("n", "<leader><C-d>", "<cmd>lua lazydocker_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<leader><C-d>", "<cmd>lua lazydocker_toggle()<CR>", { noremap = true, silent = true })
+
+-- <leader><C-x> for a xplr floating terminal
+function xplr_toggle()
+  if FLOATING_TERM:is_open() then
+    FLOATING_TERM:close()
   end
-  vim.cmd(edit_cmd)
+  if LAZYGIT_TERM:is_open() then
+    LAZYGIT_TERM:close()
+  end
+  if LAZYDOCKER_TERM:is_open() then
+    LAZYDOCKER_TERM:close()
+  end
+  XPLR_TERM:toggle()
 end
+
+vim.api.nvim_set_keymap("n", "<leader><C-x>", "<cmd>lua xplr_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<leader><C-x>", "<cmd>lua xplr_toggle()<CR>", { noremap = true, silent = true })

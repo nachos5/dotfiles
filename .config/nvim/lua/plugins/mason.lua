@@ -12,7 +12,7 @@ mason_lspconfig.setup({
     "jsonls",
     "pyright",
     "rust_analyzer",
-    -- "sumneko_lua",
+    "lua_ls",
     -- "tailwindcss",
     "tsserver",
     -- "yamlls",
@@ -20,13 +20,13 @@ mason_lspconfig.setup({
   automatic_installation = true,
 })
 
+require("neodev").setup({})
+
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
   vim.notify("Couldn't load LSP-Config" .. lspconfig, "error")
   return
 end
-
-require("neodev").setup({})
 
 mason_lspconfig.setup_handlers({
   function(server_name)
@@ -63,18 +63,6 @@ mason_lspconfig.setup_handlers({
       } or nil,
     })
   end,
-
-  -- ["tsserver"] = function()
-  --   lspconfig.tsserver.setup({
-  --     on_attach = function(client, bufnr)
-  --       -- formatting is done with null-ls (prettier)
-  --       client.server_capabilities.documentFormattingProvider = false
-  --       client.server_capabilities.documentRangeFormattingProvider = false
-  --       client.server_capabilities.document_formatting = false
-  --       require("lsp").on_attach(client, bufnr)
-  --     end,
-  --   })
-  -- end,
 })
 
 -- typescript setup

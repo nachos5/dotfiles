@@ -1,3 +1,6 @@
+local ts_utils = require("nvim-treesitter.ts_utils")
+local treesitter = require("vim.treesitter")
+
 local M = {}
 
 function M.dump(o)
@@ -15,6 +18,10 @@ function M.dump(o)
   end
 end
 
+function M.starts_with(str, start)
+  return str:sub(1, #start) == start
+end
+
 function M.file_contains(file, pattern)
   local f = io.open(file, "r")
   if f == nil then
@@ -27,6 +34,50 @@ end
 
 function M.get_relative_path(absolute_path)
   return vim.fn.substitute(absolute_path, vim.fn.getcwd() .. "/", "", "")
+end
+
+function M.get_filename_from_path(path)
+  local split = vim.split(path, "/")
+  return split[#split]
+end
+
+function M.edit_file(filename, line_number)
+  local edit_cmd = string.format(":e %s", filename)
+  if line_number ~= nil then
+    edit_cmd = string.format(":e +%d %s", line_number, filename)
+  end
+  vim.cmd(edit_cmd)
+end
+
+function M.get_current_cursor_function_name()
+  local current_node = ts_utils.get_node_at_cursor()
+
+  if not current_node then
+    return ""
+  end
+
+  local expr = current_node
+
+  -- Traverse up the tree until we find the first function definition (if any).
+  while expr do
+    local expr_type = expr:type()
+    if expr_type == "function_definition" then
+      break
+    end
+    expr = expr:parent()
+  end
+
+  if not expr then
+    return ""
+  end
+
+  local function_name_node = expr:named_child(0)
+
+  return treesitter.get_node_text(function_name_node, 0)
+end
+
+function M.get_current_buffer_filename()
+  return vim.api.nvim_buf_get_name(0)
 end
 
 return M
