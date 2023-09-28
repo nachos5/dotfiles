@@ -11,13 +11,15 @@ portarg() {
 }
 alias bash_source='source ~/.bashrc'
 alias alias_source='source ~/.bash_aliases'
+alias file_count_in_dir='ls -al | wc -l'
 
 # apt
 alias aptup='sudo apt update && sudo apt upgrade'
 alias aptlist='apt list --installed'
 
 # system
-alias version_codename='lsb_release -cs'
+alias os_info_all='lsb_release -a'
+alias os_info_version_codename='lsb_release -cs'
 ubuntu_codename() {
 	grep "UBUNTU_CODENAME" /etc/os-release | cut -d "=" -f2
 }
@@ -81,6 +83,7 @@ alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
 alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'
 alias lsp_log='tail -n 200 -f ~/.cache/nvim/lsp.log'
 alias lsp_log_clear='> ~/.cache/nvim/lsp.log'
+alias db_conns='cat $HOME/.config/nvim/db_ui/connections.json | jq'
 
 # yarn
 alias yi='yarn install'

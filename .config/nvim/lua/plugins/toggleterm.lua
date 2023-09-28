@@ -48,6 +48,7 @@ LAZYDOCKER_TERM = Terminal:new({
 })
 
 -- #### XPLR TERMINAL #### --
+
 XPLR_TERM = Terminal:new({
   cmd = function()
     local xplr_cmd = "xplr"
@@ -55,6 +56,7 @@ XPLR_TERM = Terminal:new({
     if current_buf_filename ~= "" then
       xplr_cmd = xplr_cmd .. " " .. current_buf_filename
     end
+    xplr_cmd = xplr_cmd .. " " .. "--print-pwd-as-result"
     return xplr_cmd
   end,
   direction = "float",
@@ -63,6 +65,12 @@ XPLR_TERM = Terminal:new({
     height = 90,
     width = 180,
   },
+  on_exit = function(_, job, exit_code, name)
+    -- print(_)
+    -- print(job)
+    -- print(exit_code)
+    -- print(name)
+  end,
 })
 
 -- #### MAPPINGS #### --

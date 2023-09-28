@@ -107,65 +107,67 @@ if PROJECT_CONFIG_OK then
   end
 end
 
+local sources = {
+  -- python
+  formatting.black.with(black_config),
+  formatting.isort.with({
+    prefer_local = venv_path .. "/bin",
+    condition = check_for(isort_pairs),
+  }),
+  -- formatting.ruff.with(ruff_formatting_config),
+  diagnostics.flake8.with(flake_config),
+  -- diagnostics.pylint.with(pylint_config),
+  diagnostics.mypy.with(mypy_config),
+  diagnostics.ruff.with(ruff_config),
+
+  -- js/ts etc...
+  formatting.prettier.with({
+    prefer_local = "node_modules/.bin",
+    timeout = 10000,
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "svelte",
+      "css",
+      "scss",
+      "less",
+      "html",
+      "json",
+      "jsonc",
+      "yaml",
+      "markdown",
+      "graphql",
+      "handlebars",
+    },
+  }),
+
+  -- lua
+  formatting.stylua.with({
+    extra_args = { "--config-path", vim.fn.expand("~/.config/stylua/.stylua.toml") },
+  }),
+
+  -- rust
+  formatting.rustfmt,
+
+  -- shell
+  formatting.shfmt,
+
+  -- php
+  -- https://github.com/prettier/plugin-php
+  formatting.prettier.with({
+    filetypes = {
+      "php",
+    },
+  }),
+  diagnostics.php,
+}
+
 null_ls.setup({
   debug = vim.env.NULL_LS_DEBUG ~= nil,
   -- update_in_insert = true,
   on_attach = require("lsp").on_attach,
-  sources = {
-    -- python
-    formatting.black.with(black_config),
-    formatting.isort.with({
-      prefer_local = venv_path .. "/bin",
-      condition = check_for(isort_pairs),
-    }),
-    formatting.ruff.with(ruff_formatting_config),
-    diagnostics.flake8.with(flake_config),
-    -- diagnostics.pylint.with(pylint_config),
-    diagnostics.mypy.with(mypy_config),
-    diagnostics.ruff.with(ruff_config),
-
-    -- js/ts etc...
-    formatting.prettier.with({
-      prefer_local = "node_modules/.bin",
-      timeout = 10000,
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-        "svelte",
-        "css",
-        "scss",
-        "less",
-        "html",
-        "json",
-        "jsonc",
-        "yaml",
-        "markdown",
-        "graphql",
-        "handlebars",
-      },
-    }),
-
-    -- lua
-    formatting.stylua.with({
-      extra_args = { "--config-path", vim.fn.expand("~/.config/stylua/.stylua.toml") },
-    }),
-
-    -- rust
-    formatting.rustfmt,
-
-    -- shell
-    formatting.shfmt,
-
-    -- php
-    -- https://github.com/prettier/plugin-php
-    formatting.prettier.with({
-      filetypes = {
-        "php",
-      },
-    }),
-    diagnostics.php,
-  },
+  sources = sources,
 })
