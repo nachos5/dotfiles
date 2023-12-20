@@ -19,3 +19,27 @@ require("preview-tabbed").setup({
   fifo_path = "/tmp/xplr.fifo",
   previewer = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
 }) -- Type `:p` to toggle preview mode.
+
+require("nvim-ctrl").setup({
+  bin = "nvim-ctrl",
+  mode = "default",
+  keys = {
+    ["ctrl-e"] = "tabedit",
+    ["e"] = "e",
+  },
+})
+
+-- Type `yy` to copy and `p` to paste whole files.
+-- Type `yp` to copy the paths of focused or selected files.
+-- Type `yP` to copy the parent directory path.
+require("xclip").setup({
+  copy_command = "xclip-copyfile",
+  copy_paths_command = "xclip -sel clip",
+  paste_command = "xclip-pastefile",
+  keep_selection = false,
+})
+
+xplr.config.general.initial_sorting = {
+  { sorter = "ByCanonicalIsDir",        reverse = true },
+  { sorter = "ByCanonicalLastModified", reverse = true },
+}

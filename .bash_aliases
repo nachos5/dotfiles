@@ -26,6 +26,9 @@ ubuntu_codename() {
 alias systemgraphics='inxi -G'
 alias increase_file_limit='ulimit -n 4096'
 
+# git
+alias git_unpushed='git log --oneline origin/main..main'
+
 # docker
 alias dockerstop='docker stop $(docker ps -a -q)'
 alias dockerrm='docker rm $(docker ps -a -q)'
@@ -126,3 +129,6 @@ function dns_records() {
 		echo ""
 	done
 }
+
+# linux audio
+alias qpwgraph='~/utils/scripts/qpwgraph.sh'

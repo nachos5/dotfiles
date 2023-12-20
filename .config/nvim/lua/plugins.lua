@@ -39,7 +39,7 @@ require("lazy").setup({
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
-    version = "nightly", -- optional, updated every week. (see issue #1193)
+    version = "nightly",             -- optional, updated every week. (see issue #1193)
     config = function()
       require("plugins/nvim-tree")
     end,
@@ -90,9 +90,9 @@ require("lazy").setup({
       require("trim").setup({
         ft_blocklist = { "markdown" },
         patterns = {
-          [[%s/\s\+$//e]], -- remove unwanted spaces
+          [[%s/\s\+$//e]],          -- remove unwanted spaces
           [[%s/\($\n\s*\)\+\%$//]], -- trim last line
-          [[%s/\%^\n\+//]], -- trim first line
+          [[%s/\%^\n\+//]],         -- trim first line
         },
       })
     end,
@@ -163,7 +163,7 @@ require("lazy").setup({
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.1",
+    version = "0.1.3",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
@@ -401,6 +401,15 @@ require("lazy").setup({
     },
     config = function()
       require("plugins/vim-dadbod").setup()
+    end,
+  },
+
+  -- networking
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      require("plugins/rest")
     end,
   },
 }, config)

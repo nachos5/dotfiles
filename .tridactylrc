@@ -13,6 +13,7 @@ sanitize tridactyllocal tridactylsync
 " Firefox homepage, but Tridactyl doesn't support this yet.
 set newtab about:blank
 
+" ctrl+i
 set editorcmd wezterm start --class tridactyl_editor nvim
 " %f 'normal %lG%cL'
 

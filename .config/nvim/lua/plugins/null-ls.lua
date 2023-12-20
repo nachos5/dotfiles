@@ -33,6 +33,9 @@ local diagnostics = null_ls.builtins.diagnostics
 -- relative path
 local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
 
+local black_pairs = {
+  ["pyproject.toml"] = "tool.black",
+}
 local isort_pairs = {
   ["isort.cfg"] = ".*",
   ["pyproject.toml"] = "tool.isort",
@@ -52,11 +55,16 @@ local ruff_pairs = {
   ["ruff.toml"] = ".*",
   ["pyproject.toml"] = "ruff.mypy",
 }
+local ruff_formatting_pairs = {
+  [".ruff.toml"] = "[format]",
+  ["ruff.toml"] = "[format]",
+}
 
 local black_config = {
   prefer_local = venv_path .. "/bin",
   timeout = 10000,
   extra_args = { "--fast" },
+  condition = check_for(black_pairs),
 }
 local mypy_config = {
   prefer_local = venv_path .. "/bin",
@@ -82,7 +90,7 @@ local ruff_config = {
 }
 local ruff_formatting_config = {
   prefer_local = venv_path .. "/bin",
-  condition = check_for(ruff_pairs),
+  condition = check_for(ruff_formatting_pairs),
 }
 
 -- check for project config
@@ -120,30 +128,6 @@ local sources = {
   diagnostics.mypy.with(mypy_config),
   diagnostics.ruff.with(ruff_config),
 
-  -- js/ts etc...
-  formatting.prettier.with({
-    prefer_local = "node_modules/.bin",
-    timeout = 10000,
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "vue",
-      "svelte",
-      "css",
-      "scss",
-      "less",
-      "html",
-      "json",
-      "jsonc",
-      "yaml",
-      "markdown",
-      "graphql",
-      "handlebars",
-    },
-  }),
-
   -- lua
   formatting.stylua.with({
     extra_args = { "--config-path", vim.fn.expand("~/.config/stylua/.stylua.toml") },
@@ -164,6 +148,35 @@ local sources = {
   }),
   diagnostics.php,
 }
+
+-- prettier
+if vim.env.DISABLE_PRETTIER == nil then
+  table.insert(
+    sources,
+    formatting.prettier.with({
+      prefer_local = "node_modules/.bin",
+      timeout = 10000,
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "svelte",
+        "css",
+        "scss",
+        "less",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "markdown",
+        "graphql",
+        "handlebars",
+      },
+    })
+  )
+end
 
 null_ls.setup({
   debug = vim.env.NULL_LS_DEBUG ~= nil,
