@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Check if PID is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <PID>"
+    exit 1
+fi
+
+PID=$1
+STATUS_FILE="/proc/$PID/status"
+
+# Check if the process exists
+if [ ! -f "$STATUS_FILE" ]; then
+    echo "Process with PID $PID not found."
+    exit 2
+fi
+
+# Extract VmSize and convert to MB
+VMSIZE_KB=$(grep 'VmSize' $STATUS_FILE | awk '{print $2}')
+VMSIZE_MB=$(bc <<< "scale=2; $VMSIZE_KB / 1024")
+
+echo "VmSize for PID $PID: $VMSIZE_MB MB"

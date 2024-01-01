@@ -1,0 +1,3 @@
+[submodule ".config/nvim/db_ui"]
+	path = .config/nvim/db_ui
+	url = https://github.com/nachos5/db_ui
