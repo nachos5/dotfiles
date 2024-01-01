@@ -161,7 +161,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+p move workspace to output right
 
 bindsym $mod+Ctrl+i exec setxkbmap -layout is_custom
-bindsym $mod+Ctrl+Shift+i exec setxkbmap -layout is
+bindsym $mod+Ctrl+Shift+i exec setxkbmap -layout is_custom
 bindsym $mod+Ctrl+u exec setxkbmap -layout us
 bindsym $mod+Ctrl+Shift+l exec ~/utils/scripts/toggle_keyboard_layout.sh
 

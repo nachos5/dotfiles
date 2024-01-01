@@ -3,31 +3,17 @@ xkb_symbols "basic" {
 
     include "us"
 
+    key <AB01>	{ [ dead_acute, dead_acute, z, Z ] };
 
-//  <AE00> = <TLDE>
-    key <AE02>	{ [         2,   quotedbl,  twosuperior,    oneeighth ]	};
-    key <AE04>	{ [         4,     dollar,   onequarter,     currency ]	};
-    key <AE11>	{ [odiaeresis, Odiaeresis,    backslash, questiondown ]	};
-    key <AE12>	{ [     minus, underscore, dead_cedilla,  dead_ogonek ]	};
+    key <AB10>	{ [ thorn, THORN, slash, question ] };
 
-    key <AD01>	{ [       eth,        ETH, dead_diaeresis, dead_abovering ] }; // This was the previous position of 'q'
-    key <AD11>	{ [         q,          Q, dead_diaeresis, dead_abovering ] }; // Replace 'eth' with 'q'
+    key <AC01>	{ [ a, A, ae, AE ] };
 
-    key <AD12>	{ [apostrophe,   question,   asciitilde,  dead_macron ]	};
+    key <AC03>	{ [ d, D, eth, ETH ] };
 
-    key <AB01>	{ [ dead_acute, dead_doubleacute, asciitilde, dead_macron ] }; // Formerly position of 'z'
-    key <AC03>	{ [         d,          D,  U201e,       U201c ] };
-    key <AC10>	{ [        ae,         AE,  asciicircum, dead_doubleacute ] };
-    key <AC11>	{ [dead_acute, dead_acute, dead_circumflex, dead_caron ] };
-    key <TLDE>	{ [dead_abovering,  dead_diaeresis,      notsign,      hyphen ]	};
+    key <AC11>	{ [ dead_acute, dead_acute, dead_circumflex, dead_caron ] }; // ' -> ´
 
-//  <AC12> = <BKSL>
-    key <BKSL>	{ [      plus,   asterisk,   grave,   dead_breve ]	};
-
-//  <AB00> = <LSGT>, is in file "pc": pc105
-    key <AB10>	{ [     thorn,      THORN, dead_belowdot, dead_abovedot ] };
-
-    key <SPCE>  { [     space,      space,  space, space ] };
+    key <AD09>	{ [ o, O, odiaeresis, Odiaeresis ]	};
 
     include "level3(ralt_switch)"
 };

@@ -5,6 +5,11 @@ theme = "gruvbox-dark"
 icons = "awesome4"
 
 [[block]]
+block = "keyboard_layout"
+driver = "setxkbmap"
+interval = 5
+
+[[block]]
 block = "disk_space"
 path = "/"
 info_type = "available"
