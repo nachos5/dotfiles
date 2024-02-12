@@ -122,7 +122,7 @@ local sources = {
     prefer_local = venv_path .. "/bin",
     condition = check_for(isort_pairs),
   }),
-  formatting.ruff_format.with(ruff_formatting_config),
+  -- formatting.ruff_format.with(ruff_formatting_config),
   diagnostics.flake8.with(flake_config),
   -- diagnostics.pylint.with(pylint_config),
   diagnostics.mypy.with(mypy_config),

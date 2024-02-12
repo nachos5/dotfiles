@@ -35,11 +35,6 @@ mason_lspconfig.setup_handlers({
     end
     require("lspconfig")[server_name].setup({
       on_attach = function(client, bufnr)
-        -- use null-ls for all formatting
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        client.server_capabilities.document_formatting = false
-
         require("lsp").on_attach(client, bufnr)
       end,
     })
@@ -111,10 +106,6 @@ if typescript_ok then
   end
 
   local ts_on_attach = function(client, bufnr)
-    -- formatting is done with null-ls
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    client.server_capabilities.document_formatting = false
     local function buf_set_option(...)
       vim.api.nvim_buf_set_option(bufnr, ...)
     end
@@ -139,10 +130,6 @@ local rt = require("rust-tools")
 rt.setup({
   server = {
     on_attach = function(client, bufnr)
-      -- formatting is done with null-ls
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-      client.server_capabilities.document_formatting = false
       -- Hover actions
       vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
       -- Code action groups

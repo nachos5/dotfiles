@@ -52,9 +52,11 @@ function pip() {
 		"${VIRTUAL_ENV}/bin/pip" "$@"
 	fi
 }
+
 if [ -z "${VENV_PATH}" ]; then
 	export VENV_PATH=env
 fi
+
 alias envpy='source ./${VENV_PATH}/bin/activate'
 alias envpy_no_error='source ./${VENV_PATH}/bin/activate 2>/dev/null || true'
 djangodocker() {
@@ -67,6 +69,7 @@ alias py_cache_clear='sudo find . -type d -name "__pycache__" -exec rm -rf {} +'
 alias mypy_cache_clear='sudo find . -type d -name ".mypy_cache" -exec rm -rf {} +'
 alias ruff_cache_clear='sudo find . -type d -name ".ruff_cache" -exec rm -rf {} +'
 alias pytest_cache_clear='sudo find . -type d -name ".pytest_cache" -exec rm -rf {} +'
+alias pyglobal='source ~/pyglobal/.venv/bin/activate'
 
 # tmux
 alias tmuxsource='tmux source-file ~/.tmux.conf'
@@ -132,3 +135,10 @@ function dns_records() {
 
 # linux audio
 alias qpwgraph='~/utils/scripts/qpwgraph.sh'
+
+# network
+urlencode() {
+    # URL-encodes a string using curl
+    local encoded=$(curl -G --data-urlencode "url=$1" "")
+    echo "${encoded#*url=}"
+}

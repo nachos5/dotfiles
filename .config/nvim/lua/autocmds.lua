@@ -7,6 +7,7 @@ augroup END
 
 " python
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+au BufRead,BufNewFile *.pyscript set filetype=python
 
 " typescript react
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact

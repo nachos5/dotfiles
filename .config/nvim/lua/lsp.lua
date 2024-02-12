@@ -31,7 +31,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, diagnostic_config)
 vim.diagnostic.config(diagnostic_config)
 
-function export.on_attach(client, bufnr)
+function export.on_attach(client, bufnr, enable_formatting)
+  if enable_formatting == nil then
+    -- formatting off by default - use null-ls for all formatting
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    client.server_capabilities.document_formatting = false
+  end
+
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -62,15 +69,28 @@ function export.on_attach(client, bufnr)
   -- }, bufnr)
 end
 
-function stop_lsp_for_buffer()
+local function stop_lsp_for_current_buffer()
   local current_buf = vim.api.nvim_get_current_buf()
-  local active_clients = vim.lsp.get_active_clients()
+  local clients = vim.lsp.get_clients({ bufnr = current_buf })
 
-  for _, client in ipairs(active_clients) do
+  for _, client in ipairs(clients) do
     vim.lsp.buf_detach_client(current_buf, client.id)
   end
 end
 
-nnoremap("<leader>ls", ":lua stop_lsp_for_buffer()<CR>", { silent = true })
+local function enable_formatting_for_current_buffer()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = current_buf })
+
+  for _, client in ipairs(clients) do
+    client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.documentRangeFormattingProvider = true
+    client.server_capabilities.document_formatting = true
+  end
+end
+
+nnoremap("<leader>li", ":LspInfo<CR>", { silent = true })
+nnoremap("<leader>ls", stop_lsp_for_current_buffer, { silent = true })
+nnoremap("<leader>lf", enable_formatting_for_current_buffer, { silent = true })
 
 return export
