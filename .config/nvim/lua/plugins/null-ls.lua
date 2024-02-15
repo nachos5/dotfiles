@@ -182,9 +182,14 @@ if vim.env.DISABLE_PRETTIER == nil then
   )
 end
 
+-- Wrapper method to enable formatting.
+local function _on_attach(client, bufnr)
+  require("lsp").on_attach(client, bufnr, true)
+end
+
 null_ls.setup({
   debug = vim.env.NULL_LS_DEBUG ~= nil,
   -- update_in_insert = true,
-  on_attach = require("lsp").on_attach,
+  on_attach = _on_attach,
   sources = sources,
 })
