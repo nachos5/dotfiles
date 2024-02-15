@@ -27,6 +27,9 @@ vim.opt.fillchars:append("vert:\\")
 vim.opt.wrap = true
 vim.opt.breakindent = true
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.opt.encoding = "utf-8"
 
 vim.opt.textwidth = 0

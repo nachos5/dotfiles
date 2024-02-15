@@ -345,7 +345,9 @@ require("lazy").setup({
       {
         "madskjeldgaard/supercollider-h4x-nvim",
         config = function()
-          require("supercollider-h4x").setup()
+          if not vim.g.IS_WINDOWS then
+            require("supercollider-h4x").setup()
+          end
         end,
         ft = "supercollider",
         dependencies = {

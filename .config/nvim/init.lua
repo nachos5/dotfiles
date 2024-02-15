@@ -1,7 +1,6 @@
 vim.cmd([[let &packpath = &runtimepath]])
 
-IS_COLEMAK = vim.env.IS_COLEMAK ~= nil
-
+require("globals")
 require("set")
 require("plugins")
 require("mappings")

@@ -51,4 +51,4 @@ function mind_search_main_tree()
 end
 nnoremap("<leader>mS", mind_search_main_tree, default_opts)
 
-nnoremap("<leader>mg", "<cmd>Telescope live_grep cwd=" .. os.getenv("HOME") .. "/mind/data<CR>", default_opts)
+nnoremap("<leader>mg", "<cmd>Telescope live_grep cwd=" .. vim.g.OS_HOME .. "/mind/data<CR>", default_opts)
