@@ -21,7 +21,7 @@ local diagnostic_config = {
   },
   virtual_text = {
     spacing = 5,
-    severity_limit = "Warning",
+    severity = "Warning", -- help severity
   },
   underline = true,
   update_in_insert = false,
