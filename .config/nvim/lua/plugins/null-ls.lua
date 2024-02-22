@@ -59,6 +59,9 @@ local ruff_formatting_pairs = {
   [".ruff.toml"] = "[format]",
   ["ruff.toml"] = "[format]",
 }
+local biome_pairs = {
+  ["biome.json"] = ".*",
+}
 
 local black_config = {
   prefer_local = venv_path .. "/bin",
@@ -92,9 +95,14 @@ local ruff_formatting_config = {
   prefer_local = venv_path .. "/bin",
   condition = check_for(ruff_formatting_pairs),
 }
+local biome_config = {
+  prefer_local = "node_modules/.bin",
+  condition = check_for(biome_pairs),
+}
 
 -- check for project config
 if PROJECT_CONFIG_OK then
+  -- python
   if type(rawget(PROJECT_CONFIG, "null_ls_black_config")) == "table" then
     black_config = PROJECT_CONFIG.null_ls_black_config
   end
@@ -112,6 +120,10 @@ if PROJECT_CONFIG_OK then
   end
   if type(rawget(PROJECT_CONFIG, "null_ls_ruff_formatting_config")) == "table" then
     ruff_formatting_config = PROJECT_CONFIG.null_ls_ruff_formatting_config
+  end
+  -- js
+  if type(rawget(PROJECT_CONFIG, "null_ls_biome_config")) == "table" then
+    biome_config = PROJECT_CONFIG.null_ls_biome_config
   end
 end
 
@@ -142,6 +154,9 @@ local sources = {
 
   -- shell
   formatting.shfmt,
+
+  -- js
+  formatting.biome.with(biome_config),
 
   -- php
   -- https://github.com/prettier/plugin-php

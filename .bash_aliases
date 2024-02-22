@@ -12,6 +12,7 @@ portarg() {
 alias bash_source='source ~/.bashrc'
 alias alias_source='source ~/.bash_aliases'
 alias file_count_in_dir='ls -al | wc -l'
+alias source_env_session='source .env_session 2>/dev/null || true'
 
 # apt
 alias aptup='sudo apt update && sudo apt upgrade'
@@ -82,7 +83,7 @@ alias tks='tmux kill-server'
 alias xcd='cd "$(xplr --print-pwd-as-result)"'
 
 # nvim
-alias n='envpy_no_error && nvim'
+alias n='source_env_session && envpy_no_error && nvim'
 alias list_nvim_swaps='ls -al ~/.local/state/nvim/swap/*.swp'
 alias remove_nvim_swaps='rm -rf ~/.local/share/nvim/swap/*.swp && rm -rf ~/.local/state/nvim/swap/*.swp'
 alias null_ls_log='tail -n 200 -f ~/.cache/nvim/null-ls.log'
@@ -138,7 +139,7 @@ alias qpwgraph='~/utils/scripts/qpwgraph.sh'
 
 # network
 urlencode() {
-    # URL-encodes a string using curl
-    local encoded=$(curl -G --data-urlencode "url=$1" "")
-    echo "${encoded#*url=}"
+	# URL-encodes a string using curl
+	local encoded=$(curl -G --data-urlencode "url=$1" "")
+	echo "${encoded#*url=}"
 }
