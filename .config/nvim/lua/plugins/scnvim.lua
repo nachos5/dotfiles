@@ -16,7 +16,7 @@ scnvim.setup({
       map("editor.send_block", { "n" }),
       map("editor.send_selection", "x"),
     },
-    ["<leader>sl"] = map("postwin.toggle"),
+    -- ["<leader>sl"] = map("postwin.toggle"),
     ["<leader>cl"] = map("postwin.clear", { "n" }),
     ["<leader>."] = map("sclang.hard_stop", { "n" }),
     ["<leader>st"] = map("sclang.start"),

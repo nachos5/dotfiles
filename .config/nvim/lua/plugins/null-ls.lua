@@ -127,74 +127,90 @@ if PROJECT_CONFIG_OK then
   end
 end
 
+-- Initilize with diagnostics sources.
 local sources = {
   -- python
-  formatting.black.with(black_config),
-  formatting.isort.with({
-    prefer_local = venv_path .. "/bin",
-    condition = check_for(isort_pairs),
-  }),
-  -- formatting.ruff_format.with(ruff_formatting_config),
   diagnostics.flake8.with(flake_config),
-  -- diagnostics.pylint.with(pylint_config),
+  diagnostics.pylint.with(pylint_config),
   diagnostics.mypy.with(mypy_config),
   diagnostics.ruff.with(ruff_config),
 
-  -- lua
-  formatting.stylua.with({
-    extra_args = { "--config-path", vim.fn.expand("~/.config/stylua/.stylua.toml") },
-  }),
-
   -- C
-  formatting.clang_format,
   diagnostics.clang_check,
 
-  -- rust
-  formatting.rustfmt,
-
-  -- shell
-  formatting.shfmt,
-
-  -- js
-  formatting.biome.with(biome_config),
-
   -- php
-  -- https://github.com/prettier/plugin-php
-  formatting.prettier.with({
-    filetypes = {
-      "php",
-    },
-  }),
   diagnostics.php,
 }
 
--- prettier
-if vim.env.DISABLE_PRETTIER == nil then
-  table.insert(
-    sources,
+-- Add formatting sources if not disabled.
+if vim.env.DISABLE_FORMATTING == nil then
+  local formatting_sources = {
+    -- python
+    formatting.black.with(black_config),
+    formatting.isort.with({
+      prefer_local = venv_path .. "/bin",
+      condition = check_for(isort_pairs),
+    }),
+    formatting.ruff_format.with(ruff_formatting_config),
+
+    -- lua
+    formatting.stylua.with({
+      extra_args = { "--config-path", vim.fn.expand("~/.config/stylua/.stylua.toml") },
+    }),
+
+    -- C
+    formatting.clang_format,
+
+    -- rust
+    formatting.rustfmt,
+
+    -- shell
+    formatting.shfmt,
+
+    -- js
+    formatting.biome.with(biome_config),
+
+    -- php
+    -- https://github.com/prettier/plugin-php
     formatting.prettier.with({
-      prefer_local = "node_modules/.bin",
-      timeout = 10000,
       filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-        "svelte",
-        "css",
-        "scss",
-        "less",
-        "html",
-        "json",
-        "jsonc",
-        "yaml",
-        "markdown",
-        "graphql",
-        "handlebars",
+        "php",
       },
-    })
-  )
+    }),
+  }
+
+  for _, value in ipairs(formatting_sources) do
+    table.insert(sources, value)
+  end
+
+  -- prettier
+  if vim.env.DISABLE_PRETTIER == nil then
+    table.insert(
+      sources,
+      formatting.prettier.with({
+        prefer_local = "node_modules/.bin",
+        timeout = 10000,
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte",
+          "css",
+          "scss",
+          "less",
+          "html",
+          "json",
+          "jsonc",
+          "yaml",
+          "markdown",
+          "graphql",
+          "handlebars",
+        },
+      })
+    )
+  end
 end
 
 -- Wrapper method to enable formatting.

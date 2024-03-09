@@ -2,8 +2,6 @@ local Remap = require("keymap")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
-local tnoremap = Remap.tnoremap
-local nmap = Remap.nmap
 
 inoremap("jk", "<Esc>", { silent = true })
 inoremap("JK", "<Esc>", { silent = true })

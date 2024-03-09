@@ -71,6 +71,7 @@ alias mypy_cache_clear='sudo find . -type d -name ".mypy_cache" -exec rm -rf {} 
 alias ruff_cache_clear='sudo find . -type d -name ".ruff_cache" -exec rm -rf {} +'
 alias pytest_cache_clear='sudo find . -type d -name ".pytest_cache" -exec rm -rf {} +'
 alias pyglobal='source ~/pyglobal/.venv/bin/activate'
+alias pypathpwd='export PYTHONPATH=$(pwd)'
 
 # tmux
 alias tmuxsource='tmux source-file ~/.tmux.conf'
