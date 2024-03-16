@@ -8,6 +8,7 @@ if not null_ls_status_ok then
   return
 end
 
+
 local function has_file(file)
   return function(_utils)
     return _utils.root_has_file(file)
@@ -130,16 +131,16 @@ end
 -- Initilize with diagnostics sources.
 local sources = {
   -- python
-  diagnostics.flake8.with(flake_config),
+  require("plugins/null-ls/flake8").with(flake_config),
   diagnostics.pylint.with(pylint_config),
   diagnostics.mypy.with(mypy_config),
-  diagnostics.ruff.with(ruff_config),
+  require("plugins/null-ls/ruff").with(ruff_config),
 
   -- C
-  diagnostics.clang_check,
+  require("plugins/null-ls/clang_check"),
 
   -- php
-  diagnostics.php,
+  -- diagnostics.php,
 }
 
 -- Add formatting sources if not disabled.
@@ -151,7 +152,7 @@ if vim.env.DISABLE_FORMATTING == nil then
       prefer_local = venv_path .. "/bin",
       condition = check_for(isort_pairs),
     }),
-    formatting.ruff_format.with(ruff_formatting_config),
+    require("plugins/null-ls/ruff_format").with(ruff_formatting_config),
 
     -- lua
     formatting.stylua.with({
@@ -162,7 +163,7 @@ if vim.env.DISABLE_FORMATTING == nil then
     formatting.clang_format,
 
     -- rust
-    formatting.rustfmt,
+    require("plugins/null-ls/rustfmt"),
 
     -- shell
     formatting.shfmt,

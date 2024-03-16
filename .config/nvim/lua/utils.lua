@@ -80,4 +80,12 @@ function M.get_current_buffer_filename()
   return vim.api.nvim_buf_get_name(0)
 end
 
+function M.merge_tables(first_table, second_table)
+  if second_table == nil then
+    return first_table
+  end
+
+  return vim.tbl_extend("force", first_table, second_table)
+end
+
 return M

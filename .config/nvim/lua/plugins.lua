@@ -297,7 +297,7 @@ require("lazy").setup({
   {
     "nvimtools/none-ls.nvim",
     config = function()
-      require("plugins/null-ls")
+      require("plugins/null-ls/init")
     end,
   },
   {
