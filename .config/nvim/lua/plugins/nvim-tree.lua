@@ -4,6 +4,9 @@ require("nvim-tree").setup({
   git = {
     ignore = false,
   },
+  view = {
+    relativenumber = true,
+  },
 })
 
 nnoremap("<C-n>", ":NvimTreeToggle<CR>")

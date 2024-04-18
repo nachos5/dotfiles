@@ -10,6 +10,7 @@ rm -rf ~/.local/share/Trash/*
 journalctl --vacuum-time=3d
 
 # Clean package cache
+# Run to see how big the cache is: du -sh /var/cache/apt/archives
 apt-get autoclean -y
 apt-get clean -y
 

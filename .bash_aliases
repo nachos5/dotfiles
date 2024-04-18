@@ -13,6 +13,7 @@ alias bash_source='source ~/.bashrc'
 alias alias_source='source ~/.bash_aliases'
 alias file_count_in_dir='ls -al | wc -l'
 alias source_env_session='source .env_session 2>/dev/null || true'
+alias open_in_gui='xdg-open .'
 
 # apt
 alias aptup='sudo apt update && sudo apt upgrade'
@@ -92,6 +93,7 @@ alias null_ls_log_clear='> ~/.cache/nvim/null-ls.log'
 alias lsp_log='tail -n 200 -f ~/.cache/nvim/lsp.log'
 alias lsp_log_clear='> ~/.cache/nvim/lsp.log'
 alias db_conns='cat $HOME/.config/nvim/db_ui/connections.json | jq'
+alias nvim_plugins='cd ~/.local/share/nvim'
 
 # yarn
 alias yi='yarn install'

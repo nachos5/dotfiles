@@ -39,7 +39,7 @@ require("lazy").setup({
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
-    version = "nightly",             -- optional, updated every week. (see issue #1193)
+    version = "nightly", -- optional, updated every week. (see issue #1193)
     config = function()
       require("plugins/nvim-tree")
     end,
@@ -90,9 +90,9 @@ require("lazy").setup({
       require("trim").setup({
         ft_blocklist = { "markdown" },
         patterns = {
-          [[%s/\s\+$//e]],          -- remove unwanted spaces
+          [[%s/\s\+$//e]], -- remove unwanted spaces
           [[%s/\($\n\s*\)\+\%$//]], -- trim last line
-          [[%s/\%^\n\+//]],         -- trim first line
+          [[%s/\%^\n\+//]], -- trim first line
         },
       })
     end,
@@ -137,11 +137,11 @@ require("lazy").setup({
     end,
   },
   -- {
-  --  "m4xshen/hardtime.nvim",
-  --  dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-  --  config = function()
-  --    require("plugins/hardtime")
-  --  end,
+  --   "m4xshen/hardtime.nvim",
+  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("plugins/hardtime")
+  --   end,
   -- },
 
   -- terminal + navigation
@@ -326,6 +326,7 @@ require("lazy").setup({
     config = function()
       require("plugins/copilot")
     end,
+    enabled = vim.env.COPILOT_ENABLED ~= nil,
   },
 
   -- supercollider
@@ -413,5 +414,12 @@ require("lazy").setup({
     config = function()
       require("plugins/rest")
     end,
+  },
+
+  -- random / various / third party
+  {
+    "kawre/leetcode.nvim",
+    lazy = "leetcode.nvim" ~= vim.fn.argv()[1],
+    opts = { arg = "leetcode.nvim" },
   },
 }, config)
