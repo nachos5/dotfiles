@@ -1,7 +1,7 @@
 local trouble = require("trouble")
 local wk = require("which-key")
 
-local function set_keymaps()
+local function _set_keymaps()
   wk.register({
     x = {
       name = "Trouble",
@@ -18,4 +18,4 @@ local function set_keymaps()
 end
 
 trouble.setup()
-set_keymaps()
+_set_keymaps()

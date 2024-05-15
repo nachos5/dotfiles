@@ -7,7 +7,7 @@ icons = "awesome4"
 [[block]]
 block = "keyboard_layout"
 driver = "setxkbmap"
-interval = 5
+interval = 20
 
 [[block]]
 block = "disk_space"

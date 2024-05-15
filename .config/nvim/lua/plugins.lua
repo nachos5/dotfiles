@@ -35,16 +35,6 @@ require("lazy").setup({
     },
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
-    },
-    version = "nightly", -- optional, updated every week. (see issue #1193)
-    config = function()
-      require("plugins/nvim-tree")
-    end,
-  },
-  {
     "nvim-lualine/lualine.nvim",
     config = function()
       require("plugins/lualine")
@@ -145,6 +135,23 @@ require("lazy").setup({
   -- },
 
   -- terminal + navigation
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+    },
+    version = "nightly", -- optional, updated every week. (see issue #1193)
+    config = function()
+      require("plugins/nvim-tree")
+    end,
+  },
+  {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("plugins/oil")
+    end,
+  },
   {
     "akinsho/toggleterm.nvim",
     version = "*",

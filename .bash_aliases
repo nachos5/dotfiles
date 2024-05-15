@@ -56,7 +56,7 @@ function pip() {
 }
 
 if [ -z "${VENV_PATH}" ]; then
-	export VENV_PATH=env
+	export VENV_PATH=.venv
 fi
 
 alias envpy='source ./${VENV_PATH}/bin/activate'
