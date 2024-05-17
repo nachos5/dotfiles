@@ -184,11 +184,16 @@ require("lazy").setup({
   -- tests/debug
   {
     "mfussenegger/nvim-dap",
-    lazy = true,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    lazy = true,
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio",
+      "mfussenegger/nvim-dap-python",
+      "leoluz/nvim-dap-go",
+    },
+    config = function()
+      require("plugins/nvim-dap")
+    end,
   },
   {
     "nvim-neotest/neotest",

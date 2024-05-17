@@ -105,3 +105,6 @@ require("cmp-npm").setup({
   ignore = {},
   only_semantic_versions = true,
 })
+
+-- TODO
+-- vim.keymap.set("n", "<leader><space>", cmp.mapping.complete())
