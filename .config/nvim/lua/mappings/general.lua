@@ -95,7 +95,7 @@ nnoremap("<leader>qo", ":copen<CR>", { silent = true })
 nnoremap("<leader>qc", ":cclose<CR>", { silent = true })
 nnoremap("<leader>qn", ":cnext<CR>", { silent = true })
 nnoremap("<leader>qp", ":cprev<CR>", { silent = true })
-function add_buffer_lines_to_quickfix_list()
+local function _add_buffer_lines_to_quickfix_list()
   local bufnr = vim.api.nvim_get_current_buf() -- Get the current buffer number
   local filenames = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false) -- Get all lines in the current buffer
   local cwd = vim.fn.getcwd() -- Get the current working directory
@@ -109,7 +109,7 @@ function add_buffer_lines_to_quickfix_list()
 
   vim.fn.setqflist(qflist) -- Set the quickfix list
 end
-nnoremap("<leader>qf", ":lua add_buffer_lines_to_quickfix_list()<CR>", { silent = true })
+nnoremap("<leader>qf", ":lua _add_buffer_lines_to_quickfix_list()<CR>", { silent = true })
 
 -- location list
 nnoremap("<leader>lo", ":lopen<CR>", { silent = true })
