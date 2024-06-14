@@ -1,5 +1,4 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -170,7 +169,7 @@ require("lazy").setup({
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.3",
+    version = "0.1.8",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
@@ -377,7 +376,7 @@ require("lazy").setup({
 
   -- notes
   {
-    "phaazon/mind.nvim",
+    "Selyss/mind.nvim",
     branch = "v2.2",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -421,13 +420,17 @@ require("lazy").setup({
   },
 
   -- networking
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("plugins/rest")
-    end,
-  },
+  -- {
+  --   "rest-nvim/rest.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-neotest/nvim-nio",
+  --   },
+  --   commit = "1ce984c694345f3801bc656072f9a8dd51286a04",
+  --   config = function()
+  --     require("plugins/rest")
+  --   end,
+  -- },
 
   -- random / various / third party
   {

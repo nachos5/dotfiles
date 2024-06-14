@@ -5,6 +5,11 @@ local export = {}
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+-- Remove unwanted default keymaps.
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grr")
+
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)

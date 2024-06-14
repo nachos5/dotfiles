@@ -1,4 +1,4 @@
-version = "0.21.1"
+version = "0.21.5"
 
 local home = os.getenv("HOME")
 package.path = home .. "/.config/xplr/plugins/?/init.lua;" .. home .. "/.config/xplr/plugins/?.lua;" .. package.path
@@ -10,6 +10,7 @@ xplr.config.general.show_hidden = true
 require("fzf").setup({
   mode = "default",
   key = "ctrl-f",
+  recursive = true,
 })
 
 -- https://github.com/sayanarijit/preview-tabbed.xplr
@@ -40,6 +41,6 @@ require("xclip").setup({
 })
 
 xplr.config.general.initial_sorting = {
-  { sorter = "ByCanonicalIsDir",        reverse = true },
+  { sorter = "ByCanonicalIsDir", reverse = true },
   { sorter = "ByCanonicalLastModified", reverse = true },
 }

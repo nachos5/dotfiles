@@ -5,12 +5,9 @@ local function _set_keymaps()
   wk.register({
     x = {
       name = "Trouble",
-      x = { "<cmd>TroubleToggle<cr>", "toggle" },
-      w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace diagnostics" },
-      d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document_diagnostics" },
-      l = { "<cmd>TroubleToggle loclist<cr>", "location list" },
-      q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-      r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
+      x = { "<cmd>Trouble diagnostics toggle<cr>", "toggle" },
+      d = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "document_diagnostics" },
+      r = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP references" },
     },
   }, {
     prefix = "<leader>",

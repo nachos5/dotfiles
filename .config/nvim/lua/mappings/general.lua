@@ -70,12 +70,12 @@ nnoremap("<leader>br", ":edit!<CR>", { silent = true })
 -- resize current window
 function resize_current_window(amount, is_width)
   if not is_width then
-    current_height = vim.api.nvim_win_get_height(0)
-    set_height = math.max(0, current_height + amount)
+    local current_height = vim.api.nvim_win_get_height(0)
+    local set_height = math.max(0, current_height + amount)
     vim.api.nvim_win_set_height(0, set_height)
   else
-    current_width = vim.api.nvim_win_get_width(0)
-    set_width = math.max(0, current_width + amount)
+    local current_width = vim.api.nvim_win_get_width(0)
+    local set_width = math.max(0, current_width + amount)
     vim.api.nvim_win_set_width(0, set_width)
   end
 end
@@ -95,7 +95,7 @@ nnoremap("<leader>qo", ":copen<CR>", { silent = true })
 nnoremap("<leader>qc", ":cclose<CR>", { silent = true })
 nnoremap("<leader>qn", ":cnext<CR>", { silent = true })
 nnoremap("<leader>qp", ":cprev<CR>", { silent = true })
-local function _add_buffer_lines_to_quickfix_list()
+function add_buffer_lines_to_quickfix_list()
   local bufnr = vim.api.nvim_get_current_buf() -- Get the current buffer number
   local filenames = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false) -- Get all lines in the current buffer
   local cwd = vim.fn.getcwd() -- Get the current working directory
@@ -109,7 +109,7 @@ local function _add_buffer_lines_to_quickfix_list()
 
   vim.fn.setqflist(qflist) -- Set the quickfix list
 end
-nnoremap("<leader>qf", ":lua _add_buffer_lines_to_quickfix_list()<CR>", { silent = true })
+nnoremap("<leader>qf", ":lua add_buffer_lines_to_quickfix_list()<CR>", { silent = true })
 
 -- location list
 nnoremap("<leader>lo", ":lopen<CR>", { silent = true })
@@ -121,3 +121,6 @@ nnoremap("<leader>lp", ":lprev<CR>", { silent = true })
 -- remove leading and trailing whitespace
 nnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })
 vnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })
+
+-- set buffer filetype
+nnoremap("<leader>j", ":set filetype=json<CR>", { silent = true })
