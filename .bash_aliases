@@ -146,3 +146,8 @@ urlencode() {
 	local encoded=$(curl -G --data-urlencode "url=$1" "")
 	echo "${encoded#*url=}"
 }
+jq_urlencode() {
+	local param="$1"
+	param=$(echo "$param" | jq -s -R -r @uri)
+	echo "$param"
+}

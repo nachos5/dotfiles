@@ -68,10 +68,6 @@ function export.on_attach(client, bufnr, enable_formatting)
       end,
     })
   end
-
-  -- require("lsp_signature").on_attach({
-  --   hint_enable = false,
-  -- }, bufnr)
 end
 
 local function stop_lsp_for_current_buffer()

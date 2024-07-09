@@ -241,3 +241,6 @@ exec --no-startup-id ~/.config/i3/start.sh
 
 # refresh tmux status bar
 # exec_always --no-startup-id ~/utils/scripts/i3_tmux_update.py
+
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s off

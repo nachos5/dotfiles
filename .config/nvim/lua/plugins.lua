@@ -329,7 +329,7 @@ require("lazy").setup({
     end,
   },
   -- lsp addons
-  "jose-elias-alvarez/typescript.nvim",
+  -- "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   "lvimuser/lsp-inlayhints.nvim",
 
