@@ -14,6 +14,7 @@ alias alias_source='source ~/.bash_aliases'
 alias file_count_in_dir='ls -al | wc -l'
 alias source_env_session='source .env_session 2>/dev/null || true'
 alias open_in_gui='xdg-open .'
+alias view_trash='ls -alh $HOME/.local/share/Trash/files $HOME/.local/share/Trash/info'
 
 # apt
 alias aptup='sudo apt update && sudo apt upgrade'
