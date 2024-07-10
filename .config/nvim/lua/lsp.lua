@@ -14,8 +14,12 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
-vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]e", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "[e", function()
+  vim.diagnostic.jump({ count = -1 })
+end, opts)
+vim.keymap.set("n", "]e", function()
+  vim.diagnostic.jump({ count = 1 })
+end, opts)
 
 local diagnostic_config = {
   float = {
@@ -26,7 +30,6 @@ local diagnostic_config = {
   },
   virtual_text = {
     spacing = 5,
-    -- severity = "Warning",
   },
   underline = true,
   update_in_insert = false,
