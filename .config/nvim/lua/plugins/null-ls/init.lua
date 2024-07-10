@@ -8,7 +8,6 @@ if not null_ls_status_ok then
   return
 end
 
-
 local function has_file(file)
   return function(_utils)
     return _utils.root_has_file(file)
@@ -132,8 +131,6 @@ end
 local sources = {
   -- python
   require("plugins/null-ls/flake8").with(flake_config),
-  diagnostics.pylint.with(pylint_config),
-  diagnostics.mypy.with(mypy_config),
   require("plugins/null-ls/ruff").with(ruff_config),
 
   -- C
@@ -142,6 +139,19 @@ local sources = {
   -- php
   -- diagnostics.php,
 }
+
+-- Add slow diagnostic sources if not disabled.
+if vim.env.DISABLE_SLOW_SOURCES == nil then
+  local slow_sources = {
+    -- python
+    diagnostics.pylint.with(pylint_config),
+    diagnostics.mypy.with(mypy_config),
+  }
+
+  for _, value in ipairs(slow_sources) do
+    table.insert(sources, value)
+  end
+end
 
 -- Add formatting sources if not disabled.
 if vim.env.DISABLE_FORMATTING == nil then
