@@ -1,7 +1,3 @@
--- TODO:
--- clean and refactor
--- verify file is json
-
 local Path = require("plenary.path")
 local nnoremap = require("keymap").nnoremap
 
