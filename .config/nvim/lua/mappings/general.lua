@@ -65,7 +65,8 @@ function remove_all_buffers()
   end
 end
 nnoremap("<leader>bd", ":lua remove_all_buffers()<CR>", { silent = true })
-nnoremap("<leader>br", ":edit!<CR>", { silent = true })
+nnoremap("<leader>br", ":e!<CR>", { silent = true })
+nnoremap("<leader>bR", ":bufdo e!<CR>", { silent = true })
 
 -- resize current window
 function resize_current_window(amount, is_width)

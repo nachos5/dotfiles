@@ -333,12 +333,19 @@ require("lazy").setup({
   "simrat39/rust-tools.nvim",
   "lvimuser/lsp-inlayhints.nvim",
 
+  -- LLM
   {
     "github/copilot.vim",
     config = function()
       require("plugins/copilot")
     end,
     enabled = vim.env.COPILOT_ENABLED ~= nil,
+  },
+  {
+    "pasky/claude.vim",
+    config = function()
+      require("plugins/claude")
+    end,
   },
 
   -- supercollider

@@ -128,7 +128,17 @@ alias csvtojson="python -c 'import csv, json, sys; print(json.dumps([dict(r) for
 alias lzg="lazygit"
 alias lzd="lazydocker"
 
-# dns
+# linux audio
+alias qpwgraph='~/utils/scripts/qpwgraph.sh'
+
+# network
+alias my_public_ip_info='curl -s https://www.ipinfo.io | jq'
+alias ip_leak='curl -s https://ipleak.net/json/ | jq'
+function urlencode() {
+	local param="$1"
+	param=$(echo "$param" | jq -s -R -r @uri)
+	echo "$param"
+}
 function dns_records() {
 	domain=$1
 	for type in A AAAA CNAME MX NS SOA TXT; do
@@ -136,19 +146,4 @@ function dns_records() {
 		dig +short "$domain" $type
 		echo ""
 	done
-}
-
-# linux audio
-alias qpwgraph='~/utils/scripts/qpwgraph.sh'
-
-# network
-urlencode() {
-	# URL-encodes a string using curl
-	local encoded=$(curl -G --data-urlencode "url=$1" "")
-	echo "${encoded#*url=}"
-}
-jq_urlencode() {
-	local param="$1"
-	param=$(echo "$param" | jq -s -R -r @uri)
-	echo "$param"
 }
