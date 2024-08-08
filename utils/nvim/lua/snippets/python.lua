@@ -37,6 +37,22 @@ local my_python_snippets = {
     t(" import "),
     i(0),
   }),
+
+  s("debugpy_remote", {
+    t({
+      "import debugpy",
+      'debugpy.listen(("0.0.0.0", 5678))',
+      "debugpy.wait_for_client()",
+    }),
+  }),
+
+  s("debugpy_local", {
+    t({
+      "import debugpy",
+      'debugpy.listen(("localhost", 5678))',
+      "debugpy.wait_for_client()",
+    }),
+  }),
 }
 
 -- ls.add_snippets("python", my_python_snippets)

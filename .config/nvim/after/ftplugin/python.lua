@@ -18,6 +18,6 @@ local function insert_python_breakpoint()
   local indent = current_line:match("^%s*")
   local bp = indent .. "breakpoint()"
 
-  vim.api.nvim_buf_set_lines(0, current_line_number + 1, current_line_number + 1, false, { bp })
+  vim.api.nvim_buf_set_lines(0, current_line_number, current_line_number, false, { bp })
 end
 nnoremap("<leader>pb", insert_python_breakpoint)

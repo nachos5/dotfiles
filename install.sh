@@ -24,6 +24,7 @@ ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
 ln -sf "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
 ln -sf "${DOTFILES}/.tridactylrc" ~/.tridactylrc
 ln -sf "${DOTFILES}/.xbindkeysrc" ~/.xbindkeysrc
+ln -sf "${DOTFILES}/starship.toml" ~/.config/starship.toml
 sudo ln -sf "${DOTFILES}/xkb/is_custom" /usr/share/X11/xkb/symbols/is_custom
 
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then

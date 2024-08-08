@@ -5,6 +5,11 @@ require("mind").setup({
     state_path = "~/mind/mind.json",
     data_dir = "~/mind/data",
   },
+  keymaps = {
+    normal = {
+      dn = "delete",
+    },
+  },
 })
 
 local default_opts = { noremap = true, silent = true }

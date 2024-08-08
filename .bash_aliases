@@ -28,6 +28,7 @@ ubuntu_codename() {
 }
 alias systemgraphics='inxi -G'
 alias increase_file_limit='ulimit -n 4096'
+alias cpu_power_management='cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
 
 # git
 alias git_unpushed='git log --oneline origin/main..main'

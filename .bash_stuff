@@ -1,1 +1,40 @@
+export PATH="$HOME/bin:$PATH"
+
+# wezterm
+export TERMINAL=wezterm
+
+# nnn
 export NNN_PLUG="f:preview-tabbed;n:nuke"
+
+# nvm + yarn
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+export PATH="$PATH:$(yarn global bin)"
+
+# z.sh
+if [ -f ~/z.sh ]; then
+	. ~/z.sh
+fi
+
+# python
+export PATH="$PATH:/opt/python/3.11.2/bin"
+
+# go
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:/usr/local/go/bin"
+
+# pulumi
+export PATH="$PATH:$HOME/.pulumi/bin"
+
+# --- stuff that should be at the bottom --- #
+
+# atuin - keep near bottom
+export PATH="$PATH:$HOME/.atuin/bin"
+eval "$(atuin init bash --disable-up-arrow)"
+
+# direnv
+eval "$(direnv hook bash)"
+
+# starship
+eval "$(starship init bash)"

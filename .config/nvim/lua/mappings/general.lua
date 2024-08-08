@@ -125,3 +125,8 @@ vnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })
 
 -- set buffer filetype
 nnoremap("<leader>j", ":set filetype=json<CR>", { silent = true })
+
+-- tabs
+nnoremap("<leader>an", ":tabnew<CR>")
+nnoremap("<leader>ac", ":tabc<CR>")
+nnoremap("<leader>as", ":tab split<CR>")
