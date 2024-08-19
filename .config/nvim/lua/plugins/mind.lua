@@ -1,9 +1,10 @@
 local nnoremap = require("keymap").nnoremap
+local utils = require("utils")
 
 require("mind").setup({
   persistence = {
-    state_path = "~/mind/mind.json",
-    data_dir = "~/mind/data",
+    state_path = utils.os_home_path("/mind/mind.json"),
+    data_dir = utils.os_home_path("/mind/data"),
   },
   keymaps = {
     normal = {

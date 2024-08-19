@@ -88,4 +88,13 @@ function M.merge_tables(first_table, second_table)
   return vim.tbl_extend("force", first_table, second_table)
 end
 
+function M.os_home_path(path)
+  if vim.g.IS_WINDOWS then
+    path = string.gsub(path, "/", "\\")
+  end
+
+  return vim.g.OS_HOME .. path
+end
+
+
 return M
