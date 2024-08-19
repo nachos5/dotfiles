@@ -40,6 +40,8 @@ vim.opt.number = true
 
 vim.opt.title = true
 
+vim.opt.fileformat = "unix"
+
 -- try to install xclip if not working
 vim.opt.clipboard:append("unnamedplus")
 

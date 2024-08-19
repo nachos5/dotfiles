@@ -6,9 +6,14 @@ local map_expr = scnvim.map_expr
 -- K - help
 -- g] - go to definition
 
+local cmd = vim.env.HOME .. "/utils/scripts/sclang"
+if vim.g.IS_WINDOWS then
+  cmd = "C:\\Documents\\SuperCollider-3.13.0\\sclang.exe"
+end
+
 scnvim.setup({
   sclang = {
-    cmd = vim.env.HOME .. "/utils/scripts/sclang",
+    cmd = cmd
   },
   keymaps = {
     ["<leader>li"] = map("editor.send_line", { "n" }),
@@ -24,6 +29,7 @@ scnvim.setup({
     ["<leader>sp"] = map_expr("Server.local.plotTree", { "n" }),
     ["<leader>sm"] = map_expr("Server.local.meter", { "n" }),
     ["<leader>sb"] = map_expr("s.boot"),
+    ["<leader>sr"] = map_expr("s.reboot"),
     ["<leader>sq"] = map_expr("s.quit"),
     ["<leader>rt"] = map(function()
       vim.cmd("SCNvimGenerateAssets")
