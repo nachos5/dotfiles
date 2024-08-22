@@ -53,6 +53,6 @@ vim.opt.timeoutlen = 1500
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
-vim.g.python3_host_prog = "/opt/python/3.11.2/bin"
+vim.g.python3_host_prog = "/opt/python/3.11.2/bin/python3.11"
 
 vim.lsp.set_log_level("ERROR")

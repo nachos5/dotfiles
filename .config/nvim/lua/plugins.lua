@@ -342,6 +342,7 @@ require("lazy").setup({
     enabled = vim.env.COPILOT_ENABLED ~= nil,
   },
   {
+    -- requires elinks + pynvim
     "pasky/claude.vim",
     config = function()
       require("plugins/claude")

@@ -53,6 +53,20 @@ local my_python_snippets = {
       "debugpy.wait_for_client()",
     }),
   }),
+
+  s("start_time", {
+    t({
+      "import time",
+      "start_time = time.time()",
+    }),
+  }),
+
+  s("elapsed_time", {
+    t({
+      "elapsed_time = (time.time() - start_time) * 1000  # Convert to milliseconds",
+      'print(f"Time taken to update user country: {elapsed_time:.2f} ms")',
+    }),
+  }),
 }
 
 -- ls.add_snippets("python", my_python_snippets)

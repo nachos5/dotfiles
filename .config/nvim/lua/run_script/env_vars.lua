@@ -56,7 +56,7 @@ M.get_env_vars = function()
   if dotenv_file then
     local dotenv_content = dotenv_file:read("*a")
     dotenv_file:close()
-    local dotenv_lines = get_lines(dotenv_content, true)
+    local dotenv_lines = utils.get_lines(dotenv_content, true)
     local parsed_dotenv = parse_dotenv(dotenv_content)
     -- Replace placeholders in json file with env variables.
     json_content = replace_placeholders(json_content, parsed_dotenv)
