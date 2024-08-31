@@ -1,5 +1,3 @@
--- https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/custom/multi_rg.lua
-
 local conf = require("telescope.config").values
 local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
@@ -7,18 +5,15 @@ local pickers = require("telescope.pickers")
 
 local flatten = vim.tbl_flatten
 
--- i would like to be able to do telescope
--- and have telescope do some filtering on files and some grepping
-
-local multi_rg = function(opts)
+local custom_rg = function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
   opts.shortcuts = opts.shortcuts
     or {
       ["l"] = "*.lua",
-      ["v"] = "*.vim",
-      ["n"] = "*.{vim,lua}",
-      ["c"] = "*.c",
+      ["p"] = "*.py",
+      ["j"] = "*.json",
+      ["h"] = "*.html",
     }
   opts.pattern = opts.pattern or "%s"
 
@@ -31,6 +26,7 @@ local multi_rg = function(opts)
       local prompt_split = vim.split(prompt, "  ")
 
       local args = { "rg" }
+
       if prompt_split[1] then
         local regex = prompt_split[1]
         -- if starts with m: we use multiline
@@ -61,7 +57,7 @@ local multi_rg = function(opts)
         table.insert(args, string.format(opts.pattern, pattern))
       end
 
-      return flatten({
+      local final_prompt = flatten({
         args,
         {
           "--color=never",
@@ -73,6 +69,8 @@ local multi_rg = function(opts)
           "--hidden",
         },
       })
+      print(require("utils").dump(final_prompt))
+      return final_prompt
     end,
     entry_maker = make_entry.gen_from_vimgrep(opts),
     cwd = opts.cwd,
@@ -89,4 +87,4 @@ local multi_rg = function(opts)
     :find()
 end
 
-return multi_rg
+return custom_rg

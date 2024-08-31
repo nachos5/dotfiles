@@ -54,7 +54,7 @@ nnoremap("<leader>tee", "<cmd>Telescope env<CR>", default_opts)
 -- file and buffer stuff
 nnoremap("<leader>ff", "<cmd>Telescope find_files shorten_path=true<CR>", default_opts)
 nnoremap("<leader>gff", "<cmd>Telescope find_files shorten_path=true no_ignore=true<CR>", default_opts)
-nnoremap("<leader>fg", "<cmd>lua require('plugins/telescope/multi_rg')()<CR>", default_opts)
+nnoremap("<leader>fg", "<cmd>lua require('plugins/telescope/custom_rg')()<CR>", default_opts)
 nnoremap("<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>", default_opts)
 nnoremap("<leader>fr", "<cmd>Telescope resume<CR>", default_opts)
 -- pipe selection into live_grep

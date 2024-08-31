@@ -2,15 +2,11 @@ local trouble = require("trouble")
 local wk = require("which-key")
 
 local function _set_keymaps()
-  wk.register({
-    x = {
-      name = "Trouble",
-      x = { "<cmd>Trouble diagnostics toggle<cr>", "toggle" },
-      d = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "document_diagnostics" },
-      r = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP references" },
-    },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    { "<leader>x", group = "Trouble" },
+    { "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "document_diagnostics" },
+    { "<leader>xr", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP references" },
+    { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "toggle" },
   })
 end
 
