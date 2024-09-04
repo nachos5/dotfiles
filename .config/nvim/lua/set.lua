@@ -53,6 +53,15 @@ vim.opt.timeoutlen = 1500
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
-vim.g.python3_host_prog = "/opt/python/3.11.2/bin/python3.11"
+local function get_python_path()
+  local venv = vim.env.VIRTUAL_ENV
+  if venv then
+    return venv .. "/bin/python"
+  else
+    return "/opt/python/3.11.2/bin/python3.11"
+  end
+end
+
+vim.g.python3_host_prog = get_python_path()
 
 vim.lsp.set_log_level("ERROR")

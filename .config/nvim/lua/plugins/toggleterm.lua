@@ -24,6 +24,9 @@ if vim.v.servername ~= nil then
   lg_cmd = lg_pre_cmd
       .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml -p $(pwd)", vim.v.servername)
 end
+if vim.g.IS_WINDOWS then
+  lg_cmd = "lazygit"
+end
 LAZYGIT_TERM = Terminal:new({
   cmd = lg_cmd,
   direction = "float",
