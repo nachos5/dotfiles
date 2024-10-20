@@ -148,3 +148,16 @@ function dns_records() {
 		echo ""
 	done
 }
+
+# compositor
+checkcomp() {
+	pgrep xcompmgr &>/dev/null
+}
+stopcomp() {
+	checkcomp && killall xcompmgr
+}
+startcomp() {
+	stopcomp
+	xcompmgr -c &
+	exit
+}

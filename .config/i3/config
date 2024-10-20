@@ -244,3 +244,6 @@ exec --no-startup-id ~/.config/i3/start.sh
 
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id xset s off
+
+# set opacity to 0 for zoom screensharing
+exec_always --no-startup-id picom -o 0

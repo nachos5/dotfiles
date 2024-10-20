@@ -14,7 +14,7 @@ mason_lspconfig.setup({
     "rust_analyzer",
     "lua_ls",
     -- "tailwindcss",
-    "tsserver",
+    "ts_ls",
     -- "yamlls",
   },
   automatic_installation = true,
@@ -39,7 +39,7 @@ end
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    if server_name == "tsserver" or server_name == "rust_analyzer" then
+    if server_name == "ts_ls" or server_name == "rust_analyzer" then
       return
     end
     require("lspconfig")[server_name].setup({
@@ -71,8 +71,8 @@ mason_lspconfig.setup_handlers({
     })
   end,
 
-  ["tsserver"] = function()
-    lspconfig.tsserver.setup({
+  ["ts_ls"] = function()
+    lspconfig.ts_ls.setup({
       on_attach = ts_on_attach,
       server_capabilities = {
         documentFormattingProvider = false,

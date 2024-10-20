@@ -13,6 +13,7 @@ mkdir -p ~/.config/stylua && ln -sf "${DOTFILES}/.config/stylua/.stylua.toml" ~/
 mkdir -p ~/i3status-rust && ln -sf "${DOTFILES}/i3status-rust/config.toml" ~/i3status-rust/config.toml
 mkdir -p ~/.config/xplr && ln -sf "${DOTFILES}/.config/xplr/init.lua" ~/.config/xplr/init.lua
 mkdir -p ~/.config/dunst && ln -sf "${DOTFILES}/.config/dunst/dunstrc" ~/.config/dunst/dunstrc
+mkdir -p ~/.config/picom && ln -sf "${DOTFILES}/.config/picom/picom.conf" ~/.config/picom/picom.conf
 rm -rf ~/utils && ln -sf "${DOTFILES}/utils" ~/utils
 ln -sf "${DOTFILES}/.bash_aliases" ~/.bash_aliases
 ln -sf "${DOTFILES}/.bash_stuff" ~/.bash_stuff

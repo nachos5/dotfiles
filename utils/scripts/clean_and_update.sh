@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Start by running some custom clean aliases.
+shopt -s expand_aliases
+source "/home/gulli/.bash_aliases"
+dockerstop
+dockerprune
+lsp_log_clear
+null_ls_log_clear
+remove_nvim_swaps
+
 # Clean thumbnail cache
 rm -rf ~/.cache/thumbnails/* ~/.thumbnails/*
 
@@ -20,3 +29,6 @@ apt-get autoremove -y
 # Update and upgrade packages
 apt-get update -y
 apt-get upgrade -y
+
+# Update GRUB
+update-grub

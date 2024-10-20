@@ -125,6 +125,18 @@ require("lazy").setup({
       require("plugins/mini")
     end,
   },
+  {
+    "tris203/precognition.nvim",
+    config = function()
+      require("plugins/precognition")
+    end,
+  },
+  -- {
+  --   "smilhey/ed-cmd.nvim",
+  --   config = function()
+  --     require("plugins/ed_cmd")
+  --   end,
+  -- },
   -- {
   --   "m4xshen/hardtime.nvim",
   --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
