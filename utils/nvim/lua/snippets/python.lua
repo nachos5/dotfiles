@@ -64,7 +64,7 @@ local my_python_snippets = {
   s("elapsed_time", {
     t({
       "elapsed_time = (time.time() - start_time) * 1000  # Convert to milliseconds",
-      'print(f"Time taken to update user country: {elapsed_time:.2f} ms")',
+      'print(f"Elapsed time: {elapsed_time:.2f} ms")',
     }),
   }),
 }
