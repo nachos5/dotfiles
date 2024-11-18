@@ -20,15 +20,17 @@ journalctl --vacuum-time=3d
 
 # Clean package cache
 # Run to see how big the cache is: du -sh /var/cache/apt/archives
-apt-get autoclean -y
-apt-get clean -y
+apt autoclean -y
+apt clean -y
 
 # Remove unnecessary packages
-apt-get autoremove -y
+apt autoremove -y
 
 # Update and upgrade packages
-apt-get update -y
-apt-get upgrade -y
+echo "UPDATE..."
+apt update -y
+echo "UPGRADE..."
+apt upgrade -y
 
 # Update GRUB
 update-grub
