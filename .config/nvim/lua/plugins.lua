@@ -32,6 +32,9 @@ require("lazy").setup({
     dependencies = {
       "hiphish/rainbow-delimiters.nvim",
     },
+    enabled = function() -- Disable in files with more than 5000 lines.
+      return vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf()) <= 5000
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -144,6 +147,10 @@ require("lazy").setup({
   --     require("plugins/hardtime")
   --   end,
   -- },
+  {
+    -- Handle large files.
+    "LunarVim/bigfile.nvim",
+  },
 
   -- terminal + navigation
   {
