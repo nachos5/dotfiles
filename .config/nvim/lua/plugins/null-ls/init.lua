@@ -53,11 +53,12 @@ local mypy_pairs = {
 local ruff_pairs = {
   [".ruff.toml"] = ".*",
   ["ruff.toml"] = ".*",
-  ["pyproject.toml"] = "ruff.mypy",
+  ["pyproject.toml"] = "tool.ruff",
 }
 local ruff_formatting_pairs = {
-  [".ruff.toml"] = "[format]",
-  ["ruff.toml"] = "[format]",
+  [".ruff.toml"] = "format",
+  ["ruff.toml"] = "format",
+  ["pyproject.toml"] = "tool.ruff.format",
 }
 local biome_pairs = {
   ["biome.json"] = ".*",
