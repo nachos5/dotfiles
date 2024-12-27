@@ -16,18 +16,23 @@ require("oil").setup({
   },
 })
 
--- Open parent directory in current window
+-- Open parent directory in current window.
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- Open parent directory in floating window
-vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
+-- Open parent directory in floating window.
+vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory in a floating window" })
+
+-- Open CWD in current window.
+vim.keymap.set("n", "<leader>oi", function()
+  require("oil").open(vim.fn.getcwd())
+end, { desc = "Open root directory" })
 
 local function oil_z(args)
   local search_string = args.fargs[1]
   local command = "~/z_out.sh " .. search_string
   local handle = io.popen(command, "r")
   if handle then
-    local result = handle:read("*a") -- Read the complete output of the command
+    local result = handle:read("*a") -- Read the complete output of the command.
     handle:close()
     require("oil").open(vim.fn.trim(result))
   end
