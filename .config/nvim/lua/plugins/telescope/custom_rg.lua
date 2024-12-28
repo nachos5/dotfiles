@@ -69,7 +69,7 @@ local custom_rg = function(opts)
           "--hidden",
         },
       })
-      print(require("utils").dump(final_prompt))
+      -- print(require("utils").dump(final_prompt))
       return final_prompt
     end,
     entry_maker = make_entry.gen_from_vimgrep(opts),
