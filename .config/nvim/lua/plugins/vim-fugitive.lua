@@ -5,19 +5,20 @@ return {
     "tpope/vim-rhubarb",
   },
   config = function()
-    local nnoremap = require("keymap").nnoremap
+    local default_branch_name = vim.env.GIT_DEFAULT_BRANCH and vim.env.GIT_DEFAULT_BRANCH or "master"
 
+    local nnoremap = require("keymap").nnoremap
     local shared_opts = { silent = true }
 
     nnoremap("<leader>gs", ":Git<CR>", shared_opts)
     nnoremap("<leader>gll", ":Gclog<cr>", shared_opts)
     -- % is current buffer, # current branch
     nnoremap("<leader>glb", ":Gclog %<cr>", shared_opts)
-    nnoremap("<leader>glm", ":Gclog master..# --<cr>", shared_opts)
+    nnoremap("<leader>glm", ":Gclog " .. default_branch_name .. "..# --<cr>", shared_opts)
     nnoremap("<leader>gc", ":Git commit<cr>", shared_opts)
     nnoremap("<leader>ga", ":Git add %<cr>", shared_opts)
     nnoremap("<leader>gd", ":Gvdiffsplit!<CR>", shared_opts)
-    nnoremap("<leader>gm", ":Gvdiffsplit master<CR>", shared_opts)
+    nnoremap("<leader>gm", ":Gvdiffsplit " .. default_branch_name .. "<CR>", shared_opts)
     nnoremap("<leader>gb", ":Git blame<CR>", shared_opts)
     nnoremap("<leader>gt", ":Git mergetool<CR>", shared_opts)
     nnoremap("<leader>gr", ":GBrowse<CR>", shared_opts)
