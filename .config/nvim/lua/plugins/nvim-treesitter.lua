@@ -3,7 +3,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  branch = "main",
   dependencies = {
     "hiphish/rainbow-delimiters.nvim",
   },
