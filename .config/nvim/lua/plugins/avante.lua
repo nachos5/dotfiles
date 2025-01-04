@@ -59,7 +59,7 @@ return {
     },
   },
   keys = {
-      { "<leader>aa", "<cmd>AvanteToggle<CR>" },
-      { "<leader>ad", "<cmd>AvanteClear<CR>" },
+    { "<leader>aa", "<cmd>AvanteToggle<CR>" },
+    { "<leader>ad", "<cmd>AvanteClear<CR>" },
   },
 }

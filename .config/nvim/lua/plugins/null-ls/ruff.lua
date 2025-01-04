@@ -76,12 +76,12 @@ return helpers.make_builtin({
           custom_end_col,
         },
         severities = {
-          E = helpers.diagnostics.severities["error"],       -- pycodestyle errors
-          W = helpers.diagnostics.severities["warning"],     -- pycodestyle warnings
+          E = helpers.diagnostics.severities["error"], -- pycodestyle errors
+          W = helpers.diagnostics.severities["warning"], -- pycodestyle warnings
           F = helpers.diagnostics.severities["information"], -- pyflakes
           A = helpers.diagnostics.severities["information"], -- flake8-builtins
-          B = helpers.diagnostics.severities["warning"],     -- flake8-bugbear
-          C = helpers.diagnostics.severities["warning"],     -- flake8-comprehensions
+          B = helpers.diagnostics.severities["warning"], -- flake8-bugbear
+          C = helpers.diagnostics.severities["warning"], -- flake8-comprehensions
           T = helpers.diagnostics.severities["information"], -- flake8-print
           U = helpers.diagnostics.severities["information"], -- pyupgrade
           D = helpers.diagnostics.severities["information"], -- pydocstyle

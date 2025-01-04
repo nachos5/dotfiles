@@ -144,6 +144,5 @@ return {
       end
       XPLR_TERM:toggle()
     end
-
   end,
 }

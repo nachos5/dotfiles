@@ -37,3 +37,17 @@ repos:
         args: [--config, ./taplo.toml]
       - id: taplo-lint
         args: [--config, ./taplo.toml]
+
+  - repo: local
+    hooks:
+      - id: stylua
+        name: stylua
+        files: ^.*\.lua$
+        entry: stylua
+        args: [
+          --verify,
+          --config-path=/home/gulli/.config/stylua/.stylua.toml,
+        ]
+        types: [lua]
+        require_serial: true
+        language: system

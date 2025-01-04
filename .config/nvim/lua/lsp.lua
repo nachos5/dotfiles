@@ -42,15 +42,12 @@ local diagnostic_config = {
 vim.diagnostic.config(diagnostic_config)
 
 -- Set up diagnostic handler
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    virtual_text = diagnostic_config.virtual_text,
-    signs = true,
-    underline = diagnostic_config.underline,
-    update_in_insert = diagnostic_config.update_in_insert,
-  }
-)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = diagnostic_config.virtual_text,
+  signs = true,
+  underline = diagnostic_config.underline,
+  update_in_insert = diagnostic_config.update_in_insert,
+})
 
 function export.on_attach(client, bufnr, enable_formatting)
   if enable_formatting == nil then

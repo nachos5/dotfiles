@@ -7,8 +7,7 @@ return helpers.make_builtin({
   name = "clang_check",
   meta = {
     url = "https://releases.llvm.org/14.0.0/tools/clang/docs/ClangTools.html",
-    description =
-    "ClangCheck combines the LibTooling framework for running a Clang tool with the basic Clang diagnostics by syntax checking specific files in a fast, command line interface.",
+    description = "ClangCheck combines the LibTooling framework for running a Clang tool with the basic Clang diagnostics by syntax checking specific files in a fast, command line interface.",
     notes = {
       "`clang-check` will be run only when files are saved to disk, so that `compile_commands.json` files can be used. It is recommended to use this linter in combination with `compile_commands.json` files.",
     },
