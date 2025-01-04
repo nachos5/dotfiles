@@ -18,10 +18,10 @@ vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 vim.keymap.set("n", "[e", function()
-  vim.diagnostic.jump({ count = -1 })
+  vim.diagnostic.goto_prev({ float = diagnostic_config.float })
 end, opts)
 vim.keymap.set("n", "]e", function()
-  vim.diagnostic.jump({ count = 1 })
+  vim.diagnostic.goto_next({ float = diagnostic_config.float })
 end, opts)
 
 local diagnostic_config = {
@@ -38,16 +38,25 @@ local diagnostic_config = {
   update_in_insert = false,
 }
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, diagnostic_config)
+-- Set up diagnostic configuration
 vim.diagnostic.config(diagnostic_config)
+
+-- Set up diagnostic handler
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    virtual_text = diagnostic_config.virtual_text,
+    signs = true,
+    underline = diagnostic_config.underline,
+    update_in_insert = diagnostic_config.update_in_insert,
+  }
+)
 
 function export.on_attach(client, bufnr, enable_formatting)
   if enable_formatting == nil then
     -- formatting off by default - use null-ls for all formatting
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-    client.server_capabilities.document_formatting = false
   end
 
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -92,7 +101,6 @@ local function enable_formatting_for_current_buffer()
   for _, client in ipairs(clients) do
     client.server_capabilities.documentFormattingProvider = true
     client.server_capabilities.documentRangeFormattingProvider = true
-    client.server_capabilities.document_formatting = true
   end
 end
 

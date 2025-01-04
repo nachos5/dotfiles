@@ -75,7 +75,7 @@ return {
         { name = "nvim_lsp", priority = 9 },
         { name = "npm", priority = 9 },
         { name = "cmp_tabnine", priority = 8, max_num_results = 3 },
-        { name = "buffer", priority = 7, keyword_length = 5, option = buffer_option },
+        { name = "buffer", priority = 7, keyword_length = 5 },
         { name = "nvim_lua", priority = 5 },
         { name = "path", priority = 4 },
         { name = "calc", priority = 3 },
@@ -83,17 +83,19 @@ return {
         { name = "nvim_lsp_signature_help" },
       },
       formatting = {
+        fields = { "kind", "abbr", "menu" },
+        expandable_indicator = true,
         format = function(entry, vim_item)
           -- icons
           local import_lspkind, lspkind = pcall(require, "lspkind")
           if import_lspkind then
-            vim_item.kind = lspkind.presets.default[vim_item.kind]
+            vim_item.kind = lspkind.presets.default[vim_item.kind] or vim_item.kind
           end
 
           -- limit completion width
           local ELLIPSIS_CHAR = "…"
           local MAX_LABEL_WIDTH = 35
-          local label = vim_item.abbr
+          local label = vim_item.abbr or "[Src]"
           local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
           if truncated_label ~= label then
             vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
@@ -108,14 +110,12 @@ return {
             nvim_lsp = "[LSP]",
             nvim_lua = "[Lua]",
           })[entry.source.name]
+
           return vim_item
         end,
       },
       view = {
         entries = "native",
-      },
-      experimental = {
-        -- ghost_text = true,
       },
     })
 
@@ -124,7 +124,12 @@ return {
       only_semantic_versions = true,
     })
 
-    -- TODO
-    -- vim.keymap.set("n", "<leader><space>", cmp.mapping.complete())
+    -- Setup vim-dadbod
+    cmp.setup.filetype({ "sql" }, {
+      sources = {
+        { name = "vim-dadbod-completion" },
+        { name = "buffer" },
+      },
+    })
   end,
 }
