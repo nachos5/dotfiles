@@ -14,7 +14,8 @@ vim.opt.wildmode = "longest,list,full"
 vim.opt.wildmenu = true
 
 vim.opt.ruler = true
-vim.opt.laststatus = 2
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
 vim.opt.showcmd = true
 vim.opt.showmode = true
 

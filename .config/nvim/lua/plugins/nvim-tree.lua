@@ -1,24 +1,23 @@
-local nnoremap = require("keymap").nnoremap
-
-require("nvim-tree").setup({
-  git = {
-    ignore = false,
+return {
+  "nvim-tree/nvim-tree.lua",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons", -- optional, for file icons
   },
-  view = {
-    relativenumber = true,
+  version = "nightly", -- optional, updated every week. (see issue #1193)
+  keys = {
+    { "<C-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+    { "<leader>n", ":NvimTreeFindFile<CR>", desc = "Find file in NvimTree" },
+    { "<leader>tc", ":NvimTreeCollapse<CR>", desc = "Collapse NvimTree" },
+    { "<leader>tr", ":NvimTreeRefresh<CR>", desc = "Refresh NvimTree" },
   },
-})
-
-nnoremap("<C-n>", ":NvimTreeToggle<CR>")
-nnoremap("<leader>n", ":NvimTreeFindFile<CR>")
-nnoremap("<leader>tc", ":NvimTreeCollapse<CR>")
-nnoremap("<leader>tr", ":NvimTreeRefresh<CR>")
-
---- More available functions:
---- NvimTreeOpen
---- NvimTreeClose
---- NvimTreeFocus
---- NvimTreeFindFileToggle
---- NvimTreeResize
---- NvimTreeCollapse
---- NvimTreeCollapseKeepBuffers
+  config = function()
+    require("nvim-tree").setup({
+      git = {
+        ignore = false,
+      },
+      view = {
+        relativenumber = true,
+      },
+    })
+  end,
+}

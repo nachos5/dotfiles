@@ -1,5 +1,12 @@
--- <leader>cc - ClaudeChat
--- <leader>cx - ClaudeCancel
--- visual <leader>ci - ClaudeImplement
+return {
+  -- requires elinks + pynvim
+  "pasky/claude.vim",
+  event = "VeryLazy",
+  config = function()
+    -- <leader>cc - ClaudeChat
+    -- <leader>cx - ClaudeCancel
+    -- visual <leader>ci - ClaudeImplement
 
-vim.g.claude_api_key = vim.env.CLAUDE_API_KEY
+    vim.g.claude_api_key = vim.env.CLAUDE_API_KEY
+  end,
+}

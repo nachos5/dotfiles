@@ -1,6 +1,9 @@
-local nnoremap = require("keymap").nnoremap
-
-nnoremap("<leader>vo", ":DiffviewOpen<CR>", { silent = true })
-nnoremap("<leader>vc", ":DiffviewClose<CR>", { silent = true })
-nnoremap("<leader>vh", ":DiffviewFileHistory %<CR>", { silent = true })
-nnoremap("<leader>vm", ":DiffviewOpen master...HEAD<CR>", { silent = true })
+return {
+  "sindrets/diffview.nvim",
+  keys = {
+    { "<leader>vo", ":DiffviewOpen<CR>", desc = "Open Diffview" },
+    { "<leader>vc", ":DiffviewClose<CR>", desc = "Close Diffview" },
+    { "<leader>vh", ":DiffviewFileHistory %<CR>", desc = "Current file history" },
+    { "<leader>vm", ":DiffviewOpen master...HEAD<CR>", desc = "Diff against master" },
+  },
+}
