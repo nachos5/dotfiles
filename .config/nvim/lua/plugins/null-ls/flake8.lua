@@ -54,8 +54,7 @@ return helpers.make_builtin({
   name = "flake8",
   meta = {
     url = "https://github.com/PyCQA/flake8",
-    description =
-    "flake8 is a python tool that glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of Python code.",
+    description = "flake8 is a python tool that glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of Python code.",
   },
   method = DIAGNOSTICS,
   filetypes = { "python" },
@@ -84,14 +83,14 @@ return helpers.make_builtin({
           S = helpers.diagnostics.severities["warning"],
           I = helpers.diagnostics.severities["warning"],
           C = helpers.diagnostics.severities["warning"],
-          B = helpers.diagnostics.severities["warning"],       -- flake8-bugbear
-          N = helpers.diagnostics.severities["information"],   -- pep8-naming
+          B = helpers.diagnostics.severities["warning"], -- flake8-bugbear
+          N = helpers.diagnostics.severities["information"], -- pep8-naming
         },
       }
     ),
     cwd = helpers.cache.by_bufnr(function(params)
       return utils.root_pattern(
-      -- https://flake8.pycqa.org/en/latest/user/configuration.html
+        -- https://flake8.pycqa.org/en/latest/user/configuration.html
         ".flake8",
         "setup.cfg",
         "tox.ini"

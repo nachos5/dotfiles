@@ -5,9 +5,9 @@ return {
     "kristijanhusak/vim-dadbod-completion",
   },
   keys = {
-    { "<leader>du", ":DBUIToggle<CR>",        desc = "Toggle DB UI" },
-    { "<leader>df", ":DBUIFindBuffer<CR>",    desc = "Find DB buffer" },
-    { "<leader>dr", ":DBUIRenameBuffer<CR>",  desc = "Rename DB buffer" },
+    { "<leader>du", ":DBUIToggle<CR>", desc = "Toggle DB UI" },
+    { "<leader>df", ":DBUIFindBuffer<CR>", desc = "Find DB buffer" },
+    { "<leader>dr", ":DBUIRenameBuffer<CR>", desc = "Rename DB buffer" },
     { "<leader>dl", ":DBUILastQueryInfo<CR>", desc = "Show last query info" },
   },
   config = function()

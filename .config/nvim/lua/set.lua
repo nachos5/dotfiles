@@ -56,7 +56,6 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
-
 local function get_python_path()
   local venv = vim.env.VIRTUAL_ENV
   if venv then

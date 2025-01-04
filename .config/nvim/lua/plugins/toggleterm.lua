@@ -33,7 +33,7 @@ return {
     local lg_cmd = lg_pre_cmd .. "lazygit -p $(pwd)"
     if vim.v.servername ~= nil then
       lg_cmd = lg_pre_cmd
-        .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.toml -p $(pwd)", vim.v.servername)
+        .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.yaml -p $(pwd)", vim.v.servername)
     end
     if vim.g.IS_WINDOWS then
       lg_cmd = "lazygit"
@@ -144,6 +144,5 @@ return {
       end
       XPLR_TERM:toggle()
     end
-
   end,
 }

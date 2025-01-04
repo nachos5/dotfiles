@@ -96,5 +96,4 @@ function M.os_home_path(path)
   return vim.g.OS_HOME .. path
 end
 
-
 return M
