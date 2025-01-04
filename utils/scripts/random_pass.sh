@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w "$1" | head -n 1
+tr < /dev/urandom -dc 'a-zA-Z0-9' | fold -w "$1" | head -n 1

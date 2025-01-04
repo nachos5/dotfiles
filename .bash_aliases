@@ -6,8 +6,8 @@ alias c="clear"
 alias ducks="sudo du -hsx * | sort -rh | head -20"
 alias echopath='echo $PATH | tr : "\n"'
 portarg() {
-	sudo lsof -i:"$1"
-	sudo lsof -tnP -i:"$1" | xargs -n 1 ps -p
+    sudo lsof -i:"$1"
+    sudo lsof -tnP -i:"$1" | xargs -n 1 ps -p
 }
 alias bash_source='source ~/.bashrc'
 alias alias_source='source ~/.bash_aliases'
@@ -24,7 +24,7 @@ alias aptlist='apt list --installed'
 alias os_info_all='lsb_release -a'
 alias os_info_version_codename='lsb_release -cs'
 ubuntu_codename() {
-	grep "UBUNTU_CODENAME" /etc/os-release | cut -d "=" -f2
+    grep "UBUNTU_CODENAME" /etc/os-release | cut -d "=" -f2
 }
 alias systemgraphics='inxi -G'
 alias increase_file_limit='ulimit -n 4096'
@@ -42,29 +42,29 @@ alias composedown='docker compose -f compose-local.yml down'
 
 # python
 function python() {
-	if [[ -z "${VIRTUAL_ENV}" ]]; then
-		python3.11 "$@"
-	else
-		"${VIRTUAL_ENV}/bin/python" "$@"
-	fi
+    if [[ -z "${VIRTUAL_ENV}" ]]; then
+        python3.11 "$@"
+    else
+        "${VIRTUAL_ENV}/bin/python" "$@"
+    fi
 }
 
 function pip() {
-	if [[ -z "${VIRTUAL_ENV}" ]]; then
-		pip3.11 "$@"
-	else
-		"${VIRTUAL_ENV}/bin/pip" "$@"
-	fi
+    if [[ -z "${VIRTUAL_ENV}" ]]; then
+        pip3.11 "$@"
+    else
+        "${VIRTUAL_ENV}/bin/pip" "$@"
+    fi
 }
 
 if [ -z "${VENV_PATH}" ]; then
-	export VENV_PATH=.venv
+    export VENV_PATH=.venv
 fi
 
 alias envpy='source ./${VENV_PATH}/bin/activate'
 alias envpy_no_error='source ./${VENV_PATH}/bin/activate 2>/dev/null || true'
 djangodocker() {
-	docker compose -f compose-local.yml run --rm django "$@"
+    docker compose -f compose-local.yml run --rm django "$@"
 }
 alias dshell='djangodocker python manage.py shell_plus'
 alias dmigrations='djangodocker python manage.py makemigrations'
@@ -115,8 +115,8 @@ alias flame='flameshot gui --clipboard --pin --path ~/Pictures'
 
 # paste rs
 function pasters() {
-	local file=${1:-/dev/stdin}
-	curl --data-binary @"${file}" https://paste.rs
+    local file=${1:-/dev/stdin}
+    curl --data-binary @"${file}" https://paste.rs
 }
 
 # terraform
@@ -136,28 +136,28 @@ alias qpwgraph='~/utils/scripts/qpwgraph.sh'
 alias my_public_ip_info='curl -s https://www.ipinfo.io | jq'
 alias ip_leak='curl -s https://ipleak.net/json/ | jq'
 function urlencode() {
-	local param="$1"
-	param=$(echo "$param" | jq -s -R -r @uri)
-	echo "$param"
+    local param="$1"
+    param=$(echo "$param" | jq -s -R -r @uri)
+    echo "$param"
 }
 function dns_records() {
-	domain=$1
-	for type in A AAAA CNAME MX NS SOA TXT; do
-		echo "Querying for $type:"
-		dig +short "$domain" $type
-		echo ""
-	done
+    domain=$1
+    for type in A AAAA CNAME MX NS SOA TXT; do
+        echo "Querying for $type:"
+        dig +short "$domain" $type
+        echo ""
+    done
 }
 
 # compositor
 checkcomp() {
-	pgrep xcompmgr &>/dev/null
+    pgrep xcompmgr &> /dev/null
 }
 stopcomp() {
-	checkcomp && killall xcompmgr
+    checkcomp && killall xcompmgr
 }
 startcomp() {
-	stopcomp
-	xcompmgr -c &
-	exit
+    stopcomp
+    xcompmgr -c &
+    exit
 }
