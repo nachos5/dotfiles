@@ -29,28 +29,34 @@ ln -sf "${DOTFILES}/starship.toml" ~/.config/starship.toml
 sudo ln -sf "${DOTFILES}/xkb/is_custom" /usr/share/X11/xkb/symbols/is_custom
 
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
-	echo "if [ -f ~/.bashrc ]; then" >>~/.bash_profile
-	echo "  . ~/.bashrc" >>~/.bash_profile
-	echo "fi" >>~/.bash_profile
+    {
+        echo "if [ -f ~/.bashrc ]; then"
+        echo "  . ~/.bashrc"
+        echo "fi"
+    } >> ~/.bash_profile
 fi
 
 if ! grep -q "if \[ -f ~/.bash_aliases \]; then" ~/.bashrc; then
-	echo "if [ -f ~/.bash_aliases ]; then" >>~/.bashrc
-	echo "  . ~/.bash_aliases" >>~/.bashrc
-	echo "fi" >>~/.bashrc
+    {
+        echo "if [ -f ~/.bash_aliases ]; then"
+        echo "  . ~/.bash_aliases"
+        echo "fi"
+    } >> ~/.bashrc
 fi
 
 if ! grep -q "if \[ -f ~/.bash_stuff \]; then" ~/.bashrc; then
-	echo "if [ -f ~/.bash_stuff ]; then" >>~/.bashrc
-	echo "  . ~/.bash_stuff" >>~/.bashrc
-	echo "fi" >>~/.bashrc
+    {
+        echo "if [ -f ~/.bash_stuff ]; then"
+        echo "  . ~/.bash_stuff"
+        echo "fi"
+    } >> ~/.bashrc
 fi
 
 if ! grep -q "export EDITOR=nvim" ~/.bashrc; then
-	echo "export EDITOR=nvim" >>~/.bashrc
+    echo "export EDITOR=nvim" >> ~/.bashrc
 fi
 
 if ! grep -q "# set PS1" ~/.bashrc; then
-	echo "# set PS1" >>~/.bashrc
-	echo "PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >>~/.bashrc
+    echo "# set PS1" >> ~/.bashrc
+    echo "PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
 fi

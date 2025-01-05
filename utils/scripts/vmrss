@@ -2,8 +2,8 @@
 
 # Check if PID is provided
 if [ $# -eq 0 ]; then
-	echo "Usage: $0 <PID>"
-	exit 1
+    echo "Usage: $0 <PID>"
+    exit 1
 fi
 
 PID=$1
@@ -11,12 +11,12 @@ STATUS_FILE="/proc/$PID/status"
 
 # Check if the process exists
 if [ ! -f "$STATUS_FILE" ]; then
-	echo "Process with PID $PID not found."
-	exit 2
+    echo "Process with PID $PID not found."
+    exit 2
 fi
 
 # Extract VmRSS and convert to MB
-VMRSS_KB=$(grep 'VmRSS' $STATUS_FILE | awk '{print $2}')
-VMRSS_MB=$(bc <<<"scale=2; $VMRSS_KB / 1024")
+VMRSS_KB=$(grep 'VmRSS' "$STATUS_FILE" | awk '{print $2}')
+VMRSS_MB=$(bc <<< "scale=2; $VMRSS_KB / 1024")
 
 echo "VmRSS for PID $PID: $VMRSS_MB MB"

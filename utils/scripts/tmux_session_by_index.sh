@@ -4,8 +4,8 @@ index=$1
 
 # Check if index is an integer
 if ! [[ $index =~ ^[0-9]+$ ]]; then
-	echo "Error: index must be a non-negative integer."
-	exit 1
+    echo "Error: index must be a non-negative integer."
+    exit 1
 fi
 
 # Get total number of sessions
@@ -13,8 +13,8 @@ total_sessions=$(tmux list-sessions | wc -l)
 
 # Check if index is within the range of total sessions
 if ((index >= total_sessions || index < 0)); then
-	echo "Error: index is out of range."
-	exit 1
+    echo "Error: index is out of range."
+    exit 1
 fi
 
 # Adjust index to start from 1 for head command

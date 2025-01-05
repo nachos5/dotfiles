@@ -16,7 +16,7 @@ if [ ! -f "$STATUS_FILE" ]; then
 fi
 
 # Extract VmSize and convert to MB
-VMSIZE_KB=$(grep 'VmSize' $STATUS_FILE | awk '{print $2}')
+VMSIZE_KB=$(grep 'VmSize' "$STATUS_FILE" | awk '{print $2}')
 VMSIZE_MB=$(bc <<< "scale=2; $VMSIZE_KB / 1024")
 
 echo "VmSize for PID $PID: $VMSIZE_MB MB"

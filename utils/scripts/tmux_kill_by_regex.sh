@@ -10,5 +10,5 @@ filtered_sessions=$(echo "$sessions" | grep -E "$pattern")
 
 # Kill the filtered sessions
 for session_name in $filtered_sessions; do
-	tmux kill-session -t "$session_name"
+    tmux kill-session -t "$session_name"
 done

@@ -32,15 +32,12 @@ return {
 
     local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
     if not lspconfig_status_ok then
-      vim.notify("Couldn't load LSP-Config" .. lspconfig, "error")
+      vim.notify("Couldn't load LSP-Config" .. lspconfig, vim.log.levels.ERROR)
       return
     end
 
     local ts_on_attach = function(client, bufnr)
-      local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-      end
-      buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+      vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
       vim.keymap.set("n", "<Leader>es", ":EslintFix<CR>", { buffer = bufnr, silent = true })
       require("lsp").on_attach(client, bufnr)
     end
@@ -82,7 +79,7 @@ return {
       ["ts_ls"] = function()
         lspconfig.ts_ls.setup({
           on_attach = ts_on_attach,
-          server_capabilities = {
+          capabilities = {
             documentFormattingProvider = false,
           },
           init_options = {

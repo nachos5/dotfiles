@@ -24,7 +24,7 @@ return {
       ]])
 
     -- Load all snippets
-    require("luasnip.loaders.from_lua").load({ paths = "~/utils/nvim/lua/snippets" })
+    require("luasnip.loaders.from_lua").load({ paths = { "~/utils/nvim/lua/snippets" } })
 
     vim.keymap.set({ "i", "s" }, "<C-down>", function()
       ls.jump(1)

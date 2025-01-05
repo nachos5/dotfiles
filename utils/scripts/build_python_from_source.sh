@@ -7,8 +7,8 @@
 version=$1
 
 if [[ -z "$version" ]]; then
-	echo "Please specify a version to build."
-	exit 1
+    echo "Please specify a version to build."
+    exit 1
 fi
 
 cd /tmp/ || exit
