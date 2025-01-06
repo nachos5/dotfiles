@@ -47,5 +47,47 @@ return {
       end
     end
     vim.api.nvim_create_user_command("Z", oil_z, { nargs = 1 })
+
+    -- ############# --
+    -- ### NOTES ### --
+    -- ############# --
+
+    -- Open global notes.
+    vim.keymap.set("n", "<leader>mm", function()
+      require("oil").open("/home/gulli/github/notes/tree/global")
+    end, { desc = "Open global notes" })
+    -- Open local (project) notes.
+
+    -- Telescope grep.
+    vim.keymap.set(
+      "n",
+      "<leader>mG",
+      "<cmd>lua require('plugins/telescope/custom_rg')({ cwd = '/home/gulli/github/notes/tree/global' })<CR>"
+    )
+    if vim.env.NOTES_PROJECT_NAME ~= nil then
+      vim.keymap.set(
+        "n",
+        "<leader>mg",
+        "<cmd>lua require('plugins/telescope/custom_rg')({ cwd = '/home/gulli/github/notes/tree/"
+          .. vim.env.NOTES_PROJECT_NAME
+          .. "' })<CR>"
+      )
+    end
+
+    -- Telescope find files.
+    vim.keymap.set(
+      "n",
+      "<leader>mS",
+      "<cmd>lua require('telescope.builtin').find_files({ shorten_path = true, cwd = '/home/gulli/github/notes/tree/global' })<CR>"
+    )
+    if vim.env.NOTES_PROJECT_NAME ~= nil then
+      vim.keymap.set(
+        "n",
+        "<leader>ms",
+        "<cmd>lua require('telescope.builtin').find_files({ shorten_path = true, cwd = '/home/gulli/github/notes/tree/"
+          .. vim.env.NOTES_PROJECT_NAME
+          .. "' })<CR>"
+      )
+    end
   end,
 }

@@ -100,7 +100,7 @@ require("lazy").setup({
   require("plugins/scnvim"),
 
   -- notes
-  require("plugins/mind"),
+  -- require("plugins/mind"),
 
   -- colors
   require("plugins/ccc"),
