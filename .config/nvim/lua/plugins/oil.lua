@@ -56,7 +56,12 @@ return {
     vim.keymap.set("n", "<leader>mm", function()
       require("oil").open("/home/gulli/github/notes/tree/global")
     end, { desc = "Open global notes" })
-    -- Open local (project) notes.
+    if vim.env.NOTES_PROJECT_NAME ~= nil then
+      -- Open local (project) notes.
+      vim.keymap.set("n", "<leader>mp", function()
+        require("oil").open("/home/gulli/github/notes/tree/" .. vim.env.NOTES_PROJECT_NAME)
+      end, { desc = "Open global notes" })
+    end
 
     -- Telescope grep.
     vim.keymap.set(
