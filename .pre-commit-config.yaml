@@ -34,7 +34,7 @@ repos:
     rev: 3.0.0
     hooks:
       - id: script-must-have-extension
-        exclude: '^\.bash_aliases$'
+        exclude: '^(\.bash_aliases|\.envrc)$'
       - id: shellcheck
         exclude: '^\.bash_aliases$'
       - id: shfmt

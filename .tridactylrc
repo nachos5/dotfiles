@@ -4,6 +4,8 @@
 " https://gist.github.com/BurntSushi/393546a65db38d57cedcfd72c6d89bf3
 " https://github.com/noctuid/dotfiles/blob/master/browsing/.config/tridactyl/tridactylrc
 
+" :source - reload config.
+
 " This wipes all existing settings. This means that if a setting in this file
 " is removed, then it will return to default. In other words, this file serves
 " as an enforced single point of truth for Tridactyl's configuration.

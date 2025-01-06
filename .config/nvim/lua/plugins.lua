@@ -50,12 +50,15 @@ require("lazy").setup({
   },
   require("plugins/orphans"),
 
-  -- terminal + navigation
+  -- navigation terminal + navigation
   require("plugins/nvim-tree"),
   require("plugins/oil"),
-  require("plugins/toggleterm"),
   "christoomey/vim-tmux-navigator",
   require("plugins/harpoon"),
+
+  -- terminal
+  require("plugins/toggleterm"),
+  require("plugins/term_edit"),
 
   -- telescope
   require("plugins/telescope"),

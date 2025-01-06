@@ -331,6 +331,10 @@
     "branch": "master",
     "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026"
   },
+  "term-edit.nvim": {
+    "branch": "master",
+    "commit": "b190a91178ef98beefac2ec0823db047978ea327"
+  },
   "toggleterm.nvim": {
     "branch": "main",
     "commit": "022ff5594acccc8d90d2e46dc43994f7722ebdf7"
