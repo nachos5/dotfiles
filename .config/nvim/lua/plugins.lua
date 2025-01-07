@@ -30,6 +30,9 @@ require("lazy").setup({
   "gruvbox-community/gruvbox",
   require("plugins/tokyonight"),
 
+  -- env, project management etc.
+  require("plugins/neoscopes/neoscopes"),
+
   -- various / utils / uncategorized
   require("plugins/autopairs"),
   "windwp/nvim-ts-autotag",
@@ -50,7 +53,7 @@ require("lazy").setup({
   },
   require("plugins/orphans"),
 
-  -- navigation terminal + navigation
+  -- navigation
   require("plugins/nvim-tree"),
   require("plugins/oil"),
   "christoomey/vim-tmux-navigator",
