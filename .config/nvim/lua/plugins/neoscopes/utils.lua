@@ -25,7 +25,7 @@ end
 ---@return string[]|nil dirs
 function M.get_scope_dirs()
   local dirs = nil
-  if scopes.get_current_scope() then
+  if M.get_current_scope() then
     dirs = scopes.get_current_dirs()
   end
 
