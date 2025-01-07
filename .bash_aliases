@@ -161,3 +161,6 @@ startcomp() {
     xcompmgr -c &
     exit
 }
+
+# env
+alias da='direnv allow'

@@ -19,6 +19,7 @@ local config = {
     fallback = false,
   },
 }
+-- function to require a plugin
 
 require("lazy").setup({
   -- core
