@@ -22,6 +22,7 @@ local function replace_placeholders(content, env_vars)
   return content
 end
 
+-- TODO: don't have to save file/buffer.
 M.get_env_vars = function()
   local buffer_path = utils.get_current_buffer_path()
   if not buffer_path then
