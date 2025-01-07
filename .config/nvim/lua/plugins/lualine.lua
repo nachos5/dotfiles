@@ -15,9 +15,9 @@ return {
     end
 
     local function scope()
-      local scopes = require("neoscopes")
-      if scopes.get_current_scope() then
-        return "scope: " .. scopes.get_current_scope().name
+      local current_scope = require("plugins/neoscopes/utils").get_current_scope()
+      if current_scope then
+        return "scope: " .. current_scope.name
       else
         return ""
       end

@@ -1,8 +1,12 @@
 return {
   "smartpde/neoscopes",
   dependencies = { "nvim-telescope/telescope.nvim" },
-  keys = {
-    { "<leader>ss", "<cmd>lua require('neoscopes').select()<CR>" },
-    { "<leader>sc", "<cmd>lua require('neoscopes').clear()<CR>" },
-  },
+  keys = function()
+    local scopes = require("neoscopes")
+    local utils = require("plugins/neoscopes/utils")
+    return {
+      { "<leader>ss", scopes.select },
+      { "<leader>si", utils.toggle_ignore_scopes },
+    }
+  end,
 }
