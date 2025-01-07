@@ -69,7 +69,18 @@ local custom_rg = function(opts)
           "--hidden",
         },
       })
+
+      -- Add search_dirs if provided
+      if opts.search_dirs and #opts.search_dirs > 0 then
+        for _, path in ipairs(opts.search_dirs) do
+          table.insert(final_prompt, path)
+        end
+      else
+        table.insert(final_prompt, opts.cwd)
+      end
+
       -- print(require("utils").dump(final_prompt))
+      --
       return final_prompt
     end,
     entry_maker = make_entry.gen_from_vimgrep(opts),

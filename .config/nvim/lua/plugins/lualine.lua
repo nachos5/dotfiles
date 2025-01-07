@@ -14,10 +14,19 @@ return {
       end
     end
 
+    local function scope()
+      local current_scope = require("plugins/neoscopes/utils").get_current_scope()
+      if current_scope then
+        return "scope: " .. current_scope.name
+      else
+        return ""
+      end
+    end
+
     require("lualine").setup({
       sections = {
         lualine_b = { "branch", "diff", "diagnostics", "FugitiveHead" },
-        lualine_c = { "filename", scstatus },
+        lualine_c = { "filename", scstatus, scope },
       },
       extensions = { "nvim-tree", "toggleterm" },
     })

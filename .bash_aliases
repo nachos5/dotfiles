@@ -43,7 +43,7 @@ alias composedown='docker compose -f compose-local.yml down'
 # python
 function python() {
     if [[ -z "${VIRTUAL_ENV}" ]]; then
-        python3.11 "$@"
+        /opt/python/3.12.2/bin/python3.12 "$@"
     else
         "${VIRTUAL_ENV}/bin/python" "$@"
     fi
@@ -51,7 +51,7 @@ function python() {
 
 function pip() {
     if [[ -z "${VIRTUAL_ENV}" ]]; then
-        pip3.11 "$@"
+        /opt/python/3.12.2/bin/pip3.12 "$@"
     else
         "${VIRTUAL_ENV}/bin/pip" "$@"
     fi
@@ -161,3 +161,6 @@ startcomp() {
     xcompmgr -c &
     exit
 }
+
+# env
+alias da='direnv allow'

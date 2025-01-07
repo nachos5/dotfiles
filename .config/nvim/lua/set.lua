@@ -23,7 +23,16 @@ vim.opt.list = true
 vim.opt.listchars:append("tab:-->")
 vim.opt.listchars:append("trail:~")
 
-vim.opt.fillchars:append("vert:\\")
+-- Set custom window separators.
+vim.opt.fillchars = {
+  horiz = "━",
+  horizup = "┻",
+  horizdown = "┳",
+  vert = "┃",
+  vertleft = "┫",
+  vertright = "┣",
+  verthoriz = "╋",
+}
 
 vim.opt.wrap = true
 vim.opt.breakindent = true
