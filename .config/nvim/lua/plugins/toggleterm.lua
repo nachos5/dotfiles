@@ -1,6 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  lazy = false,
   keys = {
     { "<leader><C-t>", desc = "Toggle terminal" },
     { "<leader><C-f>", "<cmd>lua floating_toggle()<CR>", mode = { "n", "t" }, desc = "Toggle floating terminal" },
