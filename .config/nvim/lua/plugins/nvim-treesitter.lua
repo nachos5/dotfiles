@@ -20,10 +20,8 @@ return {
           enable = true,
           disable = { "help" },
         },
-        autotag = {
-          enable = true,
-        },
       })
+      require("nvim-ts-autotag").setup()
 
       -- This module contains a number of default definitions
       local rainbow_delimiters = require("rainbow-delimiters")

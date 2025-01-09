@@ -5,16 +5,21 @@ local M = {}
 
 function M.dump(o)
   if type(o) == "table" then
-    local s = "{ "
+    local s = "{\n"
     for k, v in pairs(o) do
       if type(k) ~= "number" then
         k = '"' .. k .. '"'
       end
-      s = s .. "[" .. k .. "] = " .. M.dump(v) .. ","
+      local value = v == nil and "nil" or M.dump(v)
+      s = s .. "  [" .. k .. "] = " .. value .. ",\n"
     end
-    return s .. "} "
+    return s .. "}"
   else
-    return tostring(o)
+    if type(o) == "string" then
+      return '"' .. tostring(o) .. '"'
+    else
+      return tostring(o)
+    end
   end
 end
 

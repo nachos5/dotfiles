@@ -1,6 +1,5 @@
 return {
   "github/copilot.vim",
-  -- enabled = vim.env.COPILOT_ENABLED == "1",
   event = "VeryLazy",
   config = function()
     local nnoremap = require("keymap").nnoremap

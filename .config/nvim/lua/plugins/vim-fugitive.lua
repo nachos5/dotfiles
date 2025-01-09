@@ -5,7 +5,7 @@ return {
     "tpope/vim-rhubarb",
   },
   config = function()
-    local default_branch_name = vim.env.GIT_DEFAULT_BRANCH and vim.env.GIT_DEFAULT_BRANCH or "master"
+    local default_branch_name = vim.g.MY_CONFIG.GIT_DEFAULT_BRANCH
 
     local nnoremap = require("keymap").nnoremap
     local shared_opts = { silent = true }

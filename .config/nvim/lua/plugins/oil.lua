@@ -2,7 +2,9 @@ return {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    require("oil").setup({
+    local oil = require("oil")
+
+    oil.setup({
       columns = { "icon" },
       default_file_explorer = true,
       delete_to_trash = true,
@@ -27,13 +29,13 @@ return {
     -- vim.keymap.set(
     --   "n",
     --   "<leader>-",
-    --   require("oil").toggle_float,
+    --   oil.toggle_float,
     --   { desc = "Open parent directory in a floating window" }
     -- )
 
     -- Open CWD in current window.
     vim.keymap.set("n", "<leader>-", function()
-      require("oil").open(vim.fn.getcwd())
+      oil.open(vim.fn.getcwd())
     end, { desc = "Open root directory" })
 
     local function oil_z(args)
@@ -43,7 +45,7 @@ return {
       if handle then
         local result = handle:read("*a") -- Read the complete output of the command.
         handle:close()
-        require("oil").open(vim.fn.trim(result))
+        oil.open(vim.fn.trim(result))
       end
     end
     vim.api.nvim_create_user_command("Z", oil_z, { nargs = 1 })
@@ -52,14 +54,23 @@ return {
     -- ### NOTES ### --
     -- ############# --
 
+    local function set_created_asc_sort()
+      oil.set_sort({
+        { "type", "asc" },
+        { "ctime", "asc" },
+      })
+    end
+
     -- Open global notes.
     vim.keymap.set("n", "<leader>mm", function()
-      require("oil").open("/home/gulli/github/notes/tree/global")
+      oil.open("/home/gulli/github/notes/tree/global")
+      set_created_asc_sort()
     end, { desc = "Open global notes" })
-    if vim.env.NOTES_PROJECT_NAME ~= nil then
+    if vim.g.MY_CONFIG.NOTES_PROJECT_NAME ~= nil then
       -- Open local (project) notes.
       vim.keymap.set("n", "<leader>mp", function()
-        require("oil").open("/home/gulli/github/notes/tree/" .. vim.env.NOTES_PROJECT_NAME)
+        oil.open("/home/gulli/github/notes/tree/" .. vim.g.MY_CONFIG.NOTES_PROJECT_NAME)
+        set_created_asc_sort()
       end, { desc = "Open global notes" })
     end
 
@@ -69,12 +80,12 @@ return {
       "<leader>mG",
       "<cmd>lua require('plugins/telescope/custom_rg')({ cwd = '/home/gulli/github/notes/tree/global' })<CR>"
     )
-    if vim.env.NOTES_PROJECT_NAME ~= nil then
+    if vim.g.MY_CONFIG.NOTES_PROJECT_NAME ~= nil then
       vim.keymap.set(
         "n",
         "<leader>mg",
         "<cmd>lua require('plugins/telescope/custom_rg')({ cwd = '/home/gulli/github/notes/tree/"
-          .. vim.env.NOTES_PROJECT_NAME
+          .. vim.g.MY_CONFIG.NOTES_PROJECT_NAME
           .. "' })<CR>"
       )
     end
@@ -85,12 +96,12 @@ return {
       "<leader>mS",
       "<cmd>lua require('telescope.builtin').find_files({ shorten_path = true, cwd = '/home/gulli/github/notes/tree/global' })<CR>"
     )
-    if vim.env.NOTES_PROJECT_NAME ~= nil then
+    if vim.g.MY_CONFIG.NOTES_PROJECT_NAME ~= nil then
       vim.keymap.set(
         "n",
         "<leader>ms",
         "<cmd>lua require('telescope.builtin').find_files({ shorten_path = true, cwd = '/home/gulli/github/notes/tree/"
-          .. vim.env.NOTES_PROJECT_NAME
+          .. vim.g.MY_CONFIG.NOTES_PROJECT_NAME
           .. "' })<CR>"
       )
     end

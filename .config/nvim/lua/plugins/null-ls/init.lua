@@ -11,11 +11,11 @@ return {
       return
     end
 
-    local function has_file(file)
-      return function(_utils)
-        return _utils.root_has_file(file)
-      end
-    end
+    -- local function has_file(file)
+    --   return function(_utils)
+    --     return _utils.root_has_file(file)
+    --   end
+    -- end
 
     local function check_for(paths)
       return function(_)
@@ -34,7 +34,7 @@ return {
     local diagnostics = null_ls.builtins.diagnostics
 
     -- relative path
-    local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
+    local venv_path = vim.g.MY_CONFIG.VENV_PATH and vim.g.MY_CONFIG.VENV_PATH or "env"
 
     local black_pairs = {
       ["pyproject.toml"] = "tool.black",
@@ -145,7 +145,7 @@ return {
     }
 
     -- Add slow diagnostic sources if not disabled.
-    if vim.env.DISABLE_SLOW_SOURCES == nil then
+    if not vim.g.MY_CONFIG.DISABLE_SLOW_SOURCES then
       local slow_sources = {
         -- python
         diagnostics.pylint.with(pylint_config),
@@ -158,7 +158,7 @@ return {
     end
 
     -- Add formatting sources if not disabled.
-    if vim.env.DISABLE_FORMATTING == nil then
+    if not vim.g.MY_CONFIG.DISABLE_FORMATTING then
       local formatting_sources = {
         -- python
         formatting.black.with(black_config),
@@ -199,7 +199,7 @@ return {
       end
 
       -- prettier
-      if vim.env.DISABLE_PRETTIER == nil then
+      if not vim.g.MY_CONFIG.DISABLE_PRETTIER then
         table.insert(
           sources,
           formatting.prettier.with({
@@ -234,7 +234,7 @@ return {
     end
 
     null_ls.setup({
-      debug = vim.env.NULL_LS_DEBUG ~= nil,
+      debug = vim.g.MY_CONFIG.NULL_LS_DEBUG ~= nil,
       -- update_in_insert = true,
       on_attach = _on_attach,
       sources = sources,

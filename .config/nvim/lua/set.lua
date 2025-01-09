@@ -66,11 +66,11 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
 local function get_python_path()
-  local venv = vim.env.VIRTUAL_ENV
+  local venv = vim.g.MY_CONFIG.VIRTUAL_ENV
   if venv then
     return venv .. "/bin/python"
   else
-    return "/opt/python/3.11.2/bin/python3.11"
+    return "/opt/python/3.12.2/bin/python3.12"
   end
 end
 

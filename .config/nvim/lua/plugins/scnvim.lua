@@ -34,7 +34,7 @@ return {
     -- K - help
     -- g] - go to definition
 
-    local cmd = vim.env.HOME .. "/utils/scripts/sclang"
+    local cmd = vim.g.OS_HOME .. "/utils/scripts/sclang"
     if vim.g.IS_WINDOWS then
       cmd = "C:\\Documents\\SuperCollider-3.13.0\\sclang.exe"
     end
