@@ -55,6 +55,7 @@ require("lazy").setup({
     "LunarVim/bigfile.nvim",
   },
   require("plugins/orphans"),
+  require("plugins/translate"),
 
   -- navigation
   require("plugins/nvim-tree"),
