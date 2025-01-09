@@ -7,6 +7,6 @@ return {
     -- <leader>cx - ClaudeCancel
     -- visual <leader>ci - ClaudeImplement
 
-    vim.g.claude_api_key = vim.g.CLAUDE_API_KEY
+    vim.g.claude_api_key = vim.g.MY_CONFIG.CLAUDE_API_KEY
   end,
 }
