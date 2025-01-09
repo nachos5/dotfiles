@@ -47,7 +47,7 @@ return {
       },
     }
 
-    local remote_root = vim.env.DAP_REMOTE_ROOT
+    local remote_root = vim.g.MY_CONFIG.DAP_REMOTE_ROOT
     if remote_root then
       python_attach_remote_config.pathMappings = {
         {

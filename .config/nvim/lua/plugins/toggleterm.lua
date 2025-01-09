@@ -28,7 +28,7 @@ return {
 
     -- #### LAZYGIT TERMINAL #### --
 
-    local venv_path = vim.env.VENV_PATH and vim.env.VENV_PATH or "env"
+    local venv_path = vim.g.MY_CONFIG.VENV_PATH and vim.g.MY_CONFIG.VENV_PATH or "env"
     local env_pre_cmd = "source ./" .. venv_path .. "/bin/activate || true"
     local lg_pre_cmd = "(" .. env_pre_cmd .. ") && "
     local lg_cmd = lg_pre_cmd .. "lazygit -p $(pwd)"
