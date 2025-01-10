@@ -66,7 +66,7 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
 local function get_python_path()
-  local venv = vim.g.MY_CONFIG.VIRTUAL_ENV
+  local venv = require("env").config.VIRTUAL_ENV
   if venv then
     return venv .. "/bin/python"
   else

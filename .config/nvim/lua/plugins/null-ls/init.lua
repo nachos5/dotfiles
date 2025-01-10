@@ -3,6 +3,7 @@ return {
   config = function()
     require("project")
     local utils = require("utils")
+    local env = require("env")
 
     -- :NullLsInfo
 
@@ -34,7 +35,7 @@ return {
     local diagnostics = null_ls.builtins.diagnostics
 
     -- relative path
-    local venv_path = vim.g.MY_CONFIG.VENV_PATH and vim.g.MY_CONFIG.VENV_PATH or "env"
+    local venv_path = env.config.VENV_PATH and env.config.VENV_PATH or "env"
 
     local black_pairs = {
       ["pyproject.toml"] = "tool.black",
@@ -145,7 +146,7 @@ return {
     }
 
     -- Add slow diagnostic sources if not disabled.
-    if not vim.g.MY_CONFIG.DISABLE_SLOW_SOURCES then
+    if not env.config.DISABLE_SLOW_SOURCES then
       local slow_sources = {
         -- python
         diagnostics.pylint.with(pylint_config),
@@ -158,7 +159,7 @@ return {
     end
 
     -- Add formatting sources if not disabled.
-    if not vim.g.MY_CONFIG.DISABLE_FORMATTING then
+    if not env.config.DISABLE_FORMATTING then
       local formatting_sources = {
         -- python
         formatting.black.with(black_config),
@@ -199,7 +200,7 @@ return {
       end
 
       -- prettier
-      if not vim.g.MY_CONFIG.DISABLE_PRETTIER then
+      if not env.config.DISABLE_PRETTIER then
         table.insert(
           sources,
           formatting.prettier.with({
@@ -234,7 +235,7 @@ return {
     end
 
     null_ls.setup({
-      debug = vim.g.MY_CONFIG.NULL_LS_DEBUG ~= nil,
+      debug = env.config.NULL_LS_DEBUG ~= nil,
       -- update_in_insert = true,
       on_attach = _on_attach,
       sources = sources,

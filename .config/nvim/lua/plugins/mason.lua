@@ -62,7 +62,7 @@ return {
               autoImportCompletion = true,
             },
             python = {
-              analysis = vim.g.MY_CONFIG.PYRIGHT_OPEN_FILES_ONLY and {
+              analysis = require("env").config.PYRIGHT_OPEN_FILES_ONLY and {
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
                 useLibraryCodeForTypes = true,
@@ -70,7 +70,7 @@ return {
               } or {},
             },
           },
-          handlers = vim.g.MY_CONFIG.PYRIGHT_DISABLE_DIAGNOSTICS and {
+          handlers = require("env").config.PYRIGHT_DISABLE_DIAGNOSTICS and {
             ["textDocument/publishDiagnostics"] = function() end,
           } or nil,
         })
