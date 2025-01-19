@@ -45,7 +45,6 @@ require("lazy").setup({
   require("plugins/trim"),
   require("plugins/live_command"),
   require("plugins/neoscroll"),
-  require("plugins/refactoring"),
   require("plugins/help_vsplit"),
   require("plugins/mini"),
   require("plugins/precognition"),
@@ -56,6 +55,10 @@ require("lazy").setup({
   },
   require("plugins/orphans"),
   require("plugins/translate"),
+
+  -- refactoring
+  require("plugins/refactoring"),
+  require("plugins/replacer"),
 
   -- navigation
   require("plugins/nvim-tree"),

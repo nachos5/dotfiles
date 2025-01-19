@@ -5,6 +5,7 @@ M.config = {
   VIRTUAL_ENV = vim.env.VIRTUAL_ENV,
   VENV_PATH = vim.env.VENV_PATH,
   -- Null-ls.
+  DISABLE_NULL_LS = vim.env.DISABLE_NULL_LS == "1",
   DISABLE_SLOW_SOURCES = vim.env.DISABLE_SLOW_SOURCES == "1",
   DISABLE_FORMATTING = vim.env.DISABLE_FORMATTING == "1",
   DISABLE_PRETTIER = vim.env.DISABLE_PRETTIER == "1",

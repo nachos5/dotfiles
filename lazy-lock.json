@@ -291,6 +291,10 @@
     "branch": "main",
     "commit": "bab0663ecdb06b0ff846969764d6c67719ab0fcb"
   },
+  "replacer.nvim": {
+    "branch": "master",
+    "commit": "32e1713230844fa52f7f0598c59295de3c90dc95"
+  },
   "rust-tools.nvim": {
     "branch": "master",
     "commit": "676187908a1ce35ffcd727c654ed68d851299d3e"

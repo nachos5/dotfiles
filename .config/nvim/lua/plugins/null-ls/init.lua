@@ -234,6 +234,10 @@ return {
       require("lsp").on_attach(client, bufnr, true)
     end
 
+    if env.config.DISABLE_NULL_LS then
+      return
+    end
+
     null_ls.setup({
       debug = env.config.NULL_LS_DEBUG ~= nil,
       -- update_in_insert = true,
