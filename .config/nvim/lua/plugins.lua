@@ -97,7 +97,6 @@ require("lazy").setup({
   require("plugins/null-ls/init"),
   require("plugins/emmet"),
   -- lsp addons
-  -- "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   "lvimuser/lsp-inlayhints.nvim",
 
@@ -114,10 +113,6 @@ require("lazy").setup({
 
   -- colors
   require("plugins/ccc"),
-
-  -- comments
-  require("plugins/comment"),
-  "JoosepAlviste/nvim-ts-context-commentstring",
 
   -- python
   {

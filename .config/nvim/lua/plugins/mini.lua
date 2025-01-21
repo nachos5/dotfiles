@@ -1,6 +1,10 @@
 return {
   "echasnovski/mini.nvim",
   version = false,
+  lazy = false,
+  dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
   config = function()
     -- ga=
     require("mini.align").setup()
@@ -8,6 +12,18 @@ return {
     require("mini.ai").setup()
 
     require("mini.bufremove").setup()
+
+    require("mini.comment").setup({
+      options = {
+        ignore_blank_line = true,
+        custom_commentstring = function()
+          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    })
+
+    -- gS
+    require("mini.splitjoin").setup()
 
     require("mini.surround").setup({
       mappings = {
@@ -23,8 +39,5 @@ return {
         suffix_next = "n", -- Suffix to search with "next" method
       },
     })
-
-    -- gS
-    require("mini.splitjoin").setup()
   end,
 }

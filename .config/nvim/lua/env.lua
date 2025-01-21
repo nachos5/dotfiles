@@ -15,6 +15,8 @@ M.config = {
   PYRIGHT_DISABLE_DIAGNOSTICS = vim.env.PYRIGHT_DISABLE_DIAGNOSTICS == "1",
   -- Git.
   GIT_DEFAULT_BRANCH = vim.env.GIT_DEFAULT_BRANCH and vim.env.GIT_DEFAULT_BRANCH or "master",
+  -- gf.
+  GF_PREFIXES_TO_CHECK = vim.env.GF_PREFIXES_TO_CHECK and vim.split(vim.env.GF_PREFIXES_TO_CHECK, ",") or {},
   -- Other.
   IS_COLEMAK = vim.env.IS_COLEMAK == "1",
   CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY,

@@ -4,8 +4,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = "VeryLazy",
-    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    branch = "main",
+    lazy = false,
     enabled = function() -- Disable in files with more than 5000 lines.
       return vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf()) <= 5000
     end,
@@ -45,19 +45,6 @@ return {
           "RainbowDelimiterCyan",
         },
       }
-
-      require("vim.treesitter.query").set(
-        "python",
-        "injections",
-        [[
-      (call
-        function: (identifier) @_function (#eq? @_function "SQL")
-
-        (argument_list
-
-        (string) @sql))
-      ]]
-      )
     end,
   },
 
