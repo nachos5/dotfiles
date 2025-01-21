@@ -36,7 +36,4 @@ hi tsxAttrib guifg=#F8BD7F cterm=italic
 " Octo
 hi OctoEditable guibg=#222222 cterm=italic
 
-" Mind
-highlight! link MindModifierEmpty String
-
 ]])

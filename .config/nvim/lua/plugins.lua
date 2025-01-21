@@ -108,9 +108,6 @@ require("lazy").setup({
   -- supercollider
   require("plugins/scnvim"),
 
-  -- notes
-  -- require("plugins/mind"),
-
   -- colors
   require("plugins/ccc"),
 
