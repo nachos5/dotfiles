@@ -55,23 +55,23 @@ return {
     -- ### NOTES ### --
     -- ############# --
 
-    local function set_created_asc_sort()
+    local function set_notes_sort()
       oil.set_sort({
         { "type", "asc" },
-        { "ctime", "asc" },
+        { "ctime", "desc" },
       })
     end
 
     -- Open global notes.
     vim.keymap.set("n", "<leader>mm", function()
       oil.open("/home/gulli/github/notes/tree/global")
-      set_created_asc_sort()
+      set_notes_sort()
     end, { desc = "Open global notes" })
     if env.config.NOTES_PROJECT_NAME ~= nil then
       -- Open local (project) notes.
       vim.keymap.set("n", "<leader>mp", function()
         oil.open("/home/gulli/github/notes/tree/" .. env.config.NOTES_PROJECT_NAME)
-        set_created_asc_sort()
+        set_notes_sort()
       end, { desc = "Open global notes" })
     end
 
