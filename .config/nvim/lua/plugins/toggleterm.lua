@@ -4,10 +4,15 @@ return {
   lazy = false,
   keys = {
     { "<leader><C-t>", desc = "Toggle terminal" },
-    { "<leader><C-f>", "<cmd>lua floating_toggle()<CR>", mode = { "n", "t" }, desc = "Toggle floating terminal" },
-    { "<C-g>", "<cmd>lua lazygit_toggle()<CR>", mode = { "n", "t" }, desc = "Toggle lazygit" },
-    { "<leader><C-d>", "<cmd>lua lazydocker_toggle()<CR>", mode = { "n", "t" }, desc = "Toggle lazydocker" },
-    { "<leader><C-x>", "<cmd>lua xplr_toggle()<CR>", mode = { "n", "t" }, desc = "Toggle xplr" },
+    {
+      "<leader><C-f>",
+      "<cmd>lua TOGGLE_TERM(FLOATING_TERM)<CR>",
+      mode = { "n", "t" },
+      desc = "Toggle floating terminal",
+    },
+    { "<C-g>", "<cmd>lua TOGGLE_TERM(LAZYGIT_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle lazygit" },
+    { "<leader><C-d>", "<cmd>lua TOGGLE_TERM(LAZYDOCKER_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle lazydocker" },
+    { "<leader><C-x>", "<cmd>lua TOGGLE_TERM(XPLR_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle xplr" },
   },
   config = function()
     local Terminal = require("toggleterm.terminal").Terminal
@@ -51,9 +56,8 @@ return {
 
     -- #### LAZYDOCKER TERMINAL #### --
 
-    local ld_cmd = "lazydocker"
     LAZYDOCKER_TERM = Terminal:new({
-      cmd = ld_cmd,
+      cmd = "lazydocker",
       direction = "float",
       hidden = true,
       float_opts = {
@@ -88,62 +92,31 @@ return {
       end,
     })
 
-    -- #### TOGGLE FUNCTIONS #### --
+    local all_terms = {
+      FLOATING_TERM,
+      LAZYGIT_TERM,
+      LAZYDOCKER_TERM,
+      XPLR_TERM,
+    }
 
-    -- Floating terminal toggle
-    function floating_toggle()
-      if LAZYGIT_TERM:is_open() then
-        LAZYGIT_TERM:close()
-      end
-      if LAZYDOCKER_TERM:is_open() then
-        LAZYDOCKER_TERM:close()
-      end
-      if XPLR_TERM:is_open() then
-        XPLR_TERM:close()
-      end
-      FLOATING_TERM:toggle()
-    end
+    TERM_LAST_FOCUSED_BUFFER = nil
 
-    -- Lazygit toggle
-    function lazygit_toggle()
-      if FLOATING_TERM:is_open() then
-        FLOATING_TERM:close()
-      end
-      if LAZYDOCKER_TERM:is_open() then
-        LAZYDOCKER_TERM:close()
-      end
-      if XPLR_TERM:is_open() then
-        XPLR_TERM:close()
-      end
-      LAZYGIT_TERM:toggle()
-    end
-
-    -- Lazydocker toggle
-    function lazydocker_toggle()
-      if FLOATING_TERM:is_open() then
-        FLOATING_TERM:close()
-      end
-      if LAZYGIT_TERM:is_open() then
-        LAZYGIT_TERM:close()
-      end
-      if XPLR_TERM:is_open() then
-        XPLR_TERM:close()
-      end
-      LAZYDOCKER_TERM:toggle()
-    end
-
-    -- Xplr toggle
-    function xplr_toggle()
-      if FLOATING_TERM:is_open() then
-        FLOATING_TERM:close()
-      end
-      if LAZYGIT_TERM:is_open() then
-        LAZYGIT_TERM:close()
-      end
-      if LAZYDOCKER_TERM:is_open() then
-        LAZYDOCKER_TERM:close()
-      end
-      XPLR_TERM:toggle()
+    --- @param term_to_toggle Terminal
+    function TOGGLE_TERM(term_to_toggle)
+      -- Store focused buffer (before opening terminal).
+      TERM_LAST_FOCUSED_BUFFER = vim.api.nvim_get_current_buf()
+      -- Map through the terminals.
+      vim.tbl_map(function(term)
+        -- Find the one to toggle.
+        if term == term_to_toggle then
+          term:toggle()
+        else
+          -- Close the rest if needed.
+          if term:is_open() then
+            term:close()
+          end
+        end
+      end, all_terms)
     end
   end,
 }

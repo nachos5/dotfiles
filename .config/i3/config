@@ -154,17 +154,18 @@ mode "resize" {
   # back to normal: Enter or Escape
   bindsym Return mode "default"
   bindsym Escape mode "default"
-}
+  }
 
 bindsym $mod+r mode "resize"
 
 # Moving workspaces between screens
 bindsym $mod+p move workspace to output right
 
+bindsym $mod+Ctrl+Shift+l exec ~/utils/scripts/toggle_keyboard_layout.sh
 bindsym $mod+Ctrl+i exec setxkbmap -layout is_custom
 bindsym $mod+Ctrl+Shift+i exec setxkbmap -layout is
 bindsym $mod+Ctrl+u exec setxkbmap -layout us
-bindsym $mod+Ctrl+Shift+l exec ~/utils/scripts/toggle_keyboard_layout.sh
+bindsym $mod+Ctrl+p exec setxkbmap -layout pl
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

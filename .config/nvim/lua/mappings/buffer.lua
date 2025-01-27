@@ -24,3 +24,35 @@ vim.keymap.set("x", "cd", function()
   -- Reselect the new single line.
   vim.cmd("normal! V")
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>cy", function()
+  local filename = vim.fn.expand("%:p") -- Full path.
+  local relative = vim.fn.expand("%") -- Relative path.
+  local just_name = vim.fn.expand("%:t") -- Just filename.
+  local dir_path = vim.fn.expand("%:p:h") -- Full directory path.
+  local relative_dir_path = vim.fn.expand("%:h") -- Relative directory path.
+
+  local options = {
+    ["1"] = { name = "Full path", value = filename },
+    ["2"] = { name = "Relative path", value = relative },
+    ["3"] = { name = "Filename only", value = just_name },
+    ["4"] = { name = "Full directory path", value = dir_path },
+    ["5"] = { name = "Relative directory path", value = relative_dir_path },
+  }
+
+  local items = {}
+  for _, option in pairs(options) do
+    table.insert(items, string.format("%s: %s", option.name, option.value))
+  end
+
+  vim.ui.select(items, {
+    prompt = "Choose what to copy:",
+  }, function(choice)
+    if choice then
+      -- Extract the part after the colon.
+      local value = choice:match(": (.+)$")
+      vim.fn.setreg("+", value)
+      vim.notify("Copied: " .. value)
+    end
+  end)
+end, { noremap = true, desc = "Copy file path menu" })
