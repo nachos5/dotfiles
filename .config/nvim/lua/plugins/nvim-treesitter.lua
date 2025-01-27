@@ -4,7 +4,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    branch = "main",
+    -- branch = "main",
     lazy = false,
     enabled = function() -- Disable in files with more than 5000 lines.
       return vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf()) <= 5000
