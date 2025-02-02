@@ -241,13 +241,18 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id ~/.config/i3/touchpad.sh
 exec --no-startup-id ~/.config/i3/resolution.sh
 
+# services
+exec_always --no-startup-id ~/.config/i3/services.sh
 # open programs
 exec --no-startup-id ~/.config/i3/start.sh
 
 # refresh tmux status bar
 # exec_always --no-startup-id ~/utils/scripts/i3_tmux_update.py
 
-exec_always --no-startup-id xset -dpms
+# Power management.
+# exec_always --no-startup-id xset -dpms
+exec_always --no-startup-id xset dpms 600 600 600
+# Disables the screen saver.
 exec_always --no-startup-id xset s off
 
 # set opacity to 0 for zoom screensharing

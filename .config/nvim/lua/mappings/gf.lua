@@ -55,8 +55,9 @@ vim.keymap.set("n", "gf", function()
     end
   else
     -- Handle regular file paths.
+    local filepath_cfile = vim.fn.expand("<cfile>")
     for _, prefix in ipairs(prefixes) do
-      local path = prefix .. filepath
+      local path = prefix .. filepath_cfile
       if vim.fn.filereadable(path) == 1 then
         pre_edit()
         vim.cmd("edit " .. path)

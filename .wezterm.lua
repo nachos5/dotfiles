@@ -11,6 +11,7 @@ return {
 
   -- tabs
   enable_tab_bar = false,
+  scrollback_lines = 1000, -- default 3500.
 
   -- windows
   window_decorations = "RESIZE",
