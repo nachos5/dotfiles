@@ -44,3 +44,53 @@ xplr.config.general.initial_sorting = {
   { sorter = "ByCanonicalIsDir", reverse = true },
   { sorter = "ByCanonicalLastModified", reverse = true },
 }
+
+-- Add custom z command mode
+xplr.config.modes.custom.z_input = {
+  name = "z input",
+  prompt = "z> ",
+  key_bindings = {
+    on_key = {
+      enter = {
+        help = "execute z",
+        messages = {
+          { CallLuaSilently = "custom.z_handler" },
+          "PopMode",
+        },
+      },
+      esc = {
+        help = "cancel",
+        messages = {
+          "PopMode",
+        },
+      },
+    },
+    default = {
+      messages = {
+        "UpdateInputBufferFromKey",
+      },
+    },
+  },
+}
+
+-- Add z key binding to default mode.
+xplr.config.modes.builtin.default.key_bindings.on_key.z = {
+  help = "z jump",
+  messages = {
+    "PopMode",
+    { SwitchModeCustom = "z_input" },
+    { SetInputBuffer = "" },
+  },
+}
+
+-- Add z handler function.
+xplr.fn.custom.z_handler = function(app)
+  local new_path =
+    io.popen("bash -c 'source ~/z.sh && _z 2>&1 " .. app.input_buffer .. " && pwd'"):read("*a"):gsub("[\n\r]", "")
+  if new_path ~= "" then
+    return {
+      { ChangeDirectory = new_path },
+      "ExplorePwdAsync",
+    }
+  end
+end
