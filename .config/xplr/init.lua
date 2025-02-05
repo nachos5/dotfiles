@@ -18,7 +18,7 @@ require("preview-tabbed").setup({
   mode = "action",
   key = "P",
   fifo_path = "/tmp/xplr.fifo",
-  previewer = os.getenv("HOME") .. "/.config/nnn/plugins/preview-tabbed",
+  previewer = os.getenv("HOME") .. "/.config/nnn_custom/preview_tabbed",
 }) -- Type `:p` to toggle preview mode.
 
 require("nvim-ctrl").setup({
@@ -82,7 +82,6 @@ xplr.config.modes.builtin.default.key_bindings.on_key.z = {
     { SetInputBuffer = "" },
   },
 }
-
 -- Add z handler function.
 xplr.fn.custom.z_handler = function(app)
   local new_path =

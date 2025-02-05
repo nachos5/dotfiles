@@ -8,6 +8,7 @@ DOTFILES=$ABS_DIRECTORY
 rm -rf ~/.config/i3 && ln -sf "${DOTFILES}/.config/i3" ~/.config/i3
 rm -rf ~/.config/i3status && ln -sf "${DOTFILES}/.config/i3status" ~/.config/i3status
 rm -rf ~/.config/nvim && ln -sf "${DOTFILES}/.config/nvim" ~/.config/nvim
+rm -rf ~/.config/nnn_custom && ln -sf "${DOTFILES}/.config/nnn_custom" ~/.config/nnn_custom
 mkdir -p ~/.config/lazygit && ln -sf "${DOTFILES}/.config/lazygit/config.yml" ~/.config/lazygit/config.yml
 mkdir -p ~/.config/lazydocker && ln -sf "${DOTFILES}/.config/lazydocker/config.yml" ~/.config/lazydocker/config.yml
 mkdir -p ~/.config/stylua && ln -sf "${DOTFILES}/.config/stylua/.stylua.toml" ~/.config/stylua/.stylua.toml
