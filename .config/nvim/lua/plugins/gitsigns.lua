@@ -1,7 +1,8 @@
 return {
   "lewis6991/gitsigns.nvim",
   config = function()
-    require("gitsigns").setup({
+    local gitsigns = require("gitsigns")
+    gitsigns.setup({
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -21,7 +22,6 @@ return {
           end)
           return "<Ignore>"
         end, { expr = true })
-
         map("n", "[h", function()
           if vim.wo.diff then
             return "[c"
@@ -31,6 +31,8 @@ return {
           end)
           return "<Ignore>"
         end, { expr = true })
+
+        map("n", "<leader>gb", gitsigns.blame)
       end,
     })
   end,

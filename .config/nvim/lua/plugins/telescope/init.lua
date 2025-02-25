@@ -16,7 +16,6 @@ return {
 
     local function find_files()
       require("telescope.builtin").find_files({
-        shorten_path = true,
         search_dirs = require("plugins/neoscopes/utils").get_scope_dirs(),
       })
     end
@@ -28,7 +27,7 @@ return {
       { "<leader>tee", "<cmd>Telescope env<CR>", desc = "Telescope env vars" },
       -- file and buffer stuff
       { "<leader>ff", find_files, desc = "Find files" },
-      { "<leader>gff", "<cmd>Telescope find_files shorten_path=true no_ignore=true<CR>", desc = "Find all files" },
+      { "<leader>gff", "<cmd>Telescope find_files no_ignore=true<CR>", desc = "Find all files" },
       { "<leader>fg", live_grep, desc = "Live grep" },
       { "<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>", desc = "Find buffers" },
       { "<leader>fr", "<cmd>Telescope resume<CR>", desc = "Resume last picker" },
@@ -37,6 +36,7 @@ return {
       -- lsp stuff
       { "<leader>ci", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "LSP incoming calls" },
       { "<leader>co", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "LSP outgoing calls" },
+      { "<leader>cr", "<cmd>Telescope lsp_references<CR>", desc = "LSP references" },
     }
   end,
   config = function()

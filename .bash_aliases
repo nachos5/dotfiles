@@ -125,6 +125,30 @@ alias tf='terraform'
 # utils
 alias xc="xclip -sel clip"
 
+# aliases grep
+function ag() {
+    local search_term="$1"
+    if [ -z "$search_term" ]; then
+        echo "Usage: ag <search_term>"
+        return 1
+    fi
+
+    echo "=== Matching Aliases ==="
+    alias | grep -i "$search_term"
+
+    echo -e "\n=== Matching Functions ==="
+    # Find matching function names
+    matching_functions=$(declare -F | grep -i "$search_term" | cut -d' ' -f3)
+
+    # Show full function definitions
+    if [ ! -z "$matching_functions" ]; then
+        while IFS= read -r func; do
+            echo -e "\n# Function: $func"
+            type "$func"
+        done <<< "$matching_functions"
+    fi
+}
+
 # lazy
 alias lzg="lazygit"
 alias lzd="lazydocker"
@@ -147,19 +171,6 @@ function dns_records() {
         dig +short "$domain" $type
         echo ""
     done
-}
-
-# compositor
-checkcomp() {
-    pgrep xcompmgr &> /dev/null
-}
-stopcomp() {
-    checkcomp && killall xcompmgr
-}
-startcomp() {
-    stopcomp
-    xcompmgr -c &
-    exit
 }
 
 # env

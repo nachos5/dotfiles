@@ -70,15 +70,17 @@ function export.on_attach(client, bufnr, enable_formatting)
     vim.lsp.buf.format({ bufnr = 0, timeout_ms = 10000, async = true })
   end, bufopts)
 
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
-      end,
-    })
+  if not require("env").config.DISABLE_FORMAT_ON_SAVE then
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
+        end,
+      })
+    end
   end
 end
 

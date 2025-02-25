@@ -95,13 +95,13 @@ return {
     vim.keymap.set(
       "n",
       "<leader>mS",
-      "<cmd>lua require('telescope.builtin').find_files({ shorten_path = true, cwd = '/home/gulli/github/notes/tree/global' })<CR>"
+      "<cmd>lua require('telescope.builtin').find_files({ cwd = '/home/gulli/github/notes/tree/global' })<CR>"
     )
     if env.config.NOTES_PROJECT_NAME ~= nil then
       vim.keymap.set(
         "n",
         "<leader>ms",
-        "<cmd>lua require('telescope.builtin').find_files({ shorten_path = true, cwd = '/home/gulli/github/notes/tree/"
+        "<cmd>lua require('telescope.builtin').find_files({ cwd = '/home/gulli/github/notes/tree/"
           .. env.config.NOTES_PROJECT_NAME
           .. "' })<CR>"
       )

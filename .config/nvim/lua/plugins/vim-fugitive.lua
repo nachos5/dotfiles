@@ -19,7 +19,7 @@ return {
     nnoremap("<leader>ga", ":Git add %<cr>", shared_opts)
     nnoremap("<leader>gd", ":Gvdiffsplit!<CR>", shared_opts)
     nnoremap("<leader>gm", ":Gvdiffsplit " .. default_branch_name .. "<CR>", shared_opts)
-    nnoremap("<leader>gb", ":Git blame<CR>", shared_opts)
+    -- nnoremap("<leader>gb", ":Git blame<CR>", shared_opts)
     nnoremap("<leader>gt", ":Git mergetool<CR>", shared_opts)
     nnoremap("<leader>gr", ":GBrowse<CR>", shared_opts)
     nnoremap("<leader>gp", ":Git push<CR>", shared_opts)

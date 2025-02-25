@@ -57,17 +57,25 @@ return {
       ["pyright"] = function()
         lspconfig.pyright.setup({
           on_attach = require("lsp").on_attach,
+          root_dir = require("lspconfig.util").root_pattern(unpack({
+            "pyproject.toml",
+            "setup.py",
+            "setup.cfg",
+            "requirements.txt",
+            "Pipfile",
+            "pyrightconfig.json",
+          })),
           settings = {
             pyright = {
               autoImportCompletion = true,
             },
             python = {
-              analysis = require("env").config.PYRIGHT_OPEN_FILES_ONLY and {
+              analysis = {
                 autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
+                diagnosticMode = require("env").config.PYRIGHT_OPEN_FILES_ONLY and "openFilesOnly" or "workspace",
                 useLibraryCodeForTypes = true,
                 typeCheckingMode = "off",
-              } or {},
+              },
             },
           },
           handlers = require("env").config.PYRIGHT_DISABLE_DIAGNOSTICS and {

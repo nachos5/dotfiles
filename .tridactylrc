@@ -54,6 +54,7 @@ bind --mode=visual j js document.getSelection().modify("extend","forward","word"
 " ** Tabs and Windows
 bind o fillcmdline tabopen
 bind O fillcmdline open
+bind L composite get_current_url | fillcmdline open
 bind s fillcmdline tabopen search
 bind S fillcmdline open search
 bind k fillcmdline bmarks -t
