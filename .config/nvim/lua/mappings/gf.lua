@@ -5,7 +5,8 @@ local function pre_edit()
   end
 end
 
-vim.keymap.set("n", "gf", function()
+local function gf(opts)
+  opts = opts or { vsplit = false }
   -- local filepath = vim.fn.expand("<cfile>")
   local filepath = vim.fn.expand("<cWORD>")
 
@@ -24,7 +25,7 @@ vim.keymap.set("n", "gf", function()
       if vim.fn.filereadable(path) == 1 then
         pre_edit()
         -- Open the file and go to specific line.
-        vim.cmd("edit! " .. path)
+        vim.cmd(opts.vsplit and "vsplit! " .. path or "edit! " .. path)
         vim.cmd(":" .. line_num)
         vim.cmd("normal! zz_")
         return
@@ -47,8 +48,9 @@ vim.keymap.set("n", "gf", function()
       local path = prefix .. file_part
       if vim.fn.filereadable(path) == 1 then
         pre_edit()
-        -- Open file and search for function in a single command
-        vim.cmd("edit +/def\\ " .. func_part .. " " .. path)
+        vim.cmd(
+          opts.vsplit and "vsplit +/def\\ " .. func_part .. " " .. path or "edit +/def\\ " .. func_part .. " " .. path
+        )
         vim.cmd("normal! zz_")
         return
       end
@@ -60,7 +62,7 @@ vim.keymap.set("n", "gf", function()
       local path = prefix .. filepath_cfile
       if vim.fn.filereadable(path) == 1 then
         pre_edit()
-        vim.cmd("edit " .. path)
+        vim.cmd(opts.vsplit and "vsplit " .. path or "edit " .. path)
         return
       end
     end
@@ -68,4 +70,11 @@ vim.keymap.set("n", "gf", function()
 
   -- If still not found, show a notification.
   vim.notify("File not found: " .. filepath, vim.log.levels.WARN)
-end, { noremap = true, silent = true })
+end
+
+vim.keymap.set("n", "gf", function()
+  gf()
+end, { noremap = true, silent = true, desc = "Go to file" })
+vim.keymap.set("n", "gF", function()
+  gf({ vsplit = true })
+end, { noremap = true, silent = true, desc = "Go to file in a vertical split" })
