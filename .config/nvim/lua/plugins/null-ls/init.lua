@@ -191,6 +191,13 @@ return {
             "php",
           },
         }),
+
+        -- sql
+        require("plugins/null-ls/sleek_format").with({
+          filetypes = {
+            "sql",
+          },
+        }),
       }
 
       for _, value in ipairs(formatting_sources) do

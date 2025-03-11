@@ -27,14 +27,14 @@ local function get_or_create_output_buffer(lines)
   end
 
   -- Set up buffer options.
-  vim.bo[buf].buftype = "nofile"
+  -- vim.bo[buf].buftype = "nofile"
   vim.bo[buf].swapfile = false
   vim.bo[buf].modifiable = true
 
   -- Clear and update buffer content.
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   vim.api.nvim_set_option_value("filetype", "json", { buf = buf })
-  vim.bo[buf].modifiable = false
+  -- vim.bo[buf].modifiable = false
 
   -- Handle window display.
   if not win then

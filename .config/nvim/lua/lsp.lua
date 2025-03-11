@@ -14,7 +14,7 @@ if version.minor > 10 then
 end
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true, desc = "Restart LSP" })
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 vim.keymap.set("n", "[e", function()
@@ -103,8 +103,8 @@ local function enable_formatting_for_current_buffer()
   end
 end
 
-nnoremap("<leader>li", ":LspInfo<CR>", { silent = true })
-nnoremap("<leader>ls", stop_lsp_for_current_buffer, { silent = true })
-nnoremap("<leader>lf", enable_formatting_for_current_buffer, { silent = true })
+nnoremap("<leader>li", ":LspInfo<CR>", { silent = true, desc = "LSP Info" })
+nnoremap("<leader>ls", stop_lsp_for_current_buffer, { silent = true, desc = "Stop LSP for buffer" })
+nnoremap("<leader>lf", enable_formatting_for_current_buffer, { silent = true, desc = "Enable LSP formatting" })
 
 return export

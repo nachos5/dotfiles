@@ -122,4 +122,5 @@ require("lazy").setup({
 
   -- random / various / third party
   require("plugins/leetcode"),
+  require("plugins/godot"),
 }, config)
