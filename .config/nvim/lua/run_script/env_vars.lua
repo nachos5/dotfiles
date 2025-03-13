@@ -31,6 +31,7 @@ M.get_env_vars = function()
   end
 
   -- Check if this is a json file.
+  -- TODO: processor - allow to have custom processor.
   local match = string.match(buffer_path, "%.json$")
   if not match then
     vim.api.nvim_err_writeln("The file is not a JSON file.")
