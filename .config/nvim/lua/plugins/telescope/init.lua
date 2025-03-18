@@ -37,6 +37,31 @@ return {
       { "<leader>ci", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "LSP incoming calls" },
       { "<leader>co", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "LSP outgoing calls" },
       { "<leader>cr", "<cmd>Telescope lsp_references<CR>", desc = "LSP references" },
+      {
+        "<leader>wa",
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols()
+        end,
+        desc = "LSP workspace symbols",
+      },
+      {
+        "<leader>wm",
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols({
+            symbols = { "method", "function", "constructor" },
+          })
+        end,
+        desc = "LSP workspace symbols (functions)",
+      },
+      {
+        "<leader>wv",
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols({
+            symbols = { "variable", "constant", "property", "field" },
+          })
+        end,
+        desc = "LSP workspace symbols (variables)",
+      },
     }
   end,
   config = function()

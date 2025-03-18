@@ -175,3 +175,6 @@ function dns_records() {
 
 # env
 alias da='direnv allow'
+
+# godot
+alias gvim='nvim --listen ~/.cache/nvim/godot.pipe .'
