@@ -42,7 +42,13 @@ return {
       local git_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
 
       -- Get the list of changed files
-      local changed_files = vim.fn.systemlist("git diff --name-only " .. from .. ".." .. to)
+      local command = "git diff --name-only " .. from
+      -- Use to=. to get active changes.
+      if to ~= "." then
+        command = command .. ".."
+      end
+
+      local changed_files = vim.fn.systemlist(command)
 
       -- Create a quickfix list with proper format
       local qf_list = {}
