@@ -18,9 +18,11 @@ M.config = {
   GIT_DEFAULT_BRANCH = vim.env.GIT_DEFAULT_BRANCH and vim.env.GIT_DEFAULT_BRANCH or "master",
   -- gf.
   GF_PREFIXES_TO_CHECK = vim.env.GF_PREFIXES_TO_CHECK and vim.split(vim.env.GF_PREFIXES_TO_CHECK, ",") or {},
+  -- Claude.
+  CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY,
+  CLAUDE_OLDER_MODEL = vim.env.CLAUDE_OLDER_MODEL == "1",
   -- Other.
   IS_COLEMAK = vim.env.IS_COLEMAK == "1",
-  CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY,
   DAP_REMOTE_ROOT = vim.env.DAP_REMOTE_ROOT,
   NOTES_PROJECT_NAME = vim.env.NOTES_PROJECT_NAME,
 }

@@ -70,7 +70,7 @@ local function get_python_path()
   if venv then
     return venv .. "/bin/python"
   else
-    return "/opt/python/3.12.2/bin/python3.12"
+    return "/opt/python/3.12.9/bin/python3.12"
   end
 end
 

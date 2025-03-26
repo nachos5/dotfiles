@@ -8,10 +8,29 @@ return {
     auto_suggestions_provider = "claude",
     claude = {
       endpoint = "https://api.anthropic.com",
-      -- model = "claude-3-5-sonnet-20241022",
-      model = "claude-3-7-sonnet-20250219",
+      model = require("env").config.CLAUDE_OLDER_MODEL and "claude-3-5-sonnet-20241022" or "claude-3-7-sonnet-20250219",
       temperature = 0,
       max_tokens = 4096,
+      disable_tools = {
+        "rag_search",
+        "python",
+        "git_diff",
+        "git_commit",
+        "list_files",
+        "search_files",
+        "search_keyword",
+        -- "read_file_toplevel_symbols",
+        -- "read_file",
+        "create_file",
+        "rename_file",
+        "delete_file",
+        "create_dir",
+        "rename_dir",
+        "delete_dir",
+        "bash",
+        -- "web_search",
+        -- "fetch",
+      },
     },
     behaviour = {
       auto_suggestions = false,
@@ -23,7 +42,7 @@ return {
     },
     hints = { enabled = false },
   },
-  -- version = false, -- set this if you want to always pull the latest change
+  version = false, -- set this if you want to always pull the latest change
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
   dependencies = {
