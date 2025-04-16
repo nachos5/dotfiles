@@ -75,7 +75,6 @@ return {
         -- h4x
         ["<leader>se"] = scnvim.map(function()
           vim.cmd("SCExternalHelpSearch")
-          -- vim.cmd("!brave file:///home/mads/.local/share/SuperCollider/Help/Help.html")
         end, { "n" }),
       },
       editor = {

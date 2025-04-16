@@ -18,6 +18,8 @@ M.config = {
   GIT_DEFAULT_BRANCH = vim.env.GIT_DEFAULT_BRANCH and vim.env.GIT_DEFAULT_BRANCH or "master",
   -- gf.
   GF_PREFIXES_TO_CHECK = vim.env.GF_PREFIXES_TO_CHECK and vim.split(vim.env.GF_PREFIXES_TO_CHECK, ",") or {},
+  -- LLM.
+  LLM_PROVIDER = vim.env.LLM_PROVIDER == nil and "claude" or vim.env.LLM_PROVIDER,
   -- Claude.
   CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY,
   CLAUDE_OLDER_MODEL = vim.env.CLAUDE_OLDER_MODEL == "1",

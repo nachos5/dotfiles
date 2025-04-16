@@ -26,6 +26,7 @@ force_focus_wrapping no
 # Floating programs.
 for_window [title="^Android Emulator.+:[0-9]+$"] floating enable
 for_window [class="QjackCtl"] floating enable
+for_window [class="SuperCollider"] floating enable
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).

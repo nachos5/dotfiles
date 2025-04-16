@@ -1,10 +1,12 @@
+local env_config = require("env").config
+
 -- @codebase
 return {
   "yetone/avante.nvim",
   -- event = "VeryLazy",
   opts = {
     -- export ANTHROPIC_API_KEY=your-api-key
-    provider = "claude",
+    provider = env_config.LLM_PROVIDER and env_config.LLM_PROVIDER or "claude",
     auto_suggestions_provider = "claude",
     claude = {
       endpoint = "https://api.anthropic.com",
@@ -31,6 +33,9 @@ return {
         -- "web_search",
         -- "fetch",
       },
+    },
+    ollama = {
+      model = "deepseek-r1:7b",
     },
     behaviour = {
       auto_suggestions = false,

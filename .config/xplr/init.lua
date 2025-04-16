@@ -45,7 +45,7 @@ xplr.config.general.initial_sorting = {
   { sorter = "ByCanonicalLastModified", reverse = true },
 }
 
--- Add custom z command mode
+-- Add custom z command mode.
 xplr.config.modes.custom.z_input = {
   name = "z input",
   prompt = "z> ",
@@ -82,6 +82,7 @@ xplr.config.modes.builtin.default.key_bindings.on_key.z = {
     { SetInputBuffer = "" },
   },
 }
+
 -- Add z handler function.
 xplr.fn.custom.z_handler = function(app)
   local new_path =
@@ -90,6 +91,67 @@ xplr.fn.custom.z_handler = function(app)
     return {
       { ChangeDirectory = new_path },
       "ExplorePwdAsync",
+    }
+  end
+end
+
+-- Add custom cd command mode.
+xplr.config.modes.custom.cd_input = {
+  name = "cd input",
+  prompt = "cd> ",
+  key_bindings = {
+    on_key = {
+      enter = {
+        help = "execute cd",
+        messages = {
+          { CallLuaSilently = "custom.cd_handler" },
+          "PopMode",
+        },
+      },
+      esc = {
+        help = "cancel",
+        messages = {
+          "PopMode",
+        },
+      },
+    },
+    default = {
+      messages = {
+        "UpdateInputBufferFromKey",
+      },
+    },
+  },
+}
+
+-- Add cd key binding to default mode.
+xplr.config.modes.builtin.default.key_bindings.on_key.x = {
+  help = "cd to path",
+  messages = {
+    "PopMode",
+    { SwitchModeCustom = "cd_input" },
+    { SetInputBuffer = "" },
+  },
+}
+
+-- Add cd handler function.
+xplr.fn.custom.cd_handler = function(app)
+  local path = app.input_buffer
+  -- Expand tilde to home directory
+  if path:sub(1, 1) == "~" then
+    path = os.getenv("HOME") .. path:sub(2)
+  end
+
+  -- Check if the path exists
+  local exists = io.popen("test -d '" .. path .. "' && echo 'yes' || echo 'no'"):read("*a"):gsub("[\n\r]", "")
+
+  if exists == "yes" then
+    return {
+      { ChangeDirectory = path },
+      "ExplorePwdAsync",
+    }
+  else
+    return {
+      { LogError = "Directory does not exist: " .. path },
     }
   end
 end
