@@ -13,17 +13,6 @@ if version.minor > 10 then
   vim.keymap.del("n", "grr")
 end
 
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true, desc = "Restart LSP" })
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
-vim.keymap.set("n", "[e", function()
-  vim.diagnostic.goto_prev({ float = diagnostic_config.float })
-end, opts)
-vim.keymap.set("n", "]e", function()
-  vim.diagnostic.goto_next({ float = diagnostic_config.float })
-end, opts)
-
 local diagnostic_config = {
   float = {
     show_header = true,
@@ -37,6 +26,17 @@ local diagnostic_config = {
   underline = true,
   update_in_insert = false,
 }
+
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true, desc = "Restart LSP" })
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+vim.keymap.set("n", "[e", function()
+  vim.diagnostic.goto_prev({ float = diagnostic_config.float })
+end, opts)
+vim.keymap.set("n", "]e", function()
+  vim.diagnostic.goto_next({ float = diagnostic_config.float })
+end, opts)
 
 -- Set up diagnostic configuration
 vim.diagnostic.config(diagnostic_config)

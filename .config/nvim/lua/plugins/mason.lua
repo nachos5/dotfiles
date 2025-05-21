@@ -1,7 +1,9 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
+  version = "^1.0.0",
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
+    -- https://github.com/LazyVim/LazyVim/issues/6039
+    { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
     "neovim/nvim-lspconfig",
     -- "ray-x/lsp_signature.nvim",
   },

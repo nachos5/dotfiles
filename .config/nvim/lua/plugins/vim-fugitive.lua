@@ -57,7 +57,7 @@ return {
           filename = git_root .. "/" .. file,
           lnum = 1, -- Default to line 1
           col = 1, -- Default to column 1
-          text = "Changed in " .. from .. ".." .. to,
+          text = "Changed in " .. from .. "..." .. to,
         })
       end
 

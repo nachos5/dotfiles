@@ -76,6 +76,13 @@ return {
         ["<leader>se"] = scnvim.map(function()
           vim.cmd("SCExternalHelpSearch")
         end, { "n" }),
+        ["<leader>so"] = scnvim.map(function()
+          vim.ui.input({ prompt = "Open external help for: " }, function(input)
+            if input then
+              vim.cmd("SCExternalHelpOpen " .. input)
+            end
+          end)
+        end, { "n" }),
       },
       editor = {
         highlight = {

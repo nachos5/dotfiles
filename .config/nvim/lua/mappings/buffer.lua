@@ -1,5 +1,5 @@
--- Condense visual selection into one line and reselect the result.
-vim.keymap.set("x", "cd", function()
+---@param separator string
+local function _condense(separator)
   -- Exit visual mode to update the marks.
   vim.cmd("normal! " .. vim.api.nvim_replace_termcodes("<Esc>", true, false, true))
 
@@ -10,12 +10,12 @@ vim.keymap.set("x", "cd", function()
 
   -- Get selected lines.
   local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
-  -- Join them with spaces, trimming whitespace.
+  -- Join them with the separator, trimming whitespace.
   local joined = table.concat(
     vim.tbl_map(function(line)
       return vim.trim(line)
     end, lines),
-    " "
+    separator
   )
 
   -- Replace all selected lines with the joined content at the start position.
@@ -23,7 +23,23 @@ vim.keymap.set("x", "cd", function()
 
   -- Reselect the new single line.
   vim.cmd("normal! V")
-end, { noremap = true, silent = true })
+end
+
+-- Condense visual selection into one line and reselect the result.
+vim.keymap.set("x", "cdd", function()
+  _condense(" ")
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Condense (whitespace separator)",
+})
+vim.keymap.set("x", "cdn", function()
+  _condense("")
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Condense (no separator)",
+})
 
 vim.keymap.set("n", "<leader>cy", function()
   local filename = vim.fn.expand("%:p") -- Full path.

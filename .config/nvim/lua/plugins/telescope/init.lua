@@ -54,6 +54,15 @@ return {
         desc = "LSP workspace symbols (functions)",
       },
       {
+        "<leader>wc",
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols({
+            symbols = { "class", "interface", "struct" },
+          })
+        end,
+        desc = "LSP workspace symbols (classes and types)",
+      },
+      {
         "<leader>wv",
         function()
           require("telescope.builtin").lsp_dynamic_workspace_symbols({

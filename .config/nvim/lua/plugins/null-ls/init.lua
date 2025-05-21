@@ -36,31 +36,31 @@ return {
     local venv_path = env.config.VENV_PATH and env.config.VENV_PATH or "env"
 
     local black_pairs = {
-      ["pyproject.toml"] = "tool.black",
+      ["pyproject.toml"] = ".*tool.black.*",
     }
     local isort_pairs = {
       ["isort.cfg"] = ".*",
-      ["pyproject.toml"] = "tool.isort",
+      ["pyproject.toml"] = ".*tool.isort.*",
     }
     local flake_pairs = { [".flake8"] = ".*" }
     local pylint_pairs = {
       [".pylintrc"] = ".*",
       [".pylint.toml"] = ".*",
-      ["pyproject.toml"] = "tool.pylint",
+      ["pyproject.toml"] = ".*tool.pylint.*",
     }
     local mypy_pairs = {
       ["mypy.ini"] = ".*",
-      ["pyproject.toml"] = "tool.mypy",
+      ["pyproject.toml"] = ".*tool.mypy.*",
     }
     local ruff_pairs = {
       [".ruff.toml"] = ".*",
       ["ruff.toml"] = ".*",
-      ["pyproject.toml"] = "tool.ruff",
+      ["pyproject.toml"] = ".*tool.ruff.*",
     }
     local ruff_formatting_pairs = {
       [".ruff.toml"] = "format",
       ["ruff.toml"] = "format",
-      ["pyproject.toml"] = "tool.ruff.format",
+      ["pyproject.toml"] = ".*tool.ruff.format.*",
     }
     local biome_pairs = {
       ["biome.json"] = ".*",
@@ -145,10 +145,11 @@ return {
 
     -- Add slow diagnostic sources if not disabled.
     if not env.config.DISABLE_SLOW_SOURCES then
+      -- print("slow sources")
       local slow_sources = {
         -- python
         diagnostics.pylint.with(pylint_config),
-        diagnostics.mypy.with(mypy_config),
+        require("plugins/null-ls/mypy").with(ruff_config),
       }
 
       for _, value in ipairs(slow_sources) do

@@ -3,8 +3,6 @@ local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local pickers = require("telescope.pickers")
 
-local flatten = vim.tbl_flatten
-
 local custom_rg = function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
@@ -57,7 +55,7 @@ local custom_rg = function(opts)
         table.insert(args, string.format(opts.pattern, pattern))
       end
 
-      local final_prompt = flatten({
+      local final_prompt = vim.fn.flatten({
         args,
         {
           "--color=never",
@@ -67,6 +65,9 @@ local custom_rg = function(opts)
           "--column",
           "--smart-case",
           "--hidden",
+          -- Uncomment when gitignore from parent directories should not be respected.
+          -- Useful when searcing in .venv folder etc.
+          -- "--no-ignore-parent",
         },
       })
 

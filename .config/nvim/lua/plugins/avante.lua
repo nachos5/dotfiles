@@ -30,8 +30,10 @@ return {
         "rename_dir",
         "delete_dir",
         "bash",
-        -- "web_search",
+        "web_search",
         -- "fetch",
+        "str_replace",
+        "str_replace_editor",
       },
     },
     ollama = {
