@@ -67,7 +67,7 @@ local custom_rg = function(opts)
           "--hidden",
           -- Uncomment when gitignore from parent directories should not be respected.
           -- Useful when searcing in .venv folder etc.
-          -- "--no-ignore-parent",
+          "--no-ignore-parent",
         },
       })
 

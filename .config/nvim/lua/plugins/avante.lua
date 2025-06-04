@@ -86,5 +86,6 @@ return {
   keys = {
     { "<leader>aa", "<cmd>AvanteToggle<CR>" },
     { "<leader>ad", "<cmd>AvanteClear<CR>" },
+    { "<leader>an", "<cmd>AvanteChatNew<CR>" },
   },
 }
