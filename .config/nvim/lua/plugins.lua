@@ -29,6 +29,7 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",
   require("plugins/nvim-treesitter"),
   require("plugins/lualine"),
+  { "willothy/wezterm.nvim", config = true },
 
   -- theme
   "gruvbox-community/gruvbox",
@@ -102,8 +103,9 @@ require("lazy").setup({
 
   -- LLM
   require("plugins/copilot"),
-  require("plugins/claude"),
-  require("plugins/avante"),
+  -- require("plugins/claude"),
+  -- require("plugins/avante"),
+  require("plugins/magenta"),
 
   -- supercollider
   require("plugins/scnvim"),
@@ -116,6 +118,7 @@ require("lazy").setup({
     "Vimjas/vim-python-pep8-indent",
     ft = "python",
   },
+  require("plugins/molten"),
 
   -- database
   require("plugins/vim-dadbod"),

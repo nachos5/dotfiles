@@ -8,36 +8,20 @@ return {
     -- export ANTHROPIC_API_KEY=your-api-key
     provider = env_config.LLM_PROVIDER and env_config.LLM_PROVIDER or "claude",
     auto_suggestions_provider = "claude",
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      model = require("env").config.CLAUDE_OLDER_MODEL and "claude-3-5-sonnet-20241022" or "claude-3-7-sonnet-20250219",
-      temperature = 0,
-      max_tokens = 4096,
-      disable_tools = {
-        "rag_search",
-        "python",
-        "git_diff",
-        "git_commit",
-        "list_files",
-        "search_files",
-        "search_keyword",
-        -- "read_file_toplevel_symbols",
-        -- "read_file",
-        "create_file",
-        "rename_file",
-        "delete_file",
-        "create_dir",
-        "rename_dir",
-        "delete_dir",
-        "bash",
-        "web_search",
-        -- "fetch",
-        "str_replace",
-        "str_replace_editor",
+    providers = {
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-sonnet-4-20250514",
+        timeout = 30000,
+        disable_tools = true,
+        extra_request_body = {
+          temperature = 0,
+          max_tokens = 4096,
+        },
       },
-    },
-    ollama = {
-      model = "deepseek-r1:7b",
+      ollama = {
+        model = "deepseek-r1:7b",
+      },
     },
     behaviour = {
       auto_suggestions = false,

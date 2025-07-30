@@ -22,7 +22,6 @@ M.config = {
   LLM_PROVIDER = vim.env.LLM_PROVIDER == nil and "claude" or vim.env.LLM_PROVIDER,
   -- Claude.
   CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY,
-  CLAUDE_OLDER_MODEL = vim.env.CLAUDE_OLDER_MODEL == "1",
   -- Other.
   IS_COLEMAK = vim.env.IS_COLEMAK == "1",
   DAP_REMOTE_ROOT = vim.env.DAP_REMOTE_ROOT,

@@ -66,12 +66,14 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
 local function get_python_path()
-  local venv = require("env").config.VIRTUAL_ENV
-  if venv then
-    return venv .. "/bin/python"
-  else
-    return "/opt/python/3.12.9/bin/python3.12"
-  end
+  -- local venv = require("env").config.VIRTUAL_ENV
+  -- if venv then
+  --   return venv .. "/bin/python"
+  -- else
+  --   return "/opt/python/3.12.9/bin/python3.12"
+  -- end
+
+  return "/opt/python/3.12.9/bin/python3.12"
 end
 
 vim.g.python3_host_prog = get_python_path()
