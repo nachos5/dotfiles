@@ -1,6 +1,6 @@
 return {
   "dlants/magenta.nvim",
-  lazy = false, -- you could also bind to <leader>mt
+  lazy = false,
   build = "npm install --frozen-lockfile",
   config = function()
     require("magenta").setup({

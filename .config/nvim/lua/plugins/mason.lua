@@ -58,7 +58,9 @@ return {
 
       ["pyright"] = function()
         lspconfig.pyright.setup({
-          on_attach = require("lsp").on_attach,
+          on_attach = function(client, bufnr)
+            require("lsp").on_attach(client, bufnr)
+          end,
           root_dir = require("lspconfig.util").root_pattern(unpack({
             "pyproject.toml",
             "setup.py",

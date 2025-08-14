@@ -119,6 +119,7 @@ require("lazy").setup({
     ft = "python",
   },
   require("plugins/molten"),
+  require("plugins/image"),
 
   -- database
   require("plugins/vim-dadbod"),
