@@ -1,3 +1,4 @@
+-- @diff: @staged: @file:
 return {
   "dlants/magenta.nvim",
   lazy = false,
@@ -11,6 +12,13 @@ return {
           model = "claude-sonnet-4-20250514",
           fastModel = "claude-3-5-haiku-20241022",
           apiKeyEnvVar = "CLAUDE_API_KEY",
+        },
+        {
+          name = "gpt-5",
+          provider = "openai",
+          model = "gpt-5",
+          fastModel = "gpt-5-mini",
+          apiKeyEnvVar = "OPENAI_API_KEY",
         },
       },
       sidebarPosition = "right",
