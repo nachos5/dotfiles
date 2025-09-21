@@ -6,17 +6,15 @@ local export = {}
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- Remove unwanted default keymaps.
-local version = vim.version()
-if version.minor > 10 then
-  vim.keymap.del("n", "grn")
-  vim.keymap.del("n", "gra")
-  vim.keymap.del("n", "grr")
-end
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grr")
 
-local diagnostic_config = {
+-- Set up diagnostic configuration.
+vim.diagnostic.config({
   float = {
     show_header = true,
-    source = "always",
+    source = true,
     border = "rounded",
     focusable = false,
   },
@@ -25,33 +23,23 @@ local diagnostic_config = {
   },
   underline = true,
   update_in_insert = false,
-}
+  signs = true,
+})
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true, desc = "Restart LSP" })
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 vim.keymap.set("n", "[e", function()
-  vim.diagnostic.goto_prev({ float = diagnostic_config.float })
+  vim.diagnostic.jump({ count = -1, float = true })
 end, opts)
 vim.keymap.set("n", "]e", function()
-  vim.diagnostic.goto_next({ float = diagnostic_config.float })
+  vim.diagnostic.jump({ count = 1, float = true })
 end, opts)
 
--- Set up diagnostic configuration
-vim.diagnostic.config(diagnostic_config)
-
--- Set up diagnostic handler
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = diagnostic_config.virtual_text,
-  signs = true,
-  underline = diagnostic_config.underline,
-  update_in_insert = diagnostic_config.update_in_insert,
-})
-
 function export.on_attach(client, bufnr, enable_formatting)
-  if enable_formatting == nil then
-    -- formatting off by default - use null-ls for all formatting
+  if not enable_formatting then
+    -- Formatting off by default - use null-ls for all formatting.
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end

@@ -88,7 +88,7 @@ require("lazy").setup({
   require("plugins/luasnip"),
 
   -- lsp
-  require("plugins/mason"),
+  require("plugins/lsp"),
   require("plugins/cmp"),
   require("plugins/fidget"),
   require("plugins/trouble"),
