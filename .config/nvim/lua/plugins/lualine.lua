@@ -1,8 +1,5 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-  },
   config = function()
     local function scstatus()
       if vim.bo.filetype == "supercollider" then

@@ -1,9 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons", -- optional, for file icons
-  },
-  version = "nightly", -- optional, updated every week. (see issue #1193)
+  -- Optional, updated every week.
+  version = "nightly",
   keys = {
     { "<C-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
     { "<leader>n", ":NvimTreeFindFile<CR>", desc = "Find file in NvimTree" },

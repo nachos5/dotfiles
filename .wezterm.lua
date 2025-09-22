@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 return {
   -- font
+  -- https://www.nerdfonts.com/font-downloads
   font = wezterm.font("BlexMono Nerd Font"),
   font_size = 13,
   adjust_window_size_when_changing_font_size = false,
