@@ -102,6 +102,9 @@ return {
           end,
         },
       },
+      signature = {
+        close_events = {}, -- keep it open; recommended by maintainer post-#242
+      },
       snippet = {
         engine = {
           name = "luasnip",
