@@ -70,18 +70,16 @@ return {
       end,
     }
 
-    if require("env").config.PYRIGHT_DISABLE_DIAGNOSTICS then
+    if require("env").config.YRIGHT_DISABLE_DIAGNOSTICS then
       pyright_handlers["textDocument/publishDiagnostics"] = function() end
     end
 
     vim.lsp.config("pyright", {
       root_markers = {
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "requirements.txt",
-        "Pipfile",
+        -- Order matters (priority).
         "pyrightconfig.json",
+        "pyproject.toml",
+        "requirements.txt",
       },
       settings = {
         pyright = {

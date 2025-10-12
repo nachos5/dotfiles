@@ -44,14 +44,17 @@ function export.on_attach(client, bufnr, enable_formatting)
     client.server_capabilities.documentRangeFormattingProvider = false
   end
 
+  local ft = vim.bo[bufnr].filetype
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "gR", vim.lsp.buf.references, bufopts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "<space>k", vim.lsp.buf.signature_help, bufopts)
+  if ft ~= "supercollider" then
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+    vim.keymap.set("n", "<space>k", vim.lsp.buf.signature_help, bufopts)
+  end
   vim.keymap.set("n", "<space>t", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<space>f", function()
