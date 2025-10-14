@@ -39,7 +39,6 @@ require("lazy").setup({
   require("plugins/neoscopes/neoscopes"),
 
   -- various / utils / uncategorized
-  require("plugins/autopairs"),
   require("plugins/tabout"),
   require("plugins/which_key"),
 
@@ -88,7 +87,7 @@ require("lazy").setup({
   require("plugins/luasnip"),
 
   -- lsp
-  require("plugins/mason"),
+  require("plugins/lsp"),
   require("plugins/cmp"),
   require("plugins/fidget"),
   require("plugins/trouble"),

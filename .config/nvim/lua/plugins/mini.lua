@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.nvim",
+  "nvim-mini/mini.nvim",
   version = false,
   lazy = false,
   dependencies = {
@@ -39,5 +39,19 @@ return {
         suffix_next = "n", -- Suffix to search with "next" method
       },
     })
+
+    require("mini.icons").setup({
+      extension = {
+        ["local"] = {
+          glyph = "⚙️",
+        },
+        lock = {
+          glyph = "",
+        },
+      },
+    })
+    MiniIcons.mock_nvim_web_devicons()
+
+    require("mini.pairs").setup()
   end,
 }

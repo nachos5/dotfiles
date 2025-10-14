@@ -39,7 +39,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
-    "nvim-tree/nvim-web-devicons",
     -- "stevearc/dressing.nvim",
     -- "MunifTanjim/nui.nvim",
     {

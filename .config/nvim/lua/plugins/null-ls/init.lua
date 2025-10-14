@@ -149,7 +149,7 @@ return {
       local slow_sources = {
         -- python
         diagnostics.pylint.with(pylint_config),
-        require("plugins/null-ls/mypy").with(ruff_config),
+        require("plugins/null-ls/mypy").with(mypy_config),
       }
 
       for _, value in ipairs(slow_sources) do

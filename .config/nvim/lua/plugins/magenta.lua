@@ -4,6 +4,9 @@ return {
   lazy = false,
   build = "npm install --frozen-lockfile",
   config = function()
+    -- https://github.com/dlants/magenta.nvim/issues/169
+    require("magenta.keymaps").default_keymaps = function() end
+
     require("magenta").setup({
       profiles = {
         {
