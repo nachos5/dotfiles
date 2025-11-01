@@ -1,6 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
-  version = "0.1.8",
+  -- version = "0.1.8",
+  branch = "master", -- or '0.1.x' for stable
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
@@ -37,6 +38,7 @@ return {
       { "<leader>ci", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "LSP incoming calls" },
       { "<leader>co", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "LSP outgoing calls" },
       { "<leader>cr", "<cmd>Telescope lsp_references<CR>", desc = "LSP references" },
+      -- Workspace symbols.
       {
         "<leader>wa",
         function()
@@ -70,6 +72,14 @@ return {
           })
         end,
         desc = "LSP workspace symbols (variables)",
+      },
+      -- Document symbols.
+      {
+        "<leader>ds",
+        function()
+          require("telescope.builtin").lsp_document_symbols()
+        end,
+        desc = "LSP document symbols",
       },
     }
   end,

@@ -215,6 +215,7 @@ bindsym $mod+XF86AudioMute exec amixer -D pulse set Master toggle
 # System
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
+  # sudo apt install i3lock-fancy
   bindsym l exec --no-startup-id i3lock-fancy lock, mode "default"
   bindsym e exec --no-startup-id i3-msg exit, mode "default"
   bindsym s exec --no-startup-id systemctl suspend, mode "default"
