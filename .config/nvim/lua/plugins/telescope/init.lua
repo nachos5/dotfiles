@@ -32,7 +32,24 @@ return {
       { "<leader>fb", "<cmd>Telescope buffers sort_mru=true<CR>", desc = "Find buffers" },
       { "<leader>fr", "<cmd>Telescope resume<CR>", desc = "Resume last picker" },
       -- pipe selection into live_grep
-      { "<leader>fg", '"zy:Telescope live_grep default_text=<C-r>z<CR>', mode = "v", desc = "Grep selected text" },
+      {
+        "<leader>fg",
+        function()
+          -- yank visual selection into "z
+          vim.cmd('normal! "zy')
+
+          local text = vim.fn.getreg("z")
+          if text == nil or text == "" then
+            return
+          end
+
+          require("telescope.builtin").live_grep({
+            default_text = text,
+          })
+        end,
+        mode = "v",
+        desc = "Grep selected text",
+      },
       -- lsp stuff
       { "<leader>ci", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "LSP incoming calls" },
       { "<leader>co", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "LSP outgoing calls" },

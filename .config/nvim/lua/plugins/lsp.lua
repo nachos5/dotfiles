@@ -70,7 +70,7 @@ return {
       end,
     }
 
-    if require("env").config.YRIGHT_DISABLE_DIAGNOSTICS then
+    if require("env").config.PYRIGHT_DISABLE_DIAGNOSTICS then
       pyright_handlers["textDocument/publishDiagnostics"] = function() end
     end
 
