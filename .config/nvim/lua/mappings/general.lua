@@ -130,3 +130,6 @@ nnoremap("<leader>j", ":set filetype=json<CR>", { silent = true })
 nnoremap("<leader>tbn", ":tabnew<CR>")
 nnoremap("<leader>tbc", ":tabc<CR>")
 nnoremap("<leader>tbs", ":tab split<CR>")
+
+-- diff
+nnoremap("<leader>dt", ":diffthis<CR>")
