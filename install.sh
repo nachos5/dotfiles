@@ -24,7 +24,7 @@ ln -sf "${DOTFILES}/.psqlrc" ~/.psqlrc
 ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
 ln -sf "${DOTFILES}/.xprofile" ~/.xprofile
 ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
-ln -sf "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
+mkdir -p ~/.local/bin && ln -sf "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
 ln -sf "${DOTFILES}/.tridactylrc" ~/.tridactylrc
 ln -sf "${DOTFILES}/.xbindkeysrc" ~/.xbindkeysrc
 ln -sf "${DOTFILES}/starship.toml" ~/.config/starship.toml
