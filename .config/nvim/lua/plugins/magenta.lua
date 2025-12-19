@@ -10,10 +10,10 @@ return {
     require("magenta").setup({
       profiles = {
         {
-          name = "claude-4",
+          name = "claude-opus",
           provider = "anthropic",
-          model = "claude-sonnet-4-20250514",
-          fastModel = "claude-3-5-haiku-20241022",
+          model = "claude-opus-4-5",
+          fastModel = "claude-haiku-4-5",
           apiKeyEnvVar = "CLAUDE_API_KEY",
         },
         {
@@ -27,6 +27,23 @@ return {
       sidebarPosition = "right",
       picker = "telescope",
       defaultKeymaps = false,
+      customCommands = {
+        {
+          name = "@nedit",
+          text = "DO NOT MAKE ANY EDITS TO CODE. Do not use any tools that allow you to edit code. Do not execute bash commands which edit code. NO EDITING WHATSOEVER OR ELSE.",
+          description = "Disable all code editing functionality",
+        },
+        {
+          name = "@careful",
+          text = "Be extra careful and double-check your work before making any changes.",
+          description = "Request extra caution",
+        },
+        {
+          name = "@perf",
+          text = "Focus on performance optimization. Profile the code and suggest improvements for speed and memory usage.",
+          description = "Performance optimization focus",
+        },
+      },
     })
 
     local Actions = require("magenta.actions")

@@ -19,6 +19,10 @@ alias view_trash='ls -alh $HOME/.local/share/Trash/files $HOME/.local/share/Tras
 # apt
 alias aptup='sudo apt update && sudo apt upgrade'
 alias aptlist='apt list --installed'
+package_info() {
+    apt policy "$1"
+    which "$1" && apt list --installed | grep "$1"
+}
 
 # system
 alias os_info_all='lsb_release -a'

@@ -71,7 +71,15 @@ return {
     }
 
     if require("env").config.PYRIGHT_DISABLE_DIAGNOSTICS then
+      -- Silence the old "Push" diagnostics.
       pyright_handlers["textDocument/publishDiagnostics"] = function() end
+      -- Silence the new "Pull" diagnostics.
+      pyright_handlers["textDocument/diagnostic"] = function()
+        return nil
+      end
+      pyright_handlers["workspace/diagnostic"] = function()
+        return nil
+      end
     end
 
     vim.lsp.config("pyright", {

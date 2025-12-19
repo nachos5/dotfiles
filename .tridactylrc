@@ -63,13 +63,14 @@ bind K fillcmdline bmarks
 unbind t
 bind tn tabmove -1
 bind te tabmove +1
+bind tp pin
+" 3gt - go to tab 3
+
 
 " bind N tabprev
 " bind E tabnext
 
 bind td tabduplicate
-
-bind tp winopen -private
 
 " ** Hinting
 " instead of first input, pick input
