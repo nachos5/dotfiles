@@ -29,6 +29,7 @@ block = "sound"
 block = "battery"
 interval = 60
 format = " $percentage"
+missing_format = ""
 
 [[block]]
 block = "time"
