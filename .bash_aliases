@@ -47,7 +47,7 @@ alias composedown='docker compose -f compose-local.yml down'
 # python
 function python() {
     if [[ -z "${VIRTUAL_ENV}" ]]; then
-        /opt/python/3.12.9/bin/python3.12 "$@"
+        ~/.local/share/uv/python/cpython-3.13.5-linux-x86_64-gnu/bin/python3.13 "$@"
     else
         "${VIRTUAL_ENV}/bin/python" "$@"
     fi
@@ -55,7 +55,7 @@ function python() {
 
 function pip() {
     if [[ -z "${VIRTUAL_ENV}" ]]; then
-        /opt/python/3.12.9/bin/pip3.12 "$@"
+        ~/.local/share/uv/python/cpython-3.13.5-linux-x86_64-gnu/bin/pip3.13 "$@"
     else
         "${VIRTUAL_ENV}/bin/pip" "$@"
     fi
