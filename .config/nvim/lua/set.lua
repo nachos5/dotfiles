@@ -66,7 +66,7 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
 local function get_python_path()
-  return "/home/gulli/.local/share/uv/python/cpython-3.13.5-linux-x86_64-gnu/bin/python3.13"
+  return vim.env.PYTHON_EXE_PATH
 end
 
 vim.g.python3_host_prog = get_python_path()

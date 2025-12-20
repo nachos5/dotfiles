@@ -19,6 +19,9 @@ fi
 
 # python
 export PATH="$PATH:/opt/python/3.11.2/bin"
+export PYTHON_EXE_PATH="$(
+	command -v uv >/dev/null 2>&1 && uv python find 2>/dev/null || true
+)"
 
 # go
 export PATH="$PATH:$HOME/go/bin"
