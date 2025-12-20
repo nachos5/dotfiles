@@ -1,5 +1,5 @@
 default_language_version:
-  python: python3.12
+  python: python3.13
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -52,7 +52,7 @@ repos:
     rev: v1.35.1
     hooks:
       - id: yamllint
-        args: ['--config-file', './yamllint.yaml']
+        args: ["--config-file", "./yamllint.yaml"]
 
   - repo: local
     hooks:
@@ -60,10 +60,7 @@ repos:
         name: stylua
         files: ^.*\.lua$
         entry: stylua
-        args: [
-          --verify,
-          --config-path=/home/gulli/.config/stylua/.stylua.toml,
-        ]
+        args: [--verify, --config-path=/home/gulli/.config/stylua/.stylua.toml]
         types: [lua]
         require_serial: true
         language: system
