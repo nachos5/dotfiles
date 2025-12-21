@@ -1,5 +1,5 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
-local treesitter = require("vim.treesitter")
+local ok_ts_utils, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
+local ok_treesitter, treesitter = pcall(require, "vim.treesitter")
 
 local M = {}
 
@@ -55,6 +55,10 @@ function M.edit_file(filename, line_number)
 end
 
 function M.get_current_cursor_function_name()
+  if not ok_ts_utils or not ok_treesitter then
+    return ""
+  end
+
   local current_node = ts_utils.get_node_at_cursor()
 
   if not current_node then
