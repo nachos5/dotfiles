@@ -46,12 +46,22 @@ function M.get_filename_from_path(path)
   return split[#split]
 end
 
+---@param filename string
+---@param line_number integer|nil
+---@return nil
 function M.edit_file(filename, line_number)
-  local edit_cmd = string.format(":e %s", filename)
-  if line_number ~= nil then
-    edit_cmd = string.format(":e +%d %s", line_number, filename)
+  if FLOATING_TERM:is_open() and TERM_LAST_FOCUSED_BUFFER ~= nil then
+    FLOATING_TERM:close()
+    vim.api.nvim_set_current_buf(TERM_LAST_FOCUSED_BUFFER)
   end
-  vim.cmd(edit_cmd)
+
+  vim.schedule(function()
+    local edit_cmd = string.format(":e %s", filename)
+    if line_number ~= nil then
+      edit_cmd = string.format(":e +%d %s", line_number, filename)
+    end
+    vim.cmd(edit_cmd)
+  end)
 end
 
 function M.get_current_cursor_function_name()
