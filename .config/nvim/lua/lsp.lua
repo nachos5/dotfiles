@@ -94,7 +94,7 @@ local function enable_formatting_for_current_buffer()
   end
 end
 
-nnoremap("<leader>li", ":LspInfo<CR>", { silent = true, desc = "LSP Info" })
+nnoremap("<leader>li", ":checkhealth vim.lsp<CR>", { silent = true, desc = "LSP Info" })
 nnoremap("<leader>ls", stop_lsp_for_current_buffer, { silent = true, desc = "Stop LSP for buffer" })
 nnoremap("<leader>lf", enable_formatting_for_current_buffer, { silent = true, desc = "Enable LSP formatting" })
 

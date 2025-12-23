@@ -4,13 +4,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  -- main = "nvim-treesitter.configs",
-  -- branch = "master",
-  -- version = false,
+  branch = "main",
   lazy = false,
-  enabled = function() -- Disable in files with more than 5000 lines.
-    return vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf()) <= 5000
-  end,
   dependencies = {
     {
       "hiphish/rainbow-delimiters.nvim",
@@ -41,21 +36,48 @@ return {
     -- Automatically add closing tags for HTML and JSX.
     { "windwp/nvim-ts-autotag", opts = {} },
   },
-  opts = {
-    ensure_installed = {
-      "lua",
-      "vim",
-      "vimdoc",
-      "query",
-      "python",
-      "c",
-      "cpp",
-      "markdown",
-      "markdown_inline",
-      "csv",
-      "json",
-    },
-    auto_install = true,
-    highlight = { enable = true, disable = { "help" } },
-  },
+  config = function()
+    local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
+
+    require("nvim-treesitter").setup({
+      ensure_installed = {
+        "core",
+        "stable",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "python",
+        "c",
+        "cpp",
+        "markdown",
+        "markdown_inline",
+        "csv",
+        "json",
+      },
+      auto_install = true,
+    })
+
+    -- autocmd for highlighting.
+    vim.api.nvim_create_autocmd("FileType", {
+      group = group,
+      callback = function(args)
+        local bufnr = args.buf
+        local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
+        if not ok or not parser then
+          return
+        end
+
+        if vim.api.nvim_buf_line_count(bufnr) > 5000 then
+          -- Large files, no treesitter highlighting and disable basic highlighting.
+          vim.schedule(function()
+            vim.bo[bufnr].syntax = "off"
+          end)
+        else
+          -- Start treesitter.
+          pcall(vim.treesitter.start)
+        end
+      end,
+    })
+  end,
 }

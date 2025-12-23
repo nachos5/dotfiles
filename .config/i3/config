@@ -179,6 +179,7 @@ bindsym $mod+Ctrl+p exec setxkbmap -layout pl
 # }
 
 bar {
+    output primary
     font pango:BlexMono Nerd Font
     position top
     status_command ~/.cargo/bin/i3status-rs ~/i3status-rust/config.toml

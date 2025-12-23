@@ -31,6 +31,7 @@ echo "UPDATE..."
 apt update -y
 echo "UPGRADE..."
 apt upgrade -y
+# apt full-upgrade -y
 
 # Update GRUB
 update-grub
