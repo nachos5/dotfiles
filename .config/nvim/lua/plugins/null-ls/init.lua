@@ -199,6 +199,9 @@ return {
             "sql",
           },
         }),
+
+        -- go
+        formatting.gofmt,
       }
 
       for _, value in ipairs(formatting_sources) do
