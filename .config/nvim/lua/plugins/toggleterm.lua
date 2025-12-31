@@ -98,6 +98,8 @@ return {
       LAZYDOCKER_TERM,
       XPLR_TERM,
     }
+    -- Make globally accessable.
+    vim.g.my_terms = all_terms
 
     TERM_LAST_FOCUSED_BUFFER = nil
 
@@ -118,5 +120,7 @@ return {
         end
       end, all_terms)
     end
+
+    vim.g.my_terms.TOGGLE_TERM = TOGGLE_TERM
   end,
 }

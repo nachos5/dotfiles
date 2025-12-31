@@ -12,3 +12,8 @@ i3-msg 'workspace 7; exec --no-startup-id spotify'
 sleep 4
 i3-msg 'workspace 1; exec --no-startup-id copyq'
 i3-msg 'workspace 1; exec --no-startup-id emote'
+
+# Run local i3 startup script if it exists.
+if [ -x "$HOME/.config/i3_start_local.sh" ]; then
+    "$HOME/.config/i3_start_local.sh"
+fi

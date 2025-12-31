@@ -1,8 +1,10 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
-local treesitter = require("vim.treesitter")
+local ok_ts_utils, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
+local ok_treesitter, treesitter = pcall(require, "vim.treesitter")
 
 local M = {}
 
+---@param o any
+---@return string
 function M.dump(o)
   if type(o) == "table" then
     local s = "{\n"
@@ -23,10 +25,16 @@ function M.dump(o)
   end
 end
 
+---@param str string
+---@param start string
+---@return boolean
 function M.starts_with(str, start)
   return str:sub(1, #start) == start
 end
 
+---@param file string
+---@param pattern string
+---@return boolean
 function M.file_contains(file, pattern)
   local f = io.open(file, "r")
   if f == nil then
@@ -37,24 +45,43 @@ function M.file_contains(file, pattern)
   return content:match(pattern) ~= nil
 end
 
+---@param absolute_path string
+---@return string
 function M.get_relative_path(absolute_path)
   return vim.fn.substitute(absolute_path, vim.fn.getcwd() .. "/", "", "")
 end
 
+---@param path string
+---@return string
 function M.get_filename_from_path(path)
   local split = vim.split(path, "/")
   return split[#split]
 end
 
+---@param filename string
+---@param line_number integer|nil
+---@return nil
 function M.edit_file(filename, line_number)
-  local edit_cmd = string.format(":e %s", filename)
-  if line_number ~= nil then
-    edit_cmd = string.format(":e +%d %s", line_number, filename)
+  if FLOATING_TERM:is_open() and TERM_LAST_FOCUSED_BUFFER ~= nil then
+    FLOATING_TERM:close()
+    vim.api.nvim_set_current_buf(TERM_LAST_FOCUSED_BUFFER)
   end
-  vim.cmd(edit_cmd)
+
+  vim.schedule(function()
+    local edit_cmd = string.format(":e %s", filename)
+    if line_number ~= nil then
+      edit_cmd = string.format(":e +%d %s", line_number, filename)
+    end
+    vim.cmd(edit_cmd)
+  end)
 end
 
+---@return string
 function M.get_current_cursor_function_name()
+  if not ok_ts_utils or not ok_treesitter then
+    return ""
+  end
+
   local current_node = ts_utils.get_node_at_cursor()
 
   if not current_node then
@@ -81,6 +108,7 @@ function M.get_current_cursor_function_name()
   return treesitter.get_node_text(function_name_node, 0)
 end
 
+---@return string
 function M.get_current_buffer_filename()
   return vim.api.nvim_buf_get_name(0)
 end
@@ -93,6 +121,8 @@ function M.merge_tables(first_table, second_table)
   return vim.tbl_extend("force", first_table, second_table)
 end
 
+---@param path string
+---@return string
 function M.os_home_path(path)
   if vim.g.IS_WINDOWS then
     path = string.gsub(path, "/", "\\")
