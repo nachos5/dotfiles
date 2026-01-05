@@ -43,7 +43,13 @@ return {
           text = "Focus on performance optimization. Profile the code and suggest improvements for speed and memory usage.",
           description = "Performance optimization focus",
         },
+        {
+          name = "@plan",
+          text = "Make a plan.",
+          description = "Planning",
+        },
       },
+      chimeVolume = 0.0,
     })
 
     local Actions = require("magenta.actions")

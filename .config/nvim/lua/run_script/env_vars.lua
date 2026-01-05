@@ -67,7 +67,9 @@ M.get_env_vars = function()
   end
 
   -- Add json data env.
-  table.insert(lines, "JSON_DATA='" .. json_content .. "'")
+  -- Escape single quotes for shell: replace ' with '\''
+  local escaped_json = json_content:gsub("'", "'\\''")
+  table.insert(lines, "JSON_DATA='" .. escaped_json .. "'")
 
   local json_table = vim.json.decode(json_content)
 
