@@ -21,6 +21,7 @@ require("preview-tabbed").setup({
   previewer = os.getenv("HOME") .. "/.config/nnn_custom/preview_tabbed",
 }) -- Type `:p` to toggle preview mode.
 
+-- https://github.com/sayanarijit/nvim-ctrl.xplr
 require("nvim-ctrl").setup({
   bin = "nvim-ctrl",
   mode = "default",
@@ -30,6 +31,7 @@ require("nvim-ctrl").setup({
   },
 })
 
+-- https://github.com/sayanarijit/xclip.xplr
 -- Type `yy` to copy and `p` to paste whole files.
 -- Type `yp` to copy the paths of focused or selected files.
 -- Type `yP` to copy the parent directory path.

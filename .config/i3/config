@@ -233,8 +233,7 @@ mode "$mode_system" {
 bindsym $mod+ctrl+q mode "$mode_system"
 
 # Screenshot
-# bindsym Print exec mkdir -p ~/Pictures/Screenshots/ && flameshot full --path ~/Pictures/Screenshots/
-bindsym Print exec mkdir -p ~/Pictures/Screenshots/ && flameshot gui --path ~/Pictures/Screenshots/
+bindsym Print exec mkdir -p ~/Pictures/Screenshots/ && flameshot gui
 
 # ------------------------------------------
 # run code on start
