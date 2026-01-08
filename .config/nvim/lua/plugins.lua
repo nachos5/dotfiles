@@ -117,8 +117,18 @@ require("lazy").setup({
     "Vimjas/vim-python-pep8-indent",
     ft = "python",
   },
-  require("plugins/molten"),
-  require("plugins/image"),
+  {
+    import = "plugins.molten",
+    cond = function()
+      return require("env").config.LOAD_MOLTEN
+    end,
+  },
+  {
+    import = "plugins.image",
+    cond = function()
+      return require("env").config.LOAD_MOLTEN
+    end,
+  },
 
   -- database
   require("plugins/vim-dadbod"),
