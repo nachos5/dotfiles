@@ -14,7 +14,7 @@ local function attach(bufnr)
     vim.keymap.set(mode, l, r, opts)
   end
 
-  -- Navigation
+  -- hunk navigation
   map("n", "]h", function()
     if vim.wo.diff then
       return "]c"
@@ -34,6 +34,11 @@ local function attach(bufnr)
     return "<Ignore>"
   end, { expr = true })
 
+  -- other hunk actions
+  map("n", "<leader>hp", ":Gitsigns preview_hunk_inline<CR>")
+  map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
+
+  -- blame
   map("n", "<leader>gb", gitsigns.blame)
 end
 

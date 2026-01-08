@@ -23,6 +23,12 @@ package_info() {
     apt policy "$1"
     which "$1" && apt list --installed | grep "$1"
 }
+b64_encode() {
+    echo -n "$1" | base64
+}
+b64_decode() {
+    echo "$1" | base64 --decode && echo
+}
 
 # system
 alias os_info_all='lsb_release -a'

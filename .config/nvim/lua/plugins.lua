@@ -117,8 +117,8 @@ require("lazy").setup({
     "Vimjas/vim-python-pep8-indent",
     ft = "python",
   },
-  -- require("plugins/molten"),
-  -- require("plugins/image"),
+  require("plugins/molten"),
+  require("plugins/image"),
 
   -- database
   require("plugins/vim-dadbod"),
