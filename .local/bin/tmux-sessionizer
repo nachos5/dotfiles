@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
 SEARCH_DIRS=(
-	"$HOME/github"
-	"$HOME/github/sources"
-	"$HOME/github/vinna"
+    "$HOME/github"
+    "$HOME/github/sources"
+    "$HOME/github/vinna"
 )
 
 if [[ -d "$HOME/github/lib" ]]; then
-	SEARCH_DIRS+=("$HOME/github/lib")
+    SEARCH_DIRS+=("$HOME/github/lib")
 fi
 
 if [[ -d "$HOME/github/external" ]]; then
-	SEARCH_DIRS+=("$HOME/github/external")
+    SEARCH_DIRS+=("$HOME/github/external")
 fi
 
 if [[ $# -eq 1 ]]; then
-	selected=$1
+    selected=$1
 else
-	selected=$(find "${SEARCH_DIRS[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find "${SEARCH_DIRS[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
-	exit 0
+    exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
@@ -30,12 +30,12 @@ tmux_running=$(pgrep tmux)
 session_env_command="if [ -f ${selected}/.env_session ]; then source ${selected}/.env_session; fi; bash"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-	tmux new-session -s "$selected_name" -c "$selected" "${session_env_command}"
-	exit 0
+    tmux new-session -s "$selected_name" -c "$selected" "${session_env_command}"
+    exit 0
 fi
 
-if ! tmux has-session -t="$selected_name" 2>/dev/null; then
-	tmux new-session -ds "$selected_name" -c "$selected" "${session_env_command}"
+if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+    tmux new-session -ds "$selected_name" -c "$selected" "${session_env_command}"
 fi
 
 # tmux switch-client -t $selected_name

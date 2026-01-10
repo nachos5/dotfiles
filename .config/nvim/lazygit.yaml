@@ -1,3 +1,3 @@
 os:
-  edit: 'nvim --server "$NVIM_SERVER" --remote-send "<C-g>:lua require(\"utils\").edit_file(\"{{filename}}\")<CR>"'
-  editAtLine: 'nvim --server "$NVIM_SERVER" --remote-send "<C-g>:lua require(\"utils\").edit_file(\"{{filename}}\", {{line}})<CR>"'
+  edit: 'nvim --server "$NVIM_SERVER" --remote-send "<C-g>:lua require(\"utils\").edit_file(\"{{filename}}\")<CR>"' # yamllint disable-line rule:line-length
+  editAtLine: 'nvim --server "$NVIM_SERVER" --remote-send "<C-g>:lua require(\"utils\").edit_file(\"{{filename}}\", {{line}})<CR>"' # yamllint disable-line rule:line-length
