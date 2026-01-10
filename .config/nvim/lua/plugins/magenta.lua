@@ -23,6 +23,11 @@ return {
           fastModel = "gpt-5-mini",
           apiKeyEnvVar = "OPENAI_API_KEY",
         },
+        {
+          name = "llama",
+          provider = "ollama",
+          model = "llama3.1:8b",
+        },
       },
       sidebarPosition = "right",
       picker = "telescope",
