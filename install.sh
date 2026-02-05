@@ -5,30 +5,30 @@ ABS_SCRIPT_PATH="$(realpath "${SCRIPT_PATH}")"
 ABS_DIRECTORY="$(dirname "${ABS_SCRIPT_PATH}")"
 DOTFILES=$ABS_DIRECTORY
 
-rm -rf ~/.config/i3 && ln -sf "${DOTFILES}/.config/i3" ~/.config/i3
-rm -rf ~/.config/i3status && ln -sf "${DOTFILES}/.config/i3status" ~/.config/i3status
-rm -rf ~/.config/nvim && ln -sf "${DOTFILES}/.config/nvim" ~/.config/nvim
-rm -rf ~/.config/nnn_custom && ln -sf "${DOTFILES}/.config/nnn_custom" ~/.config/nnn_custom
-mkdir -p ~/.config/lazygit && ln -sf "${DOTFILES}/.config/lazygit/config.yml" ~/.config/lazygit/config.yml
-mkdir -p ~/.config/lazydocker && ln -sf "${DOTFILES}/.config/lazydocker/config.yml" ~/.config/lazydocker/config.yml
-mkdir -p ~/.config/stylua && ln -sf "${DOTFILES}/.config/stylua/.stylua.toml" ~/.config/stylua/.stylua.toml
-mkdir -p ~/i3status-rust && ln -sf "${DOTFILES}/i3status-rust/config.toml" ~/i3status-rust/config.toml
-mkdir -p ~/.config/xplr && ln -sf "${DOTFILES}/.config/xplr/init.lua" ~/.config/xplr/init.lua
-mkdir -p ~/.config/dunst && ln -sf "${DOTFILES}/.config/dunst/dunstrc" ~/.config/dunst/dunstrc
-mkdir -p ~/.config/picom && ln -sf "${DOTFILES}/.config/picom/picom.conf" ~/.config/picom/picom.conf
-rm -rf ~/utils && ln -sf "${DOTFILES}/utils" ~/utils
-ln -sf "${DOTFILES}/.bash_aliases" ~/.bash_aliases
-ln -sf "${DOTFILES}/.bash_stuff" ~/.bash_stuff
-ln -sf "${DOTFILES}/.inputrc" ~/.inputrc
-ln -sf "${DOTFILES}/.psqlrc" ~/.psqlrc
-ln -sf "${DOTFILES}/.tmux.conf" ~/.tmux.conf
-ln -sf "${DOTFILES}/.xprofile" ~/.xprofile
-ln -sf "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
-mkdir -p ~/.local/bin && ln -sf "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
-ln -sf "${DOTFILES}/.tridactylrc" ~/.tridactylrc
-ln -sf "${DOTFILES}/.xbindkeysrc" ~/.xbindkeysrc
-ln -sf "${DOTFILES}/starship.toml" ~/.config/starship.toml
-sudo ln -sf "${DOTFILES}/xkb/is_custom" /usr/share/X11/xkb/symbols/is_custom
+rm -rf ~/.config/i3 && ln -sfn "${DOTFILES}/.config/i3" ~/.config/i3
+rm -rf ~/.config/i3status && ln -sfn "${DOTFILES}/.config/i3status" ~/.config/i3status
+rm -rf ~/.config/nvim && ln -sfn "${DOTFILES}/.config/nvim" ~/.config/nvim
+rm -rf ~/.config/nnn_custom && ln -sfn "${DOTFILES}/.config/nnn_custom" ~/.config/nnn_custom
+mkdir -p ~/.config/lazygit && ln -sfn "${DOTFILES}/.config/lazygit/config.yml" ~/.config/lazygit/config.yml
+mkdir -p ~/.config/lazydocker && ln -sfn "${DOTFILES}/.config/lazydocker/config.yml" ~/.config/lazydocker/config.yml
+mkdir -p ~/.config/stylua && ln -sfn "${DOTFILES}/.config/stylua/.stylua.toml" ~/.config/stylua/.stylua.toml
+mkdir -p ~/i3status-rust && ln -sfn "${DOTFILES}/i3status-rust/config.toml" ~/i3status-rust/config.toml
+mkdir -p ~/.config/xplr && ln -sfn "${DOTFILES}/.config/xplr/init.lua" ~/.config/xplr/init.lua
+mkdir -p ~/.config/dunst && ln -sfn "${DOTFILES}/.config/dunst/dunstrc" ~/.config/dunst/dunstrc
+mkdir -p ~/.config/picom && ln -sfn "${DOTFILES}/.config/picom/picom.conf" ~/.config/picom/picom.conf
+rm -rf ~/utils && ln -sfn "${DOTFILES}/utils" ~/utils
+ln -sfn "${DOTFILES}/.bash_aliases" ~/.bash_aliases
+ln -sfn "${DOTFILES}/.bash_stuff" ~/.bash_stuff
+ln -sfn "${DOTFILES}/.inputrc" ~/.inputrc
+ln -sfn "${DOTFILES}/.psqlrc" ~/.psqlrc
+ln -sfn "${DOTFILES}/.tmux.conf" ~/.tmux.conf
+ln -sfn "${DOTFILES}/.xprofile" ~/.xprofile
+ln -sfn "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
+mkdir -p ~/.local/bin && ln -sfn "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
+ln -sfn "${DOTFILES}/.tridactylrc" ~/.tridactylrc
+ln -sfn "${DOTFILES}/.xbindkeysrc" ~/.xbindkeysrc
+ln -sfn "${DOTFILES}/starship.toml" ~/.config/starship.toml
+sudo ln -sfn "${DOTFILES}/xkb/is_custom" /usr/share/X11/xkb/symbols/is_custom
 
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
     {
