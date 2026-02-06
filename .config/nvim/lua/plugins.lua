@@ -105,6 +105,7 @@ require("lazy").setup({
   -- require("plugins/claude"),
   -- require("plugins/avante"),
   require("plugins/magenta"),
+  require("plugins/opencode"),
 
   -- supercollider
   require("plugins/scnvim"),
