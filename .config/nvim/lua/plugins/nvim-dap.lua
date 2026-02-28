@@ -12,7 +12,7 @@ return {
     local dap = require("dap")
     local ui = require("dapui")
 
-    -- :help dap-configurations
+    -- dap.set_log_level("DEBUG")
 
     ui.setup()
     require("nvim-dap-virtual-text").setup({})
