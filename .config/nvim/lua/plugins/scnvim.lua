@@ -54,24 +54,32 @@ return {
         ["<leader>."] = map("sclang.hard_stop", { "n" }),
         ["<leader>st"] = map("sclang.start"),
         ["<leader>sk"] = map("sclang.recompile"),
-        ["<leader>sp"] = map_expr("Server.local.plotTree", { "n" }),
-        ["<leader>sm"] = map_expr("Server.local.meter", { "n" }),
-        ["<leader>sb"] = map_expr("s.boot"),
-        ["<leader>sr"] = map_expr("s.reboot"),
-        ["<leader>sq"] = map_expr("s.quit"),
         ["<leader>rt"] = map(function()
           vim.cmd("SCNvimGenerateAssets")
         end, { "n" }),
         ["<leader>sl"] = map(function()
           vim.cmd("SCNvimStatusLine")
         end, { "n" }),
+        ["<space>k"] = map("signature.show", { "n" }),
+
+        -- Server expressions.
+        ["<leader>sp"] = map_expr("Server.local.plotTree", { "n" }),
+        ["<leader>sm"] = map_expr("Server.local.meter", { "n" }),
+        ["<leader>sb"] = map_expr("s.boot"),
+        ["<leader>sr"] = map_expr("s.reboot"),
+        ["<leader>sq"] = map_expr("s.quit"),
         ["<leader>+"] = map_expr("s.volume = s.volume.volume + 5"),
         ["<leader>-"] = map_expr("s.volume = s.volume.volume - 5"),
-        ["<space>k"] = map("signature.show", { "n" }),
+
+        -- My custom expressions.
+        ["<leader>ep"] = map_expr("~play.();"),
+        ["<leader>es"] = map_expr("~stop.();"),
+
         -- FzfSC
         ["<leader>sf"] = scnvim.map(function()
           vim.cmd("FzfSC")
         end, { "n" }),
+
         -- h4x
         ["<leader>se"] = scnvim.map(function()
           vim.cmd("SCExternalHelpSearch")
