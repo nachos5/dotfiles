@@ -10,10 +10,10 @@ null_ls_log_clear
 remove_nvim_swaps
 
 # Clean thumbnail cache
-rm -rf ~/.cache/thumbnails/* ~/.thumbnails/*
+rm -rf /home/gulli/.cache/thumbnails/* /home/gulli/.thumbnails/*
 
 # Clean Trash
-rm -rf ~/.local/share/Trash/*
+rm -rf /home/gulli/.local/share/Trash/*
 
 # Clean system logs
 journalctl --vacuum-time=3d
