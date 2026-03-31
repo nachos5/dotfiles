@@ -36,10 +36,15 @@ return {
     local venv_path = require("env").config.VENV_PATH and require("env").config.VENV_PATH or "env"
     local env_pre_cmd = "source ./" .. venv_path .. "/bin/activate || true"
     local lg_pre_cmd = "(" .. env_pre_cmd .. ") && "
-    local lg_cmd = lg_pre_cmd .. "lazygit -p $(pwd)"
+    local find_git_root = 'd=$(pwd); while [ "$d" != / ] && [ ! -d "$d/.git" ]; do d=$(dirname "$d"); done; echo "$d"'
+    local lg_cmd = lg_pre_cmd .. "lazygit -p $(" .. find_git_root .. ")"
     if vim.v.servername ~= nil then
       lg_cmd = lg_pre_cmd
-        .. string.format("NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.yaml -p $(pwd)", vim.v.servername)
+        .. string.format(
+          "NVIM_SERVER=%s lazygit -ucf ~/.config/nvim/lazygit.yaml -p $(%s)",
+          vim.v.servername,
+          find_git_root
+        )
     end
     if vim.g.IS_WINDOWS then
       lg_cmd = "lazygit"
