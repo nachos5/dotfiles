@@ -51,8 +51,34 @@ return {
         desc = "Grep selected text",
       },
       -- lsp stuff
-      { "<leader>ci", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "LSP incoming calls" },
-      { "<leader>co", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "LSP outgoing calls" },
+      {
+        "<leader>ci",
+        function()
+          local clients = vim.lsp.get_clients({ bufnr = 0 })
+          for _, client in ipairs(clients) do
+            if client:supports_method("callHierarchy/incomingCalls") then
+              require("telescope.builtin").lsp_incoming_calls()
+              return
+            end
+          end
+          vim.notify("No LSP client supports call hierarchy", vim.log.levels.WARN)
+        end,
+        desc = "LSP incoming calls",
+      },
+      {
+        "<leader>co",
+        function()
+          local clients = vim.lsp.get_clients({ bufnr = 0 })
+          for _, client in ipairs(clients) do
+            if client:supports_method("callHierarchy/outgoingCalls") then
+              require("telescope.builtin").lsp_outgoing_calls()
+              return
+            end
+          end
+          vim.notify("No LSP client supports call hierarchy", vim.log.levels.WARN)
+        end,
+        desc = "LSP outgoing calls",
+      },
       { "<leader>cr", "<cmd>Telescope lsp_references<CR>", desc = "LSP references" },
       -- Workspace symbols.
       {
