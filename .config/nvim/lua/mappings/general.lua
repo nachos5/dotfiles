@@ -122,6 +122,9 @@ nnoremap("<leader>lp", ":lprev<CR>", { silent = true })
 -- remove leading and trailing whitespace
 nnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })
 vnoremap("<leader>pw", ":s/^\\s\\+\\|\\s\\+$//g<CR>:noh<CR>", { silent = true })
+-- remove all empty lines
+nnoremap("<leader>pl", ":g/^\\s*$/d<CR>:noh<CR>", { silent = true })
+vnoremap("<leader>pl", ":g/^\\s*$/d<CR>:noh<CR>", { silent = true })
 
 -- set buffer filetype
 nnoremap("<leader>j", ":set filetype=json<CR>", { silent = true })
