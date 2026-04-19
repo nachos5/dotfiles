@@ -13,4 +13,7 @@ au BufRead,BufNewFile *.pyscript set filetype=python
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 autocmd FileType typescriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" nunjucks (html + jinja)
+autocmd BufNewFile,BufRead *.njk set filetype=htmldjango
 ]])

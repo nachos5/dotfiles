@@ -49,15 +49,15 @@ vim.keymap.set("n", "<leader>cy", function()
   local relative_dir_path = vim.fn.expand("%:h") -- Relative directory path.
 
   local options = {
-    ["1"] = { name = "Full path", value = filename },
-    ["2"] = { name = "Relative path", value = relative },
-    ["3"] = { name = "Filename only", value = just_name },
-    ["4"] = { name = "Full directory path", value = dir_path },
-    ["5"] = { name = "Relative directory path", value = relative_dir_path },
+    { name = "Full path", value = filename },
+    { name = "Relative path", value = relative },
+    { name = "Filename only", value = just_name },
+    { name = "Full directory path", value = dir_path },
+    { name = "Relative directory path", value = relative_dir_path },
   }
 
   local items = {}
-  for _, option in pairs(options) do
+  for _, option in ipairs(options) do
     table.insert(items, string.format("%s: %s", option.name, option.value))
   end
 
