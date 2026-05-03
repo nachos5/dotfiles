@@ -23,6 +23,18 @@ journalctl --vacuum-time=3d
 apt autoclean -y
 apt clean -y
 
+# Clean package manager / tool caches (all safely regenerable)
+rm -rf ~/.cache/pre-commit
+rm -rf ~/.cache/pip ~/.cache/uv
+rm -rf ~/.cache/yarn ~/.cache/typescript
+rm -rf ~/.bun/install/cache
+command -v npm > /dev/null && npm cache clean --force > /dev/null 2>&1
+command -v go > /dev/null && go clean -cache > /dev/null 2>&1
+
+# Clean firefox
+rm -rf ~/.cache/mozilla/firefox/*
+rm -rf ~/.var/app/org.mozilla.firefox/cache/*
+
 # Remove unnecessary packages
 apt autoremove -y
 
