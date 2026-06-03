@@ -117,6 +117,36 @@ alias yg='yarn generate'
 
 # xrandr
 alias xrandr_reset='xrandr -s 0'
+alias xrandr_hdmi='xrandr --output HDMI-1 --auto --right-of eDP-1 --primary'
+alias xrandr_hdmi_reset='xrandr --output HDMI-1 --auto --primary --scale 1x1 --transform none --panning 0x0 --output eDP-1 --auto --scale 1x1 --transform none --panning 0x0'
+xrandr_hdmi_mirror_scaled() {
+    local hdmi="HDMI-1"
+    local edp="eDP-1"
+
+    local hdmi_res
+    hdmi_res="$(
+        xrandr --query | awk -v out="$hdmi" '
+      $1 == out { in_output = 1; next }
+      /^[^[:space:]]/ { in_output = 0 }
+      in_output && $1 ~ /^[0-9]+x[0-9]+$/ && $0 ~ /\*/ {
+        print $1
+        exit
+      }
+    '
+    )"
+
+    if [ -z "$hdmi_res" ]; then
+        echo "Could not detect current resolution for $hdmi"
+        return 1
+    fi
+
+    echo "Mirroring $hdmi at $hdmi_res onto scaled $edp"
+
+    xrandr \
+        --fb "$hdmi_res" \
+        --output "$hdmi" --primary --scale 1x1 --transform none --panning 0x0 --pos 0x0 \
+        --output "$edp" --auto --scale-from "$hdmi_res" --pos 0x0
+}
 
 # fzf
 alias fzfkeys='cat ~/github/sources/fzf/shell/key-bindings.bash'
