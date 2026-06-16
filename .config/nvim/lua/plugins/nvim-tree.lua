@@ -1,7 +1,5 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  -- Optional, updated every week.
-  version = "nightly",
   keys = {
     { "<C-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
     { "<leader>n", ":NvimTreeFindFile<CR>", desc = "Find file in NvimTree" },

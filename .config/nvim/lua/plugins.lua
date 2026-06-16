@@ -104,7 +104,7 @@ require("lazy").setup({
   require("plugins/copilot"),
   -- require("plugins/claude"),
   -- require("plugins/avante"),
-  require("plugins/magenta"),
+  -- require("plugins/magenta"),
   require("plugins/opencode"),
 
   -- supercollider

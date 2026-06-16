@@ -1,5 +1,6 @@
 return {
   "ThePrimeagen/refactoring.nvim",
+  branch = "1.0",
   event = "VeryLazy",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
