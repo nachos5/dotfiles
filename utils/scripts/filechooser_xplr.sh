@@ -43,6 +43,21 @@ else
     start_dir="$path"
     [ -d "$start_dir" ] || start_dir="$HOME"
     # xplr prints the selection (or the focused file) on quit-with-result.
+    # Like the GTK dialog, Enter on a folder enters it (reopen xplr inside)
+    # instead of returning it — Firefox can't handle a directory result.
     # shellcheck disable=SC2086,SC2016 # word-split termcmd; inner $1.. expand in the child shell
-    $termcmd bash -c 'xplr "$1" > "$2"' bash "$start_dir" "$out"
+    $termcmd bash -c '
+        dir="$1"
+        while :; do
+            sel="$(xplr "$dir")"
+            [ -n "$sel" ] || exit 0
+            first="$(printf "%s" "$sel" | head -n 1)"
+            if [ -d "$first" ]; then
+                dir="$first"
+                continue
+            fi
+            printf "%s\n" "$sel" > "$2"
+            exit 0
+        done
+    ' bash "$start_dir" "$out"
 fi

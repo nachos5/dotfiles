@@ -4,6 +4,8 @@
 
 killall -q ibus-daemon
 killall -q at-spi-bus-launcher
-killall -q gnome-keyring-daemon
+# Killing the keyring daemon caused a keyring password prompt on every login,
+# since it discarded the PAM-unlocked instance.
+# killall -q gnome-keyring-daemon
 
 ulimit -n 65535
