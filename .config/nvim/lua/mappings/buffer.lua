@@ -72,3 +72,35 @@ vim.keymap.set("n", "<leader>cy", function()
     end
   end)
 end, { noremap = true, desc = "Copy file path menu" })
+
+vim.keymap.set("n", "<leader>cl", function()
+  local relative = vim.fn.expand("%") -- Relative path.
+  local full = vim.fn.expand("%:p") -- Full path.
+  local just_name = vim.fn.expand("%:t") -- Just filename.
+  local lnum = vim.fn.line(".") -- Current line number.
+  local line_content = vim.trim(vim.fn.getline(".")) -- Current line text.
+
+  local options = {
+    { name = "Relative + line", value = string.format("%s:%d", relative, lnum) },
+    { name = "Full + line", value = string.format("%s:%d", full, lnum) },
+    { name = "Filename + line", value = string.format("%s:%d", just_name, lnum) },
+    { name = "Relative + line + content", value = string.format("%s:%d: %s", relative, lnum, line_content) },
+    { name = "Full + line + content", value = string.format("%s:%d: %s", full, lnum, line_content) },
+  }
+
+  local items = {}
+  for _, option in ipairs(options) do
+    table.insert(items, string.format("%s: %s", option.name, option.value))
+  end
+
+  vim.ui.select(items, {
+    prompt = "Choose what to copy:",
+  }, function(choice)
+    if choice then
+      -- Extract the part after the first ": " (the option name separator).
+      local value = choice:match(": (.+)$")
+      vim.fn.setreg("+", value)
+      vim.notify("Copied: " .. value)
+    end
+  end)
+end, { noremap = true, desc = "Copy file path + line menu" })
