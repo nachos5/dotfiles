@@ -1,0 +1,4 @@
+[filechooser]
+cmd=/home/gulli/utils/scripts/filechooser_xplr.sh
+default_dir=/home/gulli/Downloads
+create_help_file=0
