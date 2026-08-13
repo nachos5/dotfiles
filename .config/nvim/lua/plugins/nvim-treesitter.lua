@@ -84,16 +84,16 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "TSUpdate",
       callback = function()
-        require("nvim-treesitter.parsers").supercollider = {
-          install_info = {
-            url = "https://github.com/madskjeldgaard/tree-sitter-supercollider",
-            -- path = "/home/gulli/github/external/tree-sitter-supercollider",
-            branch = "main",
-            files = { "src/parser.c", "src/scanner.c" },
-            generate = true,
-          },
-          filetype = "supercollider",
-        }
+        -- require("nvim-treesitter.parsers").supercollider = {
+        --   install_info = {
+        --     url = "https://github.com/madskjeldgaard/tree-sitter-supercollider",
+        --     -- path = "/home/gulli/github/external/tree-sitter-supercollider",
+        --     branch = "main",
+        --     files = { "src/parser.c", "src/scanner.c" },
+        --     generate = true,
+        --   },
+        --   filetype = "supercollider",
+        -- }
       end,
     })
   end,
