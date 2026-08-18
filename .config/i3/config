@@ -218,6 +218,9 @@ bindsym $mod+XF86AudioRaiseVolume exec ~/.config/i3/alsa_increase_or_decrease_vo
 bindsym $mod+XF86AudioLowerVolume exec ~/.config/i3/alsa_increase_or_decrease_volume.sh Master down
 bindsym $mod+XF86AudioMute exec amixer -D pulse set Master toggle
 
+# Restart the audio stack when sound dies (wireplumber tends to drop the card).
+bindsym $mod+Shift+a exec --no-startup-id ~/.config/i3/audio_restart.sh
+
 # System
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
