@@ -18,6 +18,16 @@ xo() {
 }
 alias view_trash='ls -alh $HOME/.local/share/Trash/files $HOME/.local/share/Trash/info'
 
+# yazi: quit with q to cd into the last directory (Q quits without cd)
+y() {
+    local tmp cwd
+    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
+
 # apt
 alias aptup='sudo apt update && sudo apt upgrade'
 alias aptlist='apt list --installed'

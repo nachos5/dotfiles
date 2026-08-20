@@ -10,7 +10,7 @@ This is a dotfiles repository containing configuration files for:
 - **i3** window manager
 - **tmux** terminal multiplexer
 - **wezterm** terminal emulator
-- **xplr** file manager
+- **yazi** file manager (xplr was old one)
 - **Various shell scripts and aliases**
 
 ## Build/Lint/Test Commands
