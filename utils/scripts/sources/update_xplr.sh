@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# DEPRECATED: migrated to yazi (2026-08); kept for reference.
 # https://xplr.dev/en/install#build-from-source
 
 cd ~/github/sources/xplr || exit

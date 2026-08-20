@@ -134,8 +134,8 @@ alias tl='tmux list-session'
 alias tk='tmux kill-session'
 alias tks='tmux kill-server'
 
-# xplr
-alias xcd='cd "$(xplr --print-pwd-as-result)"'
+# xcd was xplr-cd; kept for muscle memory, now backed by the yazi y() wrapper
+alias xcd='y'
 
 # nvim
 alias n='source_env_session && envpy_no_error && nvim'

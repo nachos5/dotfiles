@@ -12,7 +12,7 @@ return {
     },
     { "<C-g>", "<cmd>lua TOGGLE_TERM(LAZYGIT_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle lazygit" },
     { "<leader><C-d>", "<cmd>lua TOGGLE_TERM(LAZYDOCKER_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle lazydocker" },
-    { "<leader><C-x>", "<cmd>lua TOGGLE_TERM(XPLR_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle xplr" },
+    { "<leader><C-x>", "<cmd>lua TOGGLE_TERM(YAZI_TERM)<CR>", mode = { "n", "t" }, desc = "Toggle yazi" },
   },
   config = function()
     local Terminal = require("toggleterm.terminal").Terminal
@@ -71,17 +71,17 @@ return {
       },
     })
 
-    -- #### XPLR TERMINAL #### --
+    -- #### YAZI TERMINAL #### --
 
-    XPLR_TERM = Terminal:new({
+    YAZI_TERM = Terminal:new({
       cmd = function()
-        local xplr_cmd = "xplr"
+        -- Given a file path, yazi starts with that file hovered.
+        local yazi_cmd = "yazi"
         local current_buf_filename = utils.get_current_buffer_filename()
         if current_buf_filename ~= "" then
-          xplr_cmd = xplr_cmd .. " " .. current_buf_filename
+          yazi_cmd = yazi_cmd .. " " .. current_buf_filename
         end
-        xplr_cmd = xplr_cmd .. " " .. "--print-pwd-as-result"
-        return xplr_cmd
+        return yazi_cmd
       end,
       direction = "float",
       hidden = true,
@@ -101,7 +101,7 @@ return {
       FLOATING_TERM,
       LAZYGIT_TERM,
       LAZYDOCKER_TERM,
-      XPLR_TERM,
+      YAZI_TERM,
     }
     -- Make globally accessable.
     vim.g.my_terms = all_terms

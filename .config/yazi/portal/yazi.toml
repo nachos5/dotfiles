@@ -1,0 +1,8 @@
+# Used only by filechooser_xplr.sh folder-pick modes (via YAZI_CONFIG_HOME).
+# Mirrors the main yazi.toml sort settings, minus external plugins (the portal
+# config home has no plugins dir).
+[mgr]
+sort_by = "mtime"
+sort_reverse = true
+sort_dir_first = true
+linemode = "mtime"

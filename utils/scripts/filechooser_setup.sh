@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build and install xdg-desktop-portal-termfilechooser and wire it up as the
-# FileChooser portal backend, so file dialogs open xplr (see
+# FileChooser portal backend, so file dialogs open yazi (see
 # filechooser_xplr.sh). Idempotent — safe to re-run, e.g. after a
 # xdg-desktop-portal-{gtk,gnome,xapp} package update restores the GTK dialog.
 #

@@ -1,0 +1,10 @@
+# Used only by filechooser_xplr.sh folder-pick modes (via YAZI_CONFIG_HOME):
+# Enter picks the current directory (quit writes it to --cwd-file), like xplr
+# did. Enter therefore doesn't navigate — use l / <Right> to go into folders.
+[mgr]
+prepend_keymap = [
+  {on = "<Enter>", run = "quit", desc = "Pick the current directory"},
+  {on = "?", run = "help", desc = "Open help"},
+  {on = "z", run = "plugin zoxide", desc = "Cd to a directory via zoxide"},
+  {on = "Z", run = "plugin fzf", desc = "Cd to a directory via fzf"},
+]

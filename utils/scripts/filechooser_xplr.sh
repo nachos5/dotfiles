@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Wrapper for xdg-desktop-portal-termfilechooser that opens xplr in wezterm.
+# Wrapper for xdg-desktop-portal-termfilechooser that opens yazi in wezterm.
+# (Filename kept from the xplr era to avoid re-wiring the portal config.)
 # Called by the portal as:
 #   filechooser_xplr.sh <multiple> <directory> <save> <suggested_path> <out_file>
-#   $1 multiple  (0/1) select multiple files — unused, xplr multi-select works either way
+#   $1 multiple  (0/1) select multiple files — unused, yazi multi-select works either way
 #   $2 directory (0/1) select a directory instead of a file
 #   $3 save      (0/1) save mode (suggested_path holds the proposed filename)
 #   $4 suggested path
@@ -23,11 +24,14 @@ if [ "$save" = "1" ]; then
     start_dir="$(dirname "$path")"
     [ -d "$start_dir" ] || start_dir="$HOME/Downloads"
     filename="$(basename "$path")"
-    # Navigate into the target folder, press Enter there to pick it, then
-    # confirm/rename the filename.
+    # Navigate to the target folder (l/Right enters, Enter or q picks it,
+    # Q cancels — see .config/yazi/portal/), then confirm/rename the filename.
     # shellcheck disable=SC2086,SC2016 # word-split termcmd; inner $1.. expand in the child shell
     $termcmd bash -c '
-        dir="$(xplr --print-pwd-as-result "$1")"
+        tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        YAZI_CONFIG_HOME="$HOME/.config/yazi/portal" yazi "$1" --cwd-file="$tmp"
+        dir="$(cat "$tmp")"
+        rm -f -- "$tmp"
         [ -n "$dir" ] || exit 0
         read -r -e -p "Save as: " -i "$2" name
         [ -n "$name" ] || name="$2"
@@ -36,28 +40,16 @@ if [ "$save" = "1" ]; then
 elif [ "$directory" = "1" ]; then
     start_dir="$path"
     [ -d "$start_dir" ] || start_dir="$HOME"
-    # Navigate into the target folder and press Enter there to select it.
+    # Navigate to the target folder (l/Right enters, Enter or q picks it,
+    # Q cancels — see .config/yazi/portal/).
     # shellcheck disable=SC2086,SC2016 # word-split termcmd; inner $1.. expand in the child shell
-    $termcmd bash -c 'xplr --print-pwd-as-result "$1" > "$2"' bash "$start_dir" "$out"
+    $termcmd bash -c 'YAZI_CONFIG_HOME="$HOME/.config/yazi/portal" yazi "$1" --cwd-file="$2"' bash "$start_dir" "$out"
 else
     start_dir="$path"
     [ -d "$start_dir" ] || start_dir="$HOME"
-    # xplr prints the selection (or the focused file) on quit-with-result.
-    # Like the GTK dialog, Enter on a folder enters it (reopen xplr inside)
-    # instead of returning it — Firefox can't handle a directory result.
+    # Enter on a file (or on a Space-selection) writes the path(s) and quits.
+    # Enter on a folder just enters it, like the GTK dialog — yazi only
+    # "returns" files in chooser mode, so no directory-result guard is needed.
     # shellcheck disable=SC2086,SC2016 # word-split termcmd; inner $1.. expand in the child shell
-    $termcmd bash -c '
-        dir="$1"
-        while :; do
-            sel="$(xplr "$dir")"
-            [ -n "$sel" ] || exit 0
-            first="$(printf "%s" "$sel" | head -n 1)"
-            if [ -d "$first" ]; then
-                dir="$first"
-                continue
-            fi
-            printf "%s\n" "$sel" > "$2"
-            exit 0
-        done
-    ' bash "$start_dir" "$out"
+    $termcmd bash -c 'yazi "$1" --chooser-file="$2"' bash "$start_dir" "$out"
 fi
