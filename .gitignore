@@ -2,3 +2,8 @@
 .envrc.local
 py.log*
 plans/
+
+# yazi plugins are managed by `ya pkg` (pinned in .config/yazi/package.toml);
+# only our own plugins are tracked
+.config/yazi/plugins/*
+!.config/yazi/plugins/relative-motions-compat.yazi/

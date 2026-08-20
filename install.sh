@@ -1,14 +1,22 @@
 #!/bin/bash
 
+# Constants / variables.
 SCRIPT_PATH="${BASH_SOURCE:-$0}"
 ABS_SCRIPT_PATH="$(realpath "${SCRIPT_PATH}")"
 ABS_DIRECTORY="$(dirname "${ABS_SCRIPT_PATH}")"
 DOTFILES=$ABS_DIRECTORY
 
+# Symlink folders.
 rm -rf ~/.config/i3 && ln -sfn "${DOTFILES}/.config/i3" ~/.config/i3
 rm -rf ~/.config/i3status && ln -sfn "${DOTFILES}/.config/i3status" ~/.config/i3status
 rm -rf ~/.config/nvim && ln -sfn "${DOTFILES}/.config/nvim" ~/.config/nvim
 rm -rf ~/.config/nnn_custom && ln -sfn "${DOTFILES}/.config/nnn_custom" ~/.config/nnn_custom
+rm -rf ~/.config/yazi && ln -sfn "${DOTFILES}/.config/yazi" ~/.config/yazi
+# Restore gitignored yazi plugins from package.toml.
+command -v ya > /dev/null && ya pkg install
+rm -rf ~/utils && ln -sfn "${DOTFILES}/utils" ~/utils
+
+# Symlink into folders.
 mkdir -p ~/.config/lazygit && ln -sfn "${DOTFILES}/.config/lazygit/config.yml" ~/.config/lazygit/config.yml
 mkdir -p ~/.config/lazydocker && ln -sfn "${DOTFILES}/.config/lazydocker/config.yml" ~/.config/lazydocker/config.yml
 mkdir -p ~/.config/stylua && ln -sfn "${DOTFILES}/.config/stylua/.stylua.toml" ~/.config/stylua/.stylua.toml
@@ -17,7 +25,9 @@ mkdir -p ~/.config/xplr && ln -sfn "${DOTFILES}/.config/xplr/init.lua" ~/.config
 mkdir -p ~/.config/xdg-desktop-portal-termfilechooser && ln -sfn "${DOTFILES}/.config/xdg-desktop-portal-termfilechooser/config" ~/.config/xdg-desktop-portal-termfilechooser/config
 mkdir -p ~/.config/dunst && ln -sfn "${DOTFILES}/.config/dunst/dunstrc" ~/.config/dunst/dunstrc
 mkdir -p ~/.config/picom && ln -sfn "${DOTFILES}/.config/picom/picom.conf" ~/.config/picom/picom.conf
-rm -rf ~/utils && ln -sfn "${DOTFILES}/utils" ~/utils
+mkdir -p ~/.local/bin && ln -sfn "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
+
+# Symlink files.
 ln -sfn "${DOTFILES}/.bash_aliases" ~/.bash_aliases
 ln -sfn "${DOTFILES}/.bash_stuff" ~/.bash_stuff
 ln -sfn "${DOTFILES}/.inputrc" ~/.inputrc
@@ -25,12 +35,12 @@ ln -sfn "${DOTFILES}/.psqlrc" ~/.psqlrc
 ln -sfn "${DOTFILES}/.tmux.conf" ~/.tmux.conf
 ln -sfn "${DOTFILES}/.xprofile" ~/.xprofile
 ln -sfn "${DOTFILES}/.wezterm.lua" ~/.wezterm.lua
-mkdir -p ~/.local/bin && ln -sfn "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
 ln -sfn "${DOTFILES}/.tridactylrc" ~/.tridactylrc
 ln -sfn "${DOTFILES}/.xbindkeysrc" ~/.xbindkeysrc
 ln -sfn "${DOTFILES}/starship.toml" ~/.config/starship.toml
 sudo ln -sfn "${DOTFILES}/xkb/is_custom" /usr/share/X11/xkb/symbols/is_custom
 
+# Make login shells source ~/.bashrc.
 if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
     {
         echo "if [ -f ~/.bashrc ]; then"
@@ -39,6 +49,7 @@ if ! grep -q "if \[ -f ~/.bashrc \]; then" ~/.bash_profile; then
     } >> ~/.bash_profile
 fi
 
+# Source the symlinked ~/.bash_aliases (aliases and functions).
 if ! grep -q "if \[ -f ~/.bash_aliases \]; then" ~/.bashrc; then
     {
         echo "if [ -f ~/.bash_aliases ]; then"
@@ -47,6 +58,7 @@ if ! grep -q "if \[ -f ~/.bash_aliases \]; then" ~/.bashrc; then
     } >> ~/.bashrc
 fi
 
+# Source the symlinked ~/.bash_stuff.
 if ! grep -q "if \[ -f ~/.bash_stuff \]; then" ~/.bashrc; then
     {
         echo "if [ -f ~/.bash_stuff ]; then"
@@ -55,10 +67,12 @@ if ! grep -q "if \[ -f ~/.bash_stuff \]; then" ~/.bashrc; then
     } >> ~/.bashrc
 fi
 
+# Default editor.
 if ! grep -q "export EDITOR=nvim" ~/.bashrc; then
     echo "export EDITOR=nvim" >> ~/.bashrc
 fi
 
+# Colored "user:cwd$" prompt (the "# set PS1" marker line is what makes this idempotent).
 if ! grep -q "# set PS1" ~/.bashrc; then
     echo "# set PS1" >> ~/.bashrc
     # shellcheck disable=SC2028
