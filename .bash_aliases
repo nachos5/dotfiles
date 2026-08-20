@@ -31,6 +31,36 @@ b64_encode() {
 b64_decode() {
     echo "$1" | base64 --decode && echo
 }
+pw_encode() {
+    if (($# > 0)); then
+        printf '%s' "$1"
+    else
+        cat
+    fi | gpg \
+        --quiet \
+        --symmetric \
+        --cipher-algo AES256 \
+        --no-symkey-cache \
+        --output - |
+        base64 -w0
+
+    echo
+}
+
+pw_decode() {
+    if (($# > 0)); then
+        printf '%s' "$1"
+    else
+        cat
+    fi | tr -d '\n' |
+        base64 -d |
+        gpg \
+            --quiet \
+            --no-symkey-cache \
+            --decrypt
+
+    echo
+}
 
 # system
 alias os_info_all='lsb_release -a'
