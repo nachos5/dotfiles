@@ -1,0 +1,7 @@
+# Neuter FileManager1 D-Bus activation (user dir overrides the system nemo
+# service): Firefox's "Show in folder" prefers this interface and would spawn
+# nemo; with activation failing it falls back to the inode/directory handler,
+# which is yazi-wezterm.desktop (set via xdg-mime in install.sh).
+[D-BUS Service]
+Name=org.freedesktop.FileManager1
+Exec=/usr/bin/false

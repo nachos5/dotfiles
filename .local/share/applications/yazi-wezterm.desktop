@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Yazi (wezterm)
+Comment=Browse directory in yazi
+Exec=wezterm start --always-new-process -- yazi %f
+Terminal=false
+NoDisplay=true
+MimeType=inode/directory;
+Categories=System;FileTools;FileManager;

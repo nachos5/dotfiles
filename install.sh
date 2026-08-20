@@ -26,6 +26,19 @@ mkdir -p ~/.config/dunst && ln -sfn "${DOTFILES}/.config/dunst/dunstrc" ~/.confi
 mkdir -p ~/.config/picom && ln -sfn "${DOTFILES}/.config/picom/picom.conf" ~/.config/picom/picom.conf
 mkdir -p ~/.local/bin && ln -sfn "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
 
+# Open directories with yazi in wezterm instead of nemo (e.g. Firefox's
+# "show in folder", xdg-open of a dir). Two layers: yazi-wezterm.desktop
+# becomes the inode/directory handler, and the FileManager1 D-Bus service —
+# which Firefox prefers over the mime handler and which would activate nemo —
+# is overridden with a no-op so Firefox falls back to the mime handler.
+mkdir -p ~/.local/share/applications && ln -sfn "${DOTFILES}/.local/share/applications/yazi-wezterm.desktop" ~/.local/share/applications/yazi-wezterm.desktop
+mkdir -p ~/.local/share/dbus-1/services && ln -sfn "${DOTFILES}/.local/share/dbus-1/services/org.freedesktop.FileManager1.service" ~/.local/share/dbus-1/services/org.freedesktop.FileManager1.service
+# Open directories with yazi (e.g. Firefox "show in folder", xdg-open of a dir).
+xdg-mime default yazi-wezterm.desktop inode/directory
+# Make the session D-Bus pick up the FileManager1 override now (otherwise it applies on next login), and stop any nemo daemon still owning the name.
+busctl --user call org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus ReloadConfig 2> /dev/null || true
+pkill -x nemo 2> /dev/null || true
+
 # Symlink files.
 ln -sfn "${DOTFILES}/.bash_aliases" ~/.bash_aliases
 ln -sfn "${DOTFILES}/.bash_stuff" ~/.bash_stuff
