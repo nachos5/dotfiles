@@ -40,7 +40,7 @@ return {
 
     local function oil_z(args)
       local search_string = args.fargs[1]
-      local command = "~/z_out.sh " .. search_string
+      local command = "zoxide query " .. search_string
       local handle = io.popen(command, "r")
       if handle then
         local result = handle:read("*a") -- Read the complete output of the command.

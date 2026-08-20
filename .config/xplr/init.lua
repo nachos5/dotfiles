@@ -87,8 +87,7 @@ xplr.config.modes.builtin.default.key_bindings.on_key.z = {
 
 -- Add z handler function.
 xplr.fn.custom.z_handler = function(app)
-  local new_path =
-    io.popen("bash -c 'source ~/z.sh && _z 2>&1 " .. app.input_buffer .. " && pwd'"):read("*a"):gsub("[\n\r]", "")
+  local new_path = io.popen("zoxide query -- " .. app.input_buffer .. " 2>/dev/null"):read("*a"):gsub("[\n\r]", "")
   if new_path ~= "" then
     return {
       { ChangeDirectory = new_path },
