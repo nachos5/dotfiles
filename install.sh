@@ -25,6 +25,9 @@ mkdir -p ~/.config/xdg-desktop-portal-termfilechooser && ln -sfn "${DOTFILES}/.c
 mkdir -p ~/.config/dunst && ln -sfn "${DOTFILES}/.config/dunst/dunstrc" ~/.config/dunst/dunstrc
 mkdir -p ~/.config/picom && ln -sfn "${DOTFILES}/.config/picom/picom.conf" ~/.config/picom/picom.conf
 mkdir -p ~/.local/bin && ln -sfn "${DOTFILES}/.local/bin/tmux-sessionizer" ~/.local/bin/tmux-sessionizer
+# fzf is built from source; ~/.fzf.bash only puts it on PATH in interactive
+# shells, so expose it session-wide (desktop launchers, D-Bus apps) via ~/.local/bin.
+ln -sfn ~/github/sources/fzf/bin/fzf ~/.local/bin/fzf
 
 # Open directories with yazi in wezterm instead of nemo (e.g. Firefox's
 # "show in folder", xdg-open of a dir). Two layers: yazi-wezterm.desktop
