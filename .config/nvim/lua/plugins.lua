@@ -47,8 +47,6 @@ require("lazy").setup({
   require("plugins/neoscroll"),
   require("plugins/help_vsplit"),
   require("plugins/mini"),
-  require("plugins/precognition"),
-  -- require("plugins/hardtime"),
   {
     -- Handle large files.
     "LunarVim/bigfile.nvim",
@@ -75,13 +73,11 @@ require("lazy").setup({
 
   -- tests/debug
   require("plugins/nvim-dap"),
-  require("plugins/neotest"),
 
   -- git
   require("plugins/vim-fugitive"),
   require("plugins/gitsigns"),
   require("plugins/diffview"),
-  -- require("plugins/octo"),
 
   -- snippets
   require("plugins/luasnip"),
@@ -95,46 +91,22 @@ require("lazy").setup({
     "folke/neodev.nvim",
   },
   require("plugins/null-ls/init"),
-  require("plugins/emmet"),
   -- lsp addons
   "simrat39/rust-tools.nvim",
   "lvimuser/lsp-inlayhints.nvim",
 
-  -- LLM
-  require("plugins/copilot"),
-  -- require("plugins/claude"),
-  -- require("plugins/avante"),
-  -- require("plugins/magenta"),
-  require("plugins/opencode"),
-
   -- supercollider
   require("plugins/scnvim"),
-
-  -- colors
-  require("plugins/ccc"),
 
   -- python
   {
     "Vimjas/vim-python-pep8-indent",
     ft = "python",
   },
-  {
-    import = "plugins.molten",
-    cond = function()
-      return require("env").config.LOAD_MOLTEN
-    end,
-  },
-  {
-    import = "plugins.image",
-    cond = function()
-      return require("env").config.LOAD_MOLTEN
-    end,
-  },
 
   -- database
   require("plugins/vim-dadbod"),
 
   -- random / various / third party
-  require("plugins/leetcode"),
   -- require("plugins/godot"),
 }, config)
