@@ -32,7 +32,10 @@ return {
         miniclue.gen_clues.z(),
         { mode = "n", keys = "<Leader>x", desc = "+Trouble" },
       },
-      window = { delay = 200 },
+      window = {
+        delay = 200,
+        config = { anchor = "SW", row = "auto", col = "auto" },
+      },
     })
 
     local animate = require("mini.animate")
