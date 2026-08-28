@@ -13,10 +13,17 @@ end
 
 function MiniAnimate.setup()
   local animate = require("mini.animate")
+  local mouse_scroll_lines = math.max(1, tonumber(vim.o.mousescroll:match("ver:(%d+)")) or 3)
   animate.setup({
     cursor = { enable = false },
     scroll = {
       timing = animate.gen_timing.linear({ duration = 120, unit = "total" }),
+      -- mini.animate cannot identify the scroll source, so skip mouse-sized changes to avoid wheel jitter.
+      subscroll = animate.gen_subscroll.equal({
+        predicate = function(total_scroll)
+          return math.abs(total_scroll) > mouse_scroll_lines
+        end,
+      }),
     },
     resize = { enable = false },
     open = { enable = false },
