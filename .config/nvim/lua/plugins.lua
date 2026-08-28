@@ -41,7 +41,6 @@ require("lazy").setup({
   -- various / utils / uncategorized
   require("plugins/tabout"),
 
-  require("plugins/trim"),
   require("plugins/live_command"),
   require("plugins/help_vsplit"),
   require("plugins/mini"),

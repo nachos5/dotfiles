@@ -275,10 +275,6 @@
     "branch": "main",
     "commit": "1a841e56407ba02e919ed9af573dbe531404aebb"
   },
-  "trim.nvim": {
-    "branch": "master",
-    "commit": "765360a6f6ac732f4c78c5c694f4b892a55b53ec"
-  },
   "trouble.nvim": {
     "branch": "main",
     "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a"
