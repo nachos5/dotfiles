@@ -1,6 +1,14 @@
 [mgr]
 prepend_keymap = [
   {on = "?", run = "help", desc = "Open help"},
+  {on = [
+    "c",
+    "i",
+  ], run = '''shell --orphan -- xclip -selection clipboard -t "$(file -b --mime-type %h)" -i %h''', desc = "Copy hovered file to clipboard as image data"},
+  {on = [
+    "c",
+    "u",
+  ], run = '''shell --orphan -- for p in %s; do echo "file://$p"; done | xclip -i -selection clipboard -t text/uri-list''', desc = "Copy selected files to clipboard as files"},
   {on = "z", run = "plugin zoxide", desc = "Cd to a directory via zoxide"},
   {on = "Z", run = "plugin fzf", desc = "Cd to a directory or reveal a file via fzf"},
   {on = "1", run = "plugin relative-motions-compat 1", desc = "Relative motion 1"},
