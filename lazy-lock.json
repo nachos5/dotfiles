@@ -127,10 +127,6 @@
     "branch": "main",
     "commit": "d9655aa272f22378c1cfccce2a4e9d53f986e414"
   },
-  "neoscroll.nvim": {
-    "branch": "master",
-    "commit": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8"
-  },
   "none-ls.nvim": {
     "branch": "main",
     "commit": "01f8e62ea11603e59ad9ff7afcfa94fd183f76d6"
@@ -279,10 +275,6 @@
     "branch": "main",
     "commit": "1a841e56407ba02e919ed9af573dbe531404aebb"
   },
-  "trim.nvim": {
-    "branch": "master",
-    "commit": "765360a6f6ac732f4c78c5c694f4b892a55b53ec"
-  },
   "trouble.nvim": {
     "branch": "main",
     "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a"
@@ -322,9 +314,5 @@
   "wezterm.nvim": {
     "branch": "main",
     "commit": "032c33b621b96cc7228955b4352b48141c482098"
-  },
-  "which-key.nvim": {
-    "branch": "main",
-    "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a"
   }
 }

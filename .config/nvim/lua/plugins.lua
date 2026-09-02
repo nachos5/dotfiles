@@ -40,11 +40,8 @@ require("lazy").setup({
 
   -- various / utils / uncategorized
   require("plugins/tabout"),
-  require("plugins/which_key"),
 
-  require("plugins/trim"),
   require("plugins/live_command"),
-  require("plugins/neoscroll"),
   require("plugins/help_vsplit"),
   require("plugins/mini"),
   {

@@ -2,18 +2,14 @@ return {
   "folke/trouble.nvim",
   config = function()
     local trouble = require("trouble")
-    local wk = require("which-key")
-
-    local function _set_keymaps()
-      wk.add({
-        { "<leader>x", group = "Trouble" },
-        { "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "document_diagnostics" },
-        { "<leader>xr", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP references" },
-        { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "toggle" },
-      })
-    end
 
     trouble.setup()
-    _set_keymaps()
+    vim.keymap.set("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {
+      desc = "Document diagnostics",
+    })
+    vim.keymap.set("n", "<leader>xr", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", {
+      desc = "LSP references",
+    })
+    vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Toggle diagnostics" })
   end,
 }

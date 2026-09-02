@@ -6,6 +6,9 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
+    require("plugins/mini/clue").setup()
+    require("plugins/mini/animate").setup()
+
     -- ga=
     require("mini.align").setup()
 
@@ -53,5 +56,7 @@ return {
     MiniIcons.mock_nvim_web_devicons()
 
     require("mini.pairs").setup()
+
+    require("plugins/mini/trailspace").setup()
   end,
 }
