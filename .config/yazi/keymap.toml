@@ -1,5 +1,6 @@
 [mgr]
 prepend_keymap = [
+  {on = "<Esc>", run = "quit", desc = "Quit Yazi"},
   {on = "?", run = "help", desc = "Open help"},
   {on = [
     "c",
