@@ -61,6 +61,7 @@ return {
     end
 
     local directory_mapping_path = "/home/gulli/github/notes/directory_mapping.json"
+    local notes_root = "/home/gulli/github/notes/tree"
 
     local function normalize_path(path)
       local normalized_path = vim.fs.normalize(path)
@@ -83,7 +84,6 @@ return {
 
       local current_directory = normalize_path(vim.fn.getcwd())
       local home_directory = normalize_path(vim.fn.expand("~"))
-      local notes_root = vim.fs.dirname(directory_mapping_path)
       local best_match
 
       for notes_directory, project_directory in pairs(directory_mapping) do
