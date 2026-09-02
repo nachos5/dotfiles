@@ -60,7 +60,7 @@ return {
       })
     end
 
-    local directory_mapping_path = "/home/gulli/github/notes/tree/directory_mapping.json"
+    local directory_mapping_path = "/home/gulli/github/notes/directory_mapping.json"
 
     local function normalize_path(path)
       local normalized_path = vim.fs.normalize(path)
