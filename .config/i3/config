@@ -253,7 +253,7 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 
 # initial config and stuff
 exec --no-startup-id ~/.config/i3/touchpad.sh
-exec --no-startup-id ~/.config/i3/resolution.sh
+# Display setup runs from start.sh before applications.
 
 # services
 exec_always --no-startup-id ~/.config/i3/services.sh
