@@ -1,0 +1,2 @@
+# Allow loops with a single literal item, such as display output lists.
+disable=SC2043
