@@ -10,18 +10,34 @@
 
 notify() {
     echo "$*"
-    command -v notify-send > /dev/null && notify-send -a "audio_restart" -t 4000 "Audio" "$*"
+    command -v notify-send > /dev/null && timeout -k 1 2 notify-send -a "audio_restart" -t 4000 "Audio" "$*"
+}
+
+# Repeated shortcut presses must not restart services underneath each other.
+exec 9> "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/audio_restart.lock"
+if ! flock -n 9; then
+    notify "An audio restart is already in progress."
+    exit 0
+fi
+
+# A wedged server can leave pactl waiting far longer than our polling window.
+pactl() {
+    timeout -k 1 2 pactl "$@"
 }
 
 # Number of real (non-dummy) sinks PipeWire is exposing.
 real_sinks() {
-    pactl list short sinks 2> /dev/null | grep -cv 'auto_null'
+    local sinks
+    sinks=$(pactl list short sinks 2> /dev/null) || return 1
+    printf '%s\n' "$sinks" | awk 'NF && $2 != "auto_null" { count++ } END { print count+0 }'
 }
 
-# Poll for up to ~8s, since the card takes a moment to reappear after a restart.
+# Allow ~8s for discovery, but escalate immediately if the server stops replying.
 wait_for_sink() {
+    local count
     for _ in $(seq 1 16); do
-        [ "$(real_sinks)" -gt 0 ] && return 0
+        count=$(real_sinks) || return 1
+        [ "$count" -gt 0 ] && return 0
         sleep 0.5
     done
     return 1
@@ -43,7 +59,7 @@ if ! wait_for_sink; then
         systemctl --user restart pipewire pipewire-pulse wireplumber
 
         if ! wait_for_sink; then
-            notify "Restart failed - no sink came back. Check 'aplay -l'; if the card is missing there the driver died, so try 'sudo alsa force-reload'."
+            notify "Restart failed - no output came back. Check 'aplay -l' and 'journalctl -k -b' for missing cards or USB disconnects."
             exit 1
         fi
     fi
