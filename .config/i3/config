@@ -29,6 +29,7 @@ for_window [class="QjackCtl"] floating enable
 for_window [class="SuperCollider"] floating enable
 for_window [class="^yazi-float$"] floating enable, sticky enable, resize set 80 ppt 80 ppt, move position center
 for_window [class="^toolbox-float$"] floating enable, sticky enable, resize set 80 ppt 80 ppt, move position center
+for_window [class="^staryu-neovim$"] floating enable, resize set 80 ppt 80 ppt, move position center
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
