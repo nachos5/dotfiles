@@ -60,7 +60,7 @@ return {
       })
     end
 
-    local directory_mapping_path = "/home/gulli/github/notes/directory_mapping.json"
+    local directory_mapping_path = "/home/gulli/github/dotfiles-private/directory_mapping/directory_mapping.json"
     local notes_root = "/home/gulli/github/notes/tree"
 
     local function normalize_path(path)
@@ -86,7 +86,8 @@ return {
       local home_directory = normalize_path(vim.fn.expand("~"))
       local best_match
 
-      for notes_directory, project_directory in pairs(directory_mapping) do
+      for notes_directory, project in pairs(directory_mapping) do
+        local project_directory = type(project) == "table" and project.local_directory or nil
         if type(notes_directory) == "string" and type(project_directory) == "string" then
           local project_path = normalize_path(vim.fs.joinpath(home_directory, project_directory))
           local is_inside_project = current_directory == project_path
