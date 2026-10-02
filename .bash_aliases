@@ -85,6 +85,8 @@ alias cpu_power_management='cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_gov
 # git
 alias git_unpushed='git log --oneline origin/main..main'
 
+alias git_cleanup_local='~/utils/scripts/git_cleanup_local.sh'
+
 # docker
 alias dockerstop='docker stop $(docker ps -a -q)'
 alias dockerrm='docker rm $(docker ps -a -q)'
