@@ -1,1 +1,7 @@
 export TERMINAL=wezterm
+
+# Prefer dark mode for apps following the system setting and for GTK apps.
+if command -v gsettings > /dev/null 2>&1; then
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    gsettings set org.gnome.desktop.interface gtk-theme 'Mint-Y-Dark-Aqua'
+fi
