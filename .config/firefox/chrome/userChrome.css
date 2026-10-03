@@ -1,0 +1,8 @@
+/* Square tabs */
+.tabbrowser-tab {
+  --tab-border-radius: 0px !important;
+}
+
+.tab-background {
+  border-radius: 0px !important;
+}
