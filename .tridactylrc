@@ -15,6 +15,14 @@ sanitize tridactyllocal tridactylsync
 " Firefox homepage, but Tridactyl doesn't support this yet.
 set newtab about:blank
 
+" Replace Firefox Home with Tridactyl's new-tab page, including at startup.
+" Resolve the extension URL at runtime because its UUID differs per profile.
+" Remove our old listener when re-sourcing this file, then handle both future
+" Home loads (e.g. new windows) and any Home tabs already open at startup.
+jsb if (window.dotfiles_home_listener) browser.tabs.onUpdated.removeListener(window.dotfiles_home_listener)
+jsb window.dotfiles_home_listener = (id, change) => { if (change.url === "about:home") return browser.tabs.update(id, {url: browser.runtime.getURL("static/newtab.html")}); }; browser.tabs.onUpdated.addListener(window.dotfiles_home_listener)
+jsb browser.tabs.query({}).then(tabs => Promise.all(tabs.map(tab => window.dotfiles_home_listener(tab.id, {url: tab.url}))))
+
 " ctrl+i
 set editorcmd wezterm start --class tridactyl_editor nvim
 " %f 'normal %lG%cL'
