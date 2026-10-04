@@ -1,8 +1,8 @@
-/* Square tabs */
+/* Subtly rounded tabs */
 .tabbrowser-tab {
-  --tab-border-radius: 0px !important;
+  --tab-border-radius: 3px !important;
 }
 
 .tab-background {
-  border-radius: 0px !important;
+  border-radius: 3px !important;
 }
