@@ -36,7 +36,8 @@ return {
     local venv_path = require("env").config.VENV_PATH and require("env").config.VENV_PATH or "env"
     local env_pre_cmd = "source ./" .. venv_path .. "/bin/activate || true"
     local lg_pre_cmd = "(" .. env_pre_cmd .. ") && "
-    local find_git_root = 'd=$(pwd); while [ "$d" != / ] && [ ! -d "$d/.git" ]; do d=$(dirname "$d"); done; echo "$d"'
+    -- Also handles worktrees, where .git is a file and not a directory.
+    local find_git_root = "git rev-parse --show-toplevel 2>/dev/null || pwd"
     local lg_cmd = lg_pre_cmd .. "lazygit -p $(" .. find_git_root .. ")"
     if vim.v.servername ~= nil then
       lg_cmd = lg_pre_cmd
