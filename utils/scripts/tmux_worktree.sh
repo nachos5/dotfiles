@@ -39,6 +39,18 @@ copy_ignored_files() {
     printf '  %s\n' "${paths[@]}"
 }
 
+# Allow the worktree's .envrc for direnv, but only when it is identical to the main worktree's
+# .envrc and that one is already allowed, so a changed .envrc on a branch is never trusted silently.
+allow_direnv() {
+    local source=$1 target=$2
+
+    command -v direnv > /dev/null || return 0
+    [[ -f $target/.envrc ]] && cmp -s "$source/.envrc" "$target/.envrc" || return 0
+    # Status 0 means allowed.
+    (cd "$source" && direnv status) | grep -qx 'Found RC allowed 0' || return 0
+    direnv allow "$target"
+}
+
 main() {
     local main_worktree common_dir output query selection worktree name window
 
@@ -87,6 +99,7 @@ main() {
     fi
     if [[ $worktree != "$main_worktree" ]]; then
         copy_ignored_files "$main_worktree" "$worktree" || return 1
+        allow_direnv "$main_worktree" "$worktree"
     fi
 
     # Windows are tagged with the @worktree option so they can be found again.
