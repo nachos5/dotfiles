@@ -102,16 +102,22 @@ main() {
         allow_direnv "$main_worktree" "$worktree"
     fi
 
+    # Name windows after the branch; a detached HEAD falls back to the directory name.
+    name=$(git -C "$worktree" branch --show-current)
+    [[ -n $name ]] || name=$(basename "$worktree")
+
     # Windows are tagged with the @worktree option so they can be found again.
     window=$(
         tmux list-windows -F "#{window_id}	#{@worktree}" |
             awk -F '\t' -v path="$worktree" '$2 == path { print $1; exit }'
     )
     if [[ -n $window ]]; then
+        # Rename too, the worktree may have switched branch since the window was made.
+        tmux rename-window -t "$window" "$name"
         tmux select-window -t "$window"
         return 0
     fi
-    window=$(tmux new-window -P -F '#{window_id}' -c "$worktree" -n "$(basename "$worktree")") || return 1
+    window=$(tmux new-window -P -F '#{window_id}' -c "$worktree" -n "$name") || return 1
     tmux set-option -w -t "$window" @worktree "$worktree"
     # Start nvim from a shell so the window stays open after quitting nvim.
     tmux send-keys -t "$window" nvim Enter
