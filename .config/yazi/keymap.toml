@@ -3,6 +3,14 @@ prepend_keymap = [
   {on = "<Esc>", run = "quit", desc = "Quit Yazi"},
   {on = "?", run = "help", desc = "Open help"},
   {on = "!", run = 'shell "$SHELL" --block', desc = "Open shell here"},
+  {on = [
+    "g",
+    "o",
+  ], run = "shell --orphan -- open .", desc = "Open current folder in Finder", for = "macos"},
+  {on = [
+    "g",
+    "o",
+  ], run = "shell --orphan -- nemo .", desc = "Open current folder in Nemo", for = "linux"},
   {on = "<C-p>", run = "shell --block -- mpv --no-video -- %h", desc = "Play audio"},
   {on = [
     "c",
